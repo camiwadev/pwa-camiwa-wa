@@ -1,0 +1,126 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": false
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "camiwa": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/camiwa",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/custom-theme.scss",
+              "./node_modules/swiper/swiper-bundle.css",
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "camiwa:build:production"
+            },
+            "development": {
+              "buildTarget": "camiwa:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "camiwa:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css",
+              "src/styles.scss",
+              "src/assets/camiwa/plugins/aos/aos.min.css",
+              "src/assets/camiwa/plugins/bootstrap/css/bootstrap.min.css",
+              "src/assets/camiwa/plugins/fontawesome/css/all.min.css",
+              "src/assets/camiwa/plugins/OwlCarousel2/css/owl.carousel.min.css",
+              "src/assets/camiwa/plugins/OwlCarousel2/css/owl.theme.default.min.css",
+              "src/assets/camiwa/plugins/jquery-fancyfileuploader/fancy-file-uploader/fancy_fileupload.css",
+              "src/assets/camiwa/plugins/ion.rangeSlider/ion.rangeSlider.min.css",
+              "src/assets/camiwa/plugins/magnific-popup/magnific-popup.css",
+              "src/assets/camiwa/plugins/select2/select2.min.css",
+              "src/assets/camiwa/plugins/select2-bootstrap-5/select2-bootstrap-5-theme.min.css",
+              "src/assets/camiwa/css/style.css",
+              "src/assets/camiwa-dash/plugins/metisMenu/metisMenu.min.css",
+              "src/assets/camiwa-dash/plugins/fontawesome/css/all.min.css",
+              "src/assets/camiwa-dash/plugins/toastr/toastr.css",
+              "src/assets/camiwa-dash/plugins/datatables/dataTables.bootstrap5.min.css",
+              "src/assets/camiwa-dash/dist/css/app.min.css",
+              "src/assets/camiwa-dash/dist/css/style.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  }
+}

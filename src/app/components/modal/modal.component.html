@@ -1,0 +1,41 @@
+<div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+        <div class="form">
+        <div class="modal-body">
+            <h2 style="padding-top: 0%;" >
+                <span *ngIf="!selectedNivel">
+                    Que deseas realizar? 
+                </span>
+                <span *ngIf="selectedNivel === 'primer_nivel'">
+                    Agregar categoría
+                </span>
+                <span *ngIf="selectedNivel === 'segundo_nivel'">
+                    Agregar especialidad
+                </span>
+                <div class="color-picker-container">
+                </div>
+            </h2>            
+            <div style="margin-top: 20px;">
+                <label><input type="radio" name="nivel" [(ngModel)]="selectedNivel" value="primer_nivel"> agregar categoría</label>
+                <label style="margin-left: 20px;"><input type="radio" name="nivel" [(ngModel)]="selectedNivel" value="segundo_nivel"> agregar especialidad</label>
+            </div>
+            <div class="col-md-12" style="padding: 5%;">
+                <div>
+                </div>
+            </div>
+            <div class="form-group">
+                
+          <app-select [hidden]="(selectedNivel !== 'primer_nivel' && selectedNivel !='segundo_nivel')|| selectedNivel !='segundo_nivel'"></app-select>
+        </div>
+        <div style="display: flex; align-items: center;" [hidden]="(selectedNivel !== 'primer_nivel' && selectedNivel !='segundo_nivel')|| selectedNivel !='segundo_nivel'">
+            <input type="text" style="margin-top: 10px; " class="form-control" [(ngModel)]="specialtyName" placeholder="Nombre de la especialidad"> <!-- Campo de texto para el nombre -->
+            <span class="btn btn-default" style="margin-left: 10px;" (click)="saveSpecialty()">Guardar</span>
+        </div>
+            <div style="display: flex; align-items: center;" *ngIf="selectedNivel === 'primer_nivel'">
+                <input type="text" style="margin-top: 10px; " class="form-control" [(ngModel)]="categoriaNombre" placeholder="Nombre de la Categoría"> <!-- Campo de texto para el nombre -->
+                <span class="btn btn-default" style="margin-left: 10px;" (click)="saveCategoria()">Guardar</span>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

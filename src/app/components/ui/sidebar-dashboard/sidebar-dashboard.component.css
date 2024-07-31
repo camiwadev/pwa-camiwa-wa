@@ -1,0 +1,15 @@
+.sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0
+}
+@font-face {
+    font-family: 'queen';
+    src: url('../../../../assets/camiwa/css/queenofheaven.ttf') format('truetype');
+}
+
+
+.queen {
+    font-family: 'queen', sans-serif;
+}

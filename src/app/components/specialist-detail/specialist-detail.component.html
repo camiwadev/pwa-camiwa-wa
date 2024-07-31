@@ -1,0 +1,983 @@
+<div class="py-4" style="padding-top: 20px !important; ">
+    <div class="container">
+        <div class="justify-content-between row align-items-center g-4">
+            <div class="col-lg col-xxl-8">
+                <div class="d-flex flex-wrap align-items-center mb-3 gap-2"
+                    style="position: absolute; z-index: 999999;">
+                    <div class="border-0 card d-inline-flex flex-row flex-wrap gap-1 p-1 rounded-3 shadow-sm"
+                        style="z-index: 99999; ">
+                        <button class="btn-perfil btn-xs" (click)="global.setRoute('mapwrapper')">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <div class="col fs-18 text-nowrap" [hidden]="global.categoryFilterSelected"
+                            style="margin-right: 5px;">
+                            Volver atrás
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="py-5 bg-light m-3 rounded-4">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-4 ">
+                <div class="card border-0 p-4 p-xl-5 position-relative profile-card rounded-4 shadow-sm text-center">
+                    <div class="bg-cover bg-dark bg-no-repeat js-bg-image overflow-hidden position-absolute profile-card_bg--img start-0 top-0 w-100"
+                        data-image-src="assets/camiwa/images/profile-cover.png"></div>
+                    <div
+                        class="border border-3 border-white d-block position-relative profile-image-wrap rounded-circle">
+                        <img src="{{global.previewRequest.images[0]}}"
+                            class="h-100 img-fluid object-fit-cover profile-image rounded-circle w-100" alt="">
+                        <div
+                            class="align-items-center bg-white d-flex end-0 justify-content-center position-absolute rounded-circle star-circle text-primary top-0 btn-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <h3 class="profile-card__name">{{global.previewRequest.full_name}}</h3>
+                    <ul class="">
+                        <li class="list-inline-item">
+                            <a class="fw-medium" href="">{{global.previewRequest.city}} -
+                                {{global.previewRequest.country}}
+                            </a>
+                            <i class="fa-solid fa-arrow-up-right-from-square fs-14 ms-2"></i>
+                        </li>
+
+                        <li class="list-inline-item">
+                            <div class="d-flex align-items-center gap-2 ms-auto">
+                                <div class="d-flex align-items-center text-primary rating-stars">
+                                    <i class="fa-star-icon"></i>
+                                    <i class="fa-star-icon"></i>
+                                    <i class="fa-star-icon"></i>
+                                    <i class="fa-star-icon half"></i>
+                                    <i class="fa-star-icon none"></i>
+                                </div>
+                                <span class="fw-medium text-primary"><span
+                                        class="fs-6 fw-semibold me-1">(4.5)</span><small>2,391 reviews</small></span>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="col-lg-auto">
+                        <div class="form-check form-check-bookmark mb-2 mb-sm-0">
+                            <input class="form-check-input" type="checkbox" value="" id="jobBookmarkCheck">
+                            <label class="form-check-label" for="jobBookmarkCheck">
+                                <span class="form-check-bookmark-default" (click)="showAdd()">
+                                    <i class="fa-regular fa-heart me-1"></i> Agregar a favoritos
+                                </span>
+                                <span class="form-check-bookmark-active" (click)="showRemove()">
+                                    <i class="fa-solid fa-heart me-1"></i> Guardado
+                                </span>
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="profile-card__txt">
+
+                        <div *ngFor="let specialty of global.previewRequest.specialties">{{ specialty.name }}</div>
+                    </div>
+                    <div class="card-social d-flex flex-wrap fs-19 gap-3 justify-content-center mb-4 mt-2">
+
+                        <a class="twitter" target="_blank" href="https://twitter.com/"><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="Facebook" target="_blank" href="https://facebook.com/"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="instagram" target="_blank" href="https://instagram.com/"><i
+                                class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="mb-5">
+                        <div class="border-bottom border-top py-3 fs-15">
+                            <div class="align-items-center d-flex justify-content-between">
+                                <span class="text-muted">Teléfono</span>
+                                <span class="fw-semibold">+48 0340 909 032</span>
+                            </div>
+                            <div class="align-items-center d-flex justify-content-between mb-2">
+                                <span class="text-muted">Email</span>
+                                <span class="fw-semibold"><a href="" class="__cf_email__">correo</a></span>
+                            </div>
+                            <div class="align-items-center d-flex justify-content-between mb-2">
+                                <span class="text-muted">Dirección</span>
+                                <span class="fw-semibold">400 St.Petersburg</span>
+                            </div>
+                            <div class="align-items-center d-flex justify-content-between mb-2">
+                                <span class="text-muted">Sitio web</span>
+                                <span class="fw-semibold">www.ejemplo.com</span>
+                            </div>
+                        </div>
+                        <div class="pt-3 fs-15">
+                            <div class="align-items-center d-flex justify-content-between mb-2">
+                                <span class="text-muted">Idioma</span>
+                                <span class="fw-semibold">
+                                    Español</span>
+                            </div>
+                            <div class="align-items-center d-flex justify-content-between mb-2">
+                                <span class="text-muted">Metodos de pago</span>
+                                <span class="fw-semibold" style="text-align: right;">
+                                    <li>Efectivo</li>
+                                    <li>Transferencia</li>
+                                    <li>Tarjeta <br> credito/debito</li>
+                                </span>
+                            </div>
+                            <div class="align-items-center d-flex justify-content-between mb-2">
+                                <span class="text-muted">Valor por consulta</span>
+                                <span class="fw-semibold">COP 200.000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-0 card-btn_wrap g-0 position-absolute row start-0 w-100">
+                        <a href="agent-details.html#" download=""
+                            class="align-items-center card-btn col-6 d-flex fs-13 fw-bold gap-2 justify-content-center position-relative text-uppercase">
+                            <span class="text">Llamar</span>
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+                        <a
+                            class="align-items-center card-btn col-6 d-flex fs-13 fw-bold gap-2 justify-content-center position-relative text-uppercase">
+                            <span class="text">Pedir cita</span>
+                            <i class="fa-solid fa-id-card fs-18"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm" style="margin-top: 20px;" id="booking">
+                    <h4 class="fw-semibold mb-4">Reservar <span class="font-caveat text-primary">consulta</span></h4>
+                    <form [formGroup]="form" (ngSubmit)="createBooking()" class="row g-4">
+                      <div class="col-sm-12">
+                        <mat-calendar
+                          #calendar
+                          [hidden]="!global.showCalendar"
+                          (selectedChange)="onSelectedChange($event)"
+                          [headerComponent]="headerComponent"
+                        ></mat-calendar>
+                      </div>
+                      <div class="col-sm-12">
+                        <div>
+                          <label class="required fw-medium mb-2">Fecha</label>
+                          <input type="text" class="form-control" placeholder="Fecha de la reserva" required [value]="selectedDate ? getFormattedDate() : ''" readonly>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div>
+                          <label class="required fw-medium mb-2">Nombre</label>
+                          <input type="text" class="form-control" placeholder="Ingrese su nombre" formControlName="name" required>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div>
+                          <label class="required fw-medium mb-2">Correo</label>
+                          <input type="email" class="form-control" placeholder="Ingrese su correo" formControlName="email" required>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary w-100">Reservar</button>
+                      </div>
+                    </form>
+                  </div>
+                  
+            </div>
+            <div class="col-lg-8 ps-xxl-5 content">
+                <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm">
+                    <div class="align-items-sm-center bg-light mb-4 p-4 rounded-3">
+                        <h4 class="fw-semibold fs-2">Biografia</h4>
+                        <p class="mb-0 fs-15">Breve descripción</p>
+                    </div>
+                </div>
+                <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm">
+                    <h4 class="fw-semibold fs-2 mb-4">SERVICIOS</h4>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width"
+                            style="padding: 10px;">
+                            <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
+                                <a href="#" class="stretched-link"></a>
+                                <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
+                            </div>
+                            <div class="row g-1 pt-2" style="padding-left: 5%;">
+                                <div class="col-sm order-sm-first">
+                                    <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
+                                        <span>Titulos</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            fill="currentColor" class="bi bi-patch-check-fill text-success"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
+                                            </path>
+                                        </svg>
+                                    </h4>
+                                    <p class="mb-0 fs-13">Detalles</p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap gap-3 mt-2 z-1">
+
+                                <a href="#booking" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">Solicitar</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width"
+                            style="padding: 10px;">
+                            <!-- start card image wrap -->
+                            <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
+                                <!-- start card link -->
+                                <a href="#" class="stretched-link"></a>
+                                <!-- end /. card link -->
+                                <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
+                            </div>
+                            <!-- end /. card image wrap -->
+                            <div class="row g-1 pt-2" style="padding-left: 5%;">
+
+                                <div class="col-sm order-sm-first">
+                                    <!-- start card title -->
+                                    <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
+                                        <span>Titulos</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            fill="currentColor" class="bi bi-patch-check-fill text-success"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
+                                            </path>
+                                        </svg>
+                                    </h4>
+                                    <!-- end /. card title -->
+                                    <!-- start card description -->
+                                    <p class="mb-0 fs-13">Detalles</p>
+                                    <!-- end /. card description -->
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap gap-3 mt-2 z-1">
+                                <a href="#booking" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">Solicitar</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width"
+                            style="padding: 10px;">
+                            <!-- start card image wrap -->
+                            <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
+                                <!-- start card link -->
+                                <a href="#" class="stretched-link"></a>
+                                <!-- end /. card link -->
+                                <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
+                            </div>
+                            <!-- end /. card image wrap -->
+                            <div class="row g-1 pt-2" style="padding-left: 5%;">
+
+                                <div class="col-sm order-sm-first">
+                                    <!-- start card title -->
+                                    <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
+                                        <span>Titulos</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            fill="currentColor" class="bi bi-patch-check-fill text-success"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
+                                            </path>
+                                        </svg>
+                                    </h4>
+                                    <!-- end /. card title -->
+                                    <!-- start card description -->
+                                    <p class="mb-0 fs-13">Detalles</p>
+                                    <!-- end /. card description -->
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap gap-3 mt-2 z-1">
+                                <a href="#booking" class="d-flex gap-2 align-items-center fs-13 fw-semibold">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">Solicitar</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="fw-semibold fs-3 mb-4" style="padding-top: 20px;">SERVICIOS Y TRATAMIENTOS</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3 menu pb-2">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h4 class="fs-17 mb-0 menu-title">TITULO</h4>
+                                            <div class="fs-14 menu-detail text-muted">Detalles</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mb-3 menu pb-2">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h4 class="fs-17 mb-0 menu-title">TITULO</h4>
+                                            <div class="fs-14 menu-detail text-muted">Detalles</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mb-3 menu pb-2">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h4 class="fs-17 mb-0 menu-title">TITULO</h4>
+                                            <div class="fs-14 menu-detail text-muted">Detalles</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mb-3 menu pb-2">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h4 class="fs-17 mb-0 menu-title">TITULO</h4>
+                                            <div class="fs-14 menu-detail text-muted">Detalles</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3 menu pb-2">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h4 class="fs-17 mb-0 menu-title">TITULO</h4>
+                                            <div class="fs-14 menu-detail text-muted">Detalles</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mb-3 menu pb-2">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h4 class="fs-17 mb-0 menu-title">TITULO</h4>
+                                            <div class="fs-14 menu-detail text-muted">Detalles</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mb-3 menu pb-2">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h4 class="fs-17 mb-0 menu-title">TITULO</h4>
+                                            <div class="fs-14 menu-detail text-muted">Detalles</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mb-3 menu pb-2">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <h4 class="fs-17 mb-0 menu-title">TITULO</h4>
+                                            <div class="fs-14 menu-detail text-muted">Detalles</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm" style="    margin-top: 10px;">
+                    <div class="align-items-center d-flex justify-content-between mb-4">
+                        <h4 class="w-semibold mb-0">Días de <span class="font-caveat text-primary">atención</span>
+                        </h4>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-clock" viewBox="0 0 16 16">
+                            <path
+                                d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z">
+                            </path>
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"></path>
+                        </svg>
+                    </div>
+                    <div *ngFor="let day of global.daysMap; let i = index"
+                        class="align-items-center d-flex justify-content-between mb-3">
+                        <span class="fw-semibold" *ngIf="global.workingDays.includes(day)">{{ global.dayNames[i] }}
+                            <span style="color: #00a08f;">
+                                Abierto
+                            </span>
+                        </span>
+                        <span *ngIf="!global.workingDays.includes(day)" class="fw-medium "
+                            style="color: rgb(226, 109, 109);">
+                            <span style="color: rgb(170, 163, 163);">{{ global.dayNames[i] }}</span>
+                            Cerrado</span>
+                    </div>
+
+                </div>
+                <div class="py-5 bg-light rounded-4 mx-3 mt-3 bg-size-contain js-bg-image js-bg-image-lines "
+                    data-image-src="assets/camiwa/images/lines.svg">
+                    <div class="container">
+                        <div class="align-items-end row g-4 mb-5" data-aos="fade-down">
+                            <div class="col">
+                                <!-- start section header -->
+                                <div class="section-header">
+                                    <!-- start subtitle -->
+                                    <div
+                                        class="font-caveat fs-1 fw-medium section-header__subtitle text-capitalize text-center text-primary text-xl-start">
+                                        Promociones</div>
+                                    <!-- end /. subtitle -->
+
+                                    <!-- start description -->
+                                    <div class="sub-title fs-16 text-center text-xl-start">Descuentos y promociones.
+                                    </div>
+                                    <!-- end /. description -->
+                                </div>
+                                <!-- end /. section header -->
+                            </div>
+                        </div>
+                        <div class="items-carousel owl-carousel owl-theme owl-nav-center">
+                            <!-- start listing card -->
+                            <div
+                                class="bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width">
+                                <!-- start card image wrap -->
+                                <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
+                                    <!-- start card link -->
+                                    <a href="#" class="stretched-link"></a>
+                                    <!-- end /. card link -->
+                                    <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
+                                    <div
+                                        class="align-items-center bg-blur border-0 card-badge d-flex d-inline-block fw-semibold gap-1 position-absolute start-0 text-uppercase text-green z-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15">
+                                            </path>
+                                        </svg>
+                                        10% OFF
+                                    </div>
+
+                                </div>
+                                <!-- end /. card image wrap -->
+                                <div class="row g-1 pt-2" style="padding-left: 5%;">
+                                    <!-- <div class="col-sm-auto">
+                                            <div class="badge border border-danger fw-semibold text-danger text-uppercase">Closed</div>
+                                        </div> -->
+                                    <div class="col-sm order-sm-first">
+                                        <!-- start card title -->
+                                        <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
+                                            <span>Titulos</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                fill="currentColor" class="bi bi-patch-check-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
+                                                </path>
+                                            </svg>
+                                        </h4>
+                                        <!-- end /. card title -->
+                                        <!-- start card description -->
+                                        <p class="mb-0 fs-13">Detalles</p>
+                                        <!-- end /. card description -->
+                                    </div>
+                                </div>
+                                <!-- start price -->
+                                <div class="fs-6 fw-bold text-primary text-uppercase mt-3" style="padding-left: 5%;">
+                                    Solo por $120</div>
+                                <!-- end /. price -->
+                            </div>
+                            <!-- end /. listing card -->
+                            <!-- start listing card -->
+                            <div
+                                class="bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width">
+                                <!-- start card image wrap -->
+                                <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
+                                    <!-- start card link -->
+                                    <a href="#" class="stretched-link"></a>
+                                    <!-- end /. card link -->
+                                    <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
+                                    <div
+                                        class="align-items-center bg-blur border-0 card-badge d-flex d-inline-block fw-semibold gap-1 position-absolute start-0 text-uppercase text-green z-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15">
+                                            </path>
+                                        </svg>
+                                        10% OFF
+                                    </div>
+
+                                </div>
+                                <!-- end /. card image wrap -->
+                                <div class="row g-1 pt-2" style="padding-left: 5%;">
+                                    <!-- <div class="col-sm-auto">
+                                            <div class="badge border border-danger fw-semibold text-danger text-uppercase">Closed</div>
+                                        </div> -->
+                                    <div class="col-sm order-sm-first">
+                                        <!-- start card title -->
+                                        <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
+                                            <span>Titulos</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                fill="currentColor" class="bi bi-patch-check-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
+                                                </path>
+                                            </svg>
+                                        </h4>
+                                        <!-- end /. card title -->
+                                        <!-- start card description -->
+                                        <p class="mb-0 fs-13">Detalles</p>
+                                        <!-- end /. card description -->
+                                    </div>
+                                </div>
+                                <!-- start price -->
+                                <div class="fs-6 fw-bold text-primary text-uppercase mt-3" style="padding-left: 5%;">
+                                    Solo por $120</div>
+                                <!-- end /. price -->
+                            </div>
+                            <!-- end /. listing card -->
+                            <!-- start listing card -->
+                            <div
+                                class="bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width">
+                                <!-- start card image wrap -->
+                                <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
+                                    <!-- start card link -->
+                                    <a href="#" class="stretched-link"></a>
+                                    <!-- end /. card link -->
+                                    <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
+                                    <div
+                                        class="align-items-center bg-blur border-0 card-badge d-flex d-inline-block fw-semibold gap-1 position-absolute start-0 text-uppercase text-green z-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15">
+                                            </path>
+                                        </svg>
+                                        10% OFF
+                                    </div>
+
+                                </div>
+                                <!-- end /. card image wrap -->
+                                <div class="row g-1 pt-2" style="padding-left: 5%;">
+                                    <!-- <div class="col-sm-auto">
+                                            <div class="badge border border-danger fw-semibold text-danger text-uppercase">Closed</div>
+                                        </div> -->
+                                    <div class="col-sm order-sm-first">
+                                        <!-- start card title -->
+                                        <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
+                                            <span>Titulos</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                fill="currentColor" class="bi bi-patch-check-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
+                                                </path>
+                                            </svg>
+                                        </h4>
+                                        <!-- end /. card title -->
+                                        <!-- start card description -->
+                                        <p class="mb-0 fs-13">Detalles</p>
+                                        <!-- end /. card description -->
+                                    </div>
+                                </div>
+                                <!-- start price -->
+                                <div class="fs-6 fw-bold text-primary text-uppercase mt-3" style="padding-left: 5%;">
+                                    Solo por $120</div>
+                                <!-- end /. price -->
+                            </div>
+                            <!-- end /. listing card -->
+                            <!-- start listing card -->
+                            <div
+                                class="bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width">
+                                <!-- start card image wrap -->
+                                <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
+                                    <!-- start card link -->
+                                    <a href="#" class="stretched-link"></a>
+                                    <!-- end /. card link -->
+                                    <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
+                                    <div
+                                        class="align-items-center bg-blur border-0 card-badge d-flex d-inline-block fw-semibold gap-1 position-absolute start-0 text-uppercase text-green z-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15">
+                                            </path>
+                                        </svg>
+                                        10% OFF
+                                    </div>
+
+                                </div>
+                                <!-- end /. card image wrap -->
+                                <div class="row g-1 pt-2" style="padding-left: 5%;">
+                                    <!-- <div class="col-sm-auto">
+                                            <div class="badge border border-danger fw-semibold text-danger text-uppercase">Closed</div>
+                                        </div> -->
+                                    <div class="col-sm order-sm-first">
+                                        <!-- start card title -->
+                                        <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
+                                            <span class="tituloPromo">Titulos</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                fill="currentColor" class="bi bi-patch-check-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
+                                                </path>
+                                            </svg>
+                                        </h4>
+                                        <!-- end /. card title -->
+                                        <!-- start card description -->
+                                        <p class="mb-0 fs-13 tituloPromo">Detalles</p>
+                                        <!-- end /. card description -->
+                                    </div>
+                                </div>
+                                <!-- start price -->
+                                <div class="fs-6 fw-bold text-primary text-uppercase mt-3" style="padding-left: 5%;">
+                                    Solo por $120</div>
+                                <!-- end /. price -->
+                            </div>
+                            <!-- end /. listing card -->
+                        </div>
+                        <!-- start banner -->
+                        <div
+                            class="banner banne-restaurant dark-overlay mt-5 overflow-hidden position-relative rounded-4">
+                            <img src="assets/camiwa/images/banner-bg-02.jpg" class="bg-image js-image-parallax" alt="">
+                            <div
+                                class="align-items-center g-4 h-100 justify-content-between p-3 p-sm-5 position-relative row text-white wrapper z-1">
+                                <div class="col-md-7 col-lg-6 text-center text-md-start">
+                                    <div class="fs-14 l-spacing-1">Oferta especial</div>
+                                    <h2 class="display-5 fw-semibold lh-1">Banner publicitario</h2>
+                                    <p>Detalles</p>
+                                </div>
+                                <div class="col-md-5 col-lg-4">
+                                    <!-- <img src="assets/camiwa/images/png-img/happy-hour.png" alt="" class="img-fluid"> -->
+                                </div>
+                            </div>
+                            <!-- /wrapper -->
+                        </div>
+                        <!-- end /. banner -->
+                    </div>
+                </div>
+                <div class="py-5 dark-overlay  position-relative overflow-hidden m-3 rounded-4 text-blak">
+                    <div class="container py-4 overlay-content">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <!-- start section header -->
+                                <div class="section-header text-center mb-5" data-aos="fade-down">
+                                    <!-- start subtitle -->
+                                    <div
+                                        class="d-inline-block font-caveat fs-1 fw-medium section-header__subtitle text-capitalize text-primary">
+                                        Testimonios</div>
+                                    <!-- end /. subtitle -->
+                                    <!-- start title -->
+                                    <h2 class="display-5 fw-semibold mb-3 section-header__title text-capitalize">
+                                        Pacientes atendidos</h2>
+                                    <!-- end /. title -->
+
+                                </div>
+                                <!-- end /. section header -->
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                <div class="testimonial-carousel owl-carousel owl-theme">
+                                    <div class="testimonial-item">
+                                        <div class="text-center mb-3">
+                                            <img src="assets/camiwa/images/avatar/01.jpg" alt="" class="m-auto w-auto"
+                                                style="    border-radius: 50%;
+                                                border-color: black; max-width: 20%;">
+                                        </div>
+                                        <div class="text-center mt-4 fw-semibold">MARK, SOUTH EVERETT</div>
+
+                                        <div class="fs-3 text-center">It is a long established fact that a reader will
+                                            be distracted by the readable content of a page when looking at its layout.
+                                            The point of using Lorem Ipsum is that it has a more-or-less normal
+                                            distribution of letters, as opposed to using 'Content here, content here',
+                                            making it look like readable English. </div>
+                                    </div>
+                                    <div class="testimonial-item">
+                                        <div class="text-center mb-3">
+                                            <img src="assets/camiwa/images/avatar/02.jpg" alt="" class="m-auto w-auto"
+                                                style="    border-radius: 50%;
+                                                border-color: black; max-width: 20%;">
+                                        </div>
+                                        <div class="fs-3 text-center">It is a long established fact that a reader will
+                                            be distracted by the readable content of a page when looking at its layout.
+                                            The point of using Lorem Ipsum is that it has a more-or-less normal
+                                            distribution of letters, as opposed to using 'Content here, content here',
+                                            making it look like readable English. </div>
+                                        <div class="text-center mt-4 fw-semibold">MARK, SOUTH EVERETT</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- start recent coments -->
+                <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm">
+                    <div class="align-items-sm-center bg-light mb-4 p-4 rounded-3">
+                        <h4 class="fw-semibold fs-2">Comentario </h4>
+                        <p class="mb-0 fs-15">Los clientes opinan sobre mi trabajo</p>
+                    </div>
+                    <div class="border p-4 mb-5 rounded-4">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-sm-auto">
+                                <div class="rating-block text-center">
+                                    <!-- start title -->
+                                    <h5 class="font-caveat fs-4 mb-4">Calificación promedio de los usuarios</h5>
+                                    <!-- end /. title -->
+                                    <!-- Start Rating Point -->
+                                    <div class="rating-point position-relative ml-auto mr-auto">
+                                        <!-- Start Svg Icon  -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".5"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-star text-primary">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
+                                        </svg>
+                                        <!-- /.End Svg Icon  -->
+                                        <h3 class="position-absolute mb-0 fs-18 text-primary">4.3</h3>
+                                    </div>
+                                    <!-- End Rating Point -->
+                                    <span class="fs-13">2,525 Calificaciones y</span><br>
+                                    <span class="fs-13">293 Reseñas</span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="rating-position">
+                                    <!-- start title -->
+                                    <h5 class="font-caveat fs-4 mb-4">Desglose de calificación</h5>
+                                    <!-- end /. title -->
+                                    <!-- Start Rating Point -->
+                                    <!-- start rating dimension -->
+                                    <div class="align-items-center d-flex mb-2 rating-dimension gap-2">
+                                        <!-- start rating quantity -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fs-14 fw-semibold rating-points">5</span>
+                                            <div class="d-flex align-items-center text-primary rating-stars">
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon"></i>
+                                            </div>
+                                        </div>
+                                        <!-- end /. rating quantity -->
+                                        <!-- Start Progress -->
+                                        <div class="progress flex-grow-1 me-2">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"
+                                                aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <!-- /.End Progress -->
+                                        <!-- Start User Rating -->
+                                        <div
+                                            class="bg-dark fs-11 fw-medium px-2 py-1 rounded-pill text-white user-rating">
+                                            4.5</div>
+                                        <!-- /.End User Rating -->
+                                    </div>
+                                    <!-- end /. rating dimension -->
+                                    <!-- start rating dimension -->
+                                    <div class="align-items-center d-flex mb-2 rating-dimension gap-2">
+                                        <!-- start rating quantity -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fs-14 fw-semibold rating-points">5</span>
+                                            <div class="d-flex align-items-center text-primary rating-stars">
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon half"></i>
+                                                <i class="fa-star-icon none"></i>
+                                            </div>
+                                        </div>
+                                        <!-- end /. rating quantity -->
+                                        <!-- start progress -->
+                                        <div class="progress flex-grow-1 me-2">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%"
+                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <!-- end /. progress -->
+                                        <!-- start user rating -->
+                                        <div
+                                            class="bg-dark fs-11 fw-medium px-2 py-1 rounded-pill text-white user-rating">
+                                            3.5</div>
+                                        <!-- end /. user rating -->
+                                    </div>
+                                    <!-- end /. rating dimension -->
+                                    <!-- start rating dimension -->
+                                    <div class="align-items-center d-flex mb-2 rating-dimension gap-2">
+                                        <!-- start rating quantity -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fs-14 fw-semibold rating-points">3</span>
+                                            <div class="d-flex align-items-center text-primary rating-stars">
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon half"></i>
+                                                <i class="fa-star-icon none"></i>
+                                                <i class="fa-star-icon none"></i>
+                                            </div>
+                                        </div>
+                                        <!-- end /. rating quantity -->
+                                        <!-- start progress -->
+                                        <div class="progress flex-grow-1 me-2">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%"
+                                                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <!-- end /. progress -->
+                                        <!-- start user rating -->
+                                        <div
+                                            class="bg-dark fs-11 fw-medium px-2 py-1 rounded-pill text-white user-rating">
+                                            1.5</div>
+                                        <!-- end /. user rating -->
+                                    </div>
+                                    <!-- end /. rating dimension -->
+                                    <!-- start rating dimension -->
+                                    <div class="align-items-center d-flex mb-2 rating-dimension gap-2">
+                                        <!-- start rating quantity -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fs-14 fw-semibold rating-points">3</span>
+                                            <div class="d-flex align-items-center text-primary rating-stars">
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon half"></i>
+                                                <i class="fa-star-icon none"></i>
+                                                <i class="fa-star-icon none"></i>
+                                                <i class="fa-star-icon none"></i>
+                                            </div>
+                                        </div>
+                                        <!-- end /. rating quantity -->
+                                        <!-- start progress -->
+                                        <div class="progress flex-grow-1 me-2">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 40%"
+                                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <!-- end /. progress -->
+                                        <!-- start user rating -->
+                                        <div
+                                            class="bg-dark fs-11 fw-medium px-2 py-1 rounded-pill text-white user-rating">
+                                            5.2</div>
+                                        <!-- end /. user rating -->
+                                    </div>
+                                    <!-- end /. rating dimension -->
+                                    <!-- start rating dimension -->
+                                    <div class="align-items-center d-flex mb-2 rating-dimension gap-2">
+                                        <!-- start rating quantity -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fs-14 fw-semibold rating-points">1</span>
+                                            <div class="d-flex align-items-center text-primary rating-stars">
+                                                <i class="fa-star-icon"></i>
+                                                <i class="fa-star-icon none"></i>
+                                                <i class="fa-star-icon none"></i>
+                                                <i class="fa-star-icon none"></i>
+                                                <i class="fa-star-icon none"></i>
+                                            </div>
+                                        </div>
+                                        <!-- end /. rating quantity -->
+                                        <!-- start progress -->
+                                        <div class="progress flex-grow-1 me-2">
+                                            <div class="progress-bar text-bg-danger" role="progressbar"
+                                                style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                        <!-- end /. progress -->
+                                        <!-- start user rating -->
+                                        <div
+                                            class="bg-dark fs-11 fw-medium px-2 py-1 rounded-pill text-white user-rating">
+                                            6.9</div>
+                                        <!-- end /. user rating -->
+                                    </div>
+                                    <!-- end /. rating dimension -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4 border-bottom pb-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/camiwa/images/avatar/04.jpg" alt="..." height="70" width="70"
+                                class="object-fit-cover rounded-circle">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="comment-header d-flex flex-wrap gap-2 mb-3">
+                                <div>
+                                    <h4 class="fs-18 mb-0">- Pranoti Deshpande</h4>
+                                    <div class="comment-datetime fs-12 text-muted">25 Marzo 2024, 12.27 pm</div>
+                                </div>
+                                <!-- start rating -->
+                                <div class="d-flex align-items-center gap-2 ms-auto">
+                                    <div class="d-flex align-items-center text-primary rating-stars">
+                                        <i class="fa-star-icon"></i>
+                                        <i class="fa-star-icon"></i>
+                                        <i class="fa-star-icon"></i>
+                                        <i class="fa-star-icon half"></i>
+                                        <i class="fa-star-icon none"></i>
+                                    </div>
+                                    <span class="fs-14 fw-semibold rating-points">3.5/5</span>
+                                </div>
+                                <!-- end /. rating -->
+                            </div>
+                            <div class="fs-15">There are many variations of passages of Lorem Ipsum available, but the
+                                majority have suffered alteration in some form, by injected humour, or randomised words
+                                which don't look even slightly believable. </div>
+                            <!-- start review -->
+
+                            <!-- end /. review -->
+                        </div>
+                    </div>
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/camiwa/images/avatar/05.jpg" alt="..." height="70" width="70"
+                                class="object-fit-cover rounded-circle">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="comment-header d-flex flex-wrap gap-2 mb-3">
+                                <div>
+                                    <h4 class="fs-18 mb-0">- Marcus Knight</h4>
+                                    <div class="comment-datetime fs-12 text-muted">25 Marzo 2024, 12.27 pm</div>
+                                </div>
+                                <!-- start rating -->
+                                <div class="d-flex align-items-center gap-2 ms-auto">
+                                    <div class="d-flex align-items-center text-primary rating-stars">
+                                        <i class="fa-star-icon"></i>
+                                        <i class="fa-star-icon"></i>
+                                        <i class="fa-star-icon"></i>
+                                        <i class="fa-star-icon half"></i>
+                                        <i class="fa-star-icon none"></i>
+                                    </div>
+                                    <span class="fs-14 fw-semibold rating-points">3.5/5</span>
+                                </div>
+                                <!-- end /. rating -->
+                            </div>
+                            <div class="fs-15"> This is some content from a media component. You can replace this with
+                                any content and adjust it as needed.</div>
+                            <!-- start review -->
+
+                            <!-- end /. review -->
+                        </div>
+                    </div>
+                </div>
+                <!-- end /. recent coments -->
+                <!-- start comment form -->
+                <div class="border-0 card listing-form p-4 rounded-4 shadow-sm">
+                    <div class="align-items-sm-center bg-light mb-4 p-4 rounded-3">
+                        <h4 class="fw-semibold fs-2">Deja un <span class="font-caveat text-primary">comentario</span>
+                        </h4>
+                        <p class="mb-0 fs-15">Un comentario hará de este profesional su<br class="d-none d-lg-block">
+                            reputación</p>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-sm-6">
+                            <!-- start form group -->
+                            <div class="">
+                                <label class="required fw-medium mb-2">Nombres</label>
+                                <input type="text" class="form-control" placeholder="Ingrese su nombre" required="">
+                            </div>
+                            <!-- end /. form group -->
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- start form group -->
+                            <div class="">
+                                <label class="required fw-medium mb-2">Correo</label>
+                                <input type="text" class="form-control" placeholder="Ingrese una dirección de correo"
+                                    required="">
+                            </div>
+                            <!-- end /. form group -->
+                        </div>
+                        <div class="col-sm-12">
+                            <!-- start form group -->
+                            <div class="">
+                                <label class="required fw-medium mb-2">Comentario</label>
+                                <textarea class="form-control" rows="7" placeholder="Textos!"></textarea>
+                            </div>
+                            <!-- end /. form group -->
+                        </div>
+                        <div class="col-sm-12 text-end">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- end /. comment form -->
+            </div>
+
+        </div>
+    </div>
+</div>

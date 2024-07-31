@@ -1,0 +1,11 @@
+<!-- <label for="">Selecciona la categoría</label> -->
+<ng-multiselect-dropdown
+[placeholder]="'Selecciona una categoría'"
+
+[data]="global.categories"
+[(ngModel)]="data.categories"
+
+[settings]="dropdownSettings"
+(onSelect)="onItemSelect()"
+>
+</ng-multiselect-dropdown>

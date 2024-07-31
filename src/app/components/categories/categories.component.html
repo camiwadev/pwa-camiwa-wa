@@ -1,0 +1,123 @@
+<div class="content-wrapper" style="padding-top: 100px;">
+    <div class="main-content">
+        <!-- Star navbar -->
+     
+        <!-- End /. navbar -->
+        <div class="body-content">
+            <div class="decoration blur-2"></div>
+            <div class="decoration blur-3"></div>
+            <div class="container-xl">
+           <h2> Especialidades
+            <!-- <h2>{{global.specialties.length}} Especialidades -->
+            <i class="btn btn-primary btn-xs d-inline-flex hstack gap-2 fa fa-plus" (click)="openModal()"></i>
+
+           </h2>
+                <div class="row g-3">
+                    <div class="col-xl-6" style="width: 500px;">
+                        <div class="card overflow-hidden">
+                            <div class="card-header position-relative">
+                                <h6 class="fs-17 fw-semi-bold my-1">Categorias
+
+                                </h6>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="mb-0 table table-borderless table-hover table-striped">
+                                    <tbody>
+                                        <tr *ngFor="let category of global.categories;let i = index" [hidden]="category.status!='active'" disabled="true">
+                                            <td (click)="global.setPreview(category.id,i)" style="cursor: pointer;"> 
+                                                <div class="d-flex">
+                                                    <span class="avatar avatar-circle bg-white text-primary flex-shrink-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                                            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                                        </svg>
+                                                    </span>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <h5 class="fs-17">{{category.name}} ( {{global.categoryCounts[category.id]}} )</h5>
+                                                        <ul class="fs-14 fw-medium list-inline list-separator mb-0 mt-2">
+                                                            <!-- <li class="list-inline-item text-success"> sub-categoria</li>
+                                                            <li class="list-inline-item text-primary"><span class=""> sub-categoria</span> </li>
+                                                            <li class="list-inline-item text-success"><span class="">  sub-categoria:</span> </li> -->
+                                                            <!-- <li class="list-inline-item text-muted"><span class="text-dark">Order:</span> #AZE455</li> -->
+                                                            <!-- <li class="list-inline-item text-muted"><span class="text-dark">Date:</span> 05 Aug 2023</li> -->
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <span class="avatar avatar-circle bg-white text-primary flex-shrink-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                                            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                                        </svg>
+                                                    </span>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <h5 class="fs-17">Chuijhal Hotel And Restaurant</h5>
+                                                        <ul class="fs-14 fw-medium list-inline list-separator mb-0 mt-2">
+                                                            <li class="list-inline-item text-success">$99.00</li>
+                                                            <li class="list-inline-item text-primary"><span class="">Fee:</span> $21.39</li>
+                                                            <li class="list-inline-item text-success"><span class="">Net Earning:</span> $95.59</li>
+                                                            <li class="list-inline-item text-muted"><span class="text-dark">Order:</span> #AZE455</li>
+                                                            <li class="list-inline-item text-muted"><span class="text-dark">Date:</span> 05 Aug 2023</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <span class="avatar avatar-circle bg-white text-primary flex-shrink-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                                            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                                        </svg>
+                                                    </span>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <h5 class="fs-17">The Barber's Lounge</h5>
+                                                        <ul class="fs-14 fw-medium list-inline list-separator mb-0 mt-2">
+                                                            <li class="list-inline-item text-success">$99.00</li>
+                                                            <li class="list-inline-item text-primary"><span class="">Fee:</span> $21.39</li>
+                                                            <li class="list-inline-item text-success"><span class="">Net Earning:</span> $95.59</li>
+                                                            <li class="list-inline-item text-muted"><span class="text-dark">Order:</span> #AZE455</li>
+                                                            <li class="list-inline-item text-muted"><span class="text-dark">Date:</span> 05 Aug 2023</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6" *ngIf="global.idCategorySelected!=''" style="min-width: 500px;">
+                        <div class="card" >
+                            <div class="card-header position-relative">
+                                <h6 class="fs-17 fw-semi-bold my-1">{{global.categoryCounts[global.categorySelected.id]}} Especialidades para la categoría "{{global.categorySelected.name}}"  </h6>
+                            </div>
+                            <div class="flex-grow-1 ms-3 mb-3">
+                                <!-- <h5 class="fs-17">{{global.categorySelected.name}}</h5> -->
+                                <ul class="fs-19 fw-medium list-inline list-separator mb-0 mt-2">
+                                    <li class="list-inline-item text-success" *ngFor="let specialty of global.specialties" [hidden]="specialty.fatherId!=global.idCategorySelected"> {{specialty.name}}</li> 
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.body content-->
+    </div>
+    <!--/.main content-->
+    <footer class="footer-content">
+        <div class="align-items-center d-flex footer-text gap-3 justify-content-between">
+            <div class="copy">© 2024 Camiwa- All Rights Reserved</div>
+            <div class="credit">Developed by: <a href="https://www.buckapi.com">Buckapi</a> 🌺💚</div>
+        </div>
+    </footer>
+    <!--/.footer content-->
+    <div class="overlay"></div>
+</div>

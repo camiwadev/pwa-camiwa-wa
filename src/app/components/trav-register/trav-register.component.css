@@ -1,0 +1,30 @@
+.btn-light {
+    --bs-btn-bg: #f8f4f3;
+    --bs-btn-border-color: #f8f4f3;
+    --bs-btn-hover-bg: #f7edeb;
+    --bs-btn-hover-border-color: #f7edeb;
+    --bs-btn-active-bg: #f7edeb;
+    --bs-btn-active-border-color: #f7edeb;
+    --bs-btn-disabled-bg: #f7edeb;
+    --bs-btn-disabled-border-color: #f7edeb;
+}
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+ color:var(--bs-btn-active-color);
+ background-color:var(--bs-btn-active-bg);
+ border-color:var(--bs-btn-active-border-color)
+}
+.btn-lg {
+    padding: .8rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 15px;
+    color: white; /* Cambiamos el color del texto a negro */
+    background-color: black; /* Establecemos el fondo blanco */
+    border: 2px solid transparent; /* Establecemos un borde transparente */
+    transition: border-color 0.3s ease, color 0.3s ease; /* Agregamos transiciones para suavizar el cambio */
+}
+
+.btn-lg:hover {
+    border-color: black; /* Cambiamos el color del borde a negro cuando se pasa el mouse sobre el botón */
+    color: black; /* Mantenemos el color del texto en negro */
+}

@@ -1,0 +1,79 @@
+
+@import url("@assets/camiwa/css/style.css");
+.back-button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem; /* Ajusta el tamaño de la fuente según sea necesario */
+    font-weight: 600;  /* Similar a fw-semibold */
+    cursor: pointer;
+    color: inherit;    /* Hereda el color del texto del entorno */
+}
+
+.arrow-left {
+    margin-right: 0.5rem; /* Espacio entre la flecha y el texto */
+}
+
+.custom-toast {
+    background-color: #00a08f; /* Color de fondo personalizado */
+    color: white; /* Color del texto */
+    border-radius: 8px; /* Esquinas redondeadas */
+    padding: 16px; /* Espaciado interno */
+  }
+  /* Opcional: Estilos específicos para tipos de toastr */
+.custom-toast.success {
+    background-color: #00a08f; /* Verde para éxito */
+  }
+  
+  .custom-toast.error {
+    background-color: #dc3545; /* Rojo para error */
+  }
+  
+  .custom-toast.info {
+    background-color: #17a2b8; /* Azul para información */
+  }
+  
+  .custom-toast.warning {
+    background-color: #ffc107; /* Amarillo para advertencia */
+  }
+  ::ng-deep .mat-calendar-body-cell[disabled] {
+    pointer-events: none;
+    background-color: rgb(255, 255, 255);
+}
+
+::ng-deep .mat-calendar-body-cell.non-working-day .mat-calendar-body-cell-content {
+    background-color: rgba(255, 97, 86, 0.151); /* Ejemplo de color */
+}
+.icon-hover:hover {
+  color: green;
+}
+
+.btn-perfil {
+  color: #00a08f;
+  background-color: transparent;
+  border: 2px solid #00a08f;
+  padding: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px; /* Bordes redondeados */
+  transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+.btn-perfil:hover {
+  color: white;
+  background-color: #00a08f;
+}
+
+
+/* Estilo para el fondo amarillo de la fecha seleccionada */
+.mat-calendar-body-selected {
+  background-color: yellow !important;
+  color: black !important; /* Cambia el color del texto si es necesario */
+}
+
+.mat-calendar-body-selected.mat-calendar-body-today {
+  background-color: yellow !important;
+}

@@ -1,0 +1,116 @@
+<div class="align-items-center bg-dark d-flex hero-header-classic overflow-hidden position-relative">
+    <!-- start background image -->
+    <div class="bg-image-overlay bg-gradient-vertical js-bg-image bg-cover bottom-0 end-0 position-absolute start-0 top-0" data-image-src="assets/camiwa/images/header/lg-02.jpg"></div>
+    <!-- end /. background image -->
+    <div class="container position-relative z-1">
+        <div class="hero-header-subtitle text-center text-white text-uppercase mb-3">Bienvenidos a CAMIWA</div>
+        <h1 class="display-1 fw-bold hero-header_title text-capitalize text-white text-center mb-5">Tu directorio de <br class="d-none d-lg-block"> <span class="font-caveat text-span">Especialidades para la salud y el bienestar</span> </h1>
+        <div class="lead mb-4 mb-sm-5 text-center text-white">Cuidamos de ti donde quiera que viajes</div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- start search content -->
+                <div class="border-0 card d-flex flex-md-row position-relative search-wrapper">
+                    <div class="align-items-center d-flex search-field w-100">
+                        <div class="svg-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                        </div>
+                        <!-- start input -->
+                        <input type="email" class="form-control search-input" placeholder="Qué tipo de especialista buscas?">  <!-- end /. input -->
+                    </div>
+                    <div class="vertical-divider"></div>
+                    <div class="align-items-center d-flex search-field w-100">
+                        <div class="svg-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                            </svg>
+                        </div>
+                        <!-- start select -->
+                        <select class="form-select search-select-field">
+                            <option selected>Categoría</option>
+                            <option  *ngFor="let category of global.categories">{{category.name}}</option>
+
+                        </select>
+                        <!-- end /. select -->
+                    </div>
+                    <div class="align-items-center d-flex search-field w-100">
+                        <div class="svg-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                            </svg>
+                        </div>
+                        <!-- start select -->
+                        <select class="form-select search-select-field">
+                            <option selected>Ciudad</option>
+                            <option value="1">Bogota</option>
+                            <option value="2">Quito</option>
+                            <option value="3">Ciudad</option>
+                        </select>
+                        <!-- end /. select -->
+                    </div>
+                    <input type="submit" value="Buscar" (click)="global.setRoute('mapwrapper')" class="btn btn-primary rounded-5 mt-3 mt-md-0">
+                  </div>
+                <!-- end /. search content -->
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="custom-navbar navbar navbar-expand-lg navbar-fixed navbar-transfarent">
+    <div class="container">
+        <a class="navbar-brand m-0" (click)="global.setRoute('home')">
+            <img class="logo-white" src="assets/camiwa/images/logo-white.png" alt="">
+            <img class="logo-dark" src="assets/camiwa/images/logo.png" alt="">
+        </a>
+        <div class="d-flex order-lg-2">
+            <!-- start button -->
+          
+
+
+            <a (click)="global.setRoute('trav-login')" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5" style="margin-right: 10px;">
+                <i class="fa fa-user-plus"></i>
+                <div class="vr d-none d-sm-inline-block"></div>
+                <span class="d-none d-sm-inline-block">Ingresar Viajero</span>
+            </a>
+            <a (click)="global.setRoute('specialist-register')" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5" style="background-color: #ffff; color: #00a890;">
+                <i class="fa fa-user-plus"></i>
+                <div class="vr d-none d-sm-inline-block"></div>
+                <span class="d-none d-sm-inline-block">Ingresar Especialista</span>
+            </a>
+
+
+            <!-- end /. button -->
+            <!-- start navbar toggle button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span id="nav-icon" class="">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <!-- end /. navbar toggle button -->
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link active" aria-current="page" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        Home
+                    </a>
+                </li>                    
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" (click)="global.setRoute('about')">Sobre Camiwa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" (click)="global.setRoute('mapwrapper')">Busqueda avanzada</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" (click)="global.setRoute('contact')">Contacto</a>
+                </li>
+                
+            </ul>
+           
+        </div>
+    </div>
+</nav>

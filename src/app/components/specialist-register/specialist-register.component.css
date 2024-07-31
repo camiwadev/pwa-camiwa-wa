@@ -1,0 +1,17 @@
+@import url("@assets/specialist-register/css/bootstrap.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css");
+@import url("@assets/specialist-register/css/animate.min.css");
+@import url("@assets/camiwa/plugins/fontawesome/css/all.min.css");
+@import url("@assets/specialist-register/css/colors/switch.css");
+@import url("@assets/specialist-register/css/colors/color-2.css");
+@import url("@assets/specialist-register/css/colors/color-3.css");
+@import url("@assets/specialist-register/css/colors/color-4.css");
+@import url("@assets/specialist-register/css/colors/color-5.css");
+@import url("@assets/specialist-register/css/style.css");
+.border-class {
+    border: 1px solid #00a08f !important;
+  }
+  
+  .background-class {
+    background-color: #00a08f;
+  }

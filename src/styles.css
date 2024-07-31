@@ -1,0 +1,37 @@
+
+/* You can add global styles to this file, and also import other style files */
+.fixed .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0
+}
+.custom-toast {
+    background-color: #00a08f !important; /* Color de fondo personalizado */
+    color: white; /* Color del texto */
+    border-radius: 8px; /* Esquinas redondeadas */
+    padding: 16px; /* Espaciado interno */
+  }
+  /* Opcional: Estilos específicos para tipos de toastr */
+.custom-toast.success {
+    background-color: #00a08f !important; /* Verde para éxito */
+  }
+  
+  .toast-error {
+    background-color: #dc3545 !important; /* Rojo para error */
+  }
+  
+  .toast-info {
+    background-color: #17a2b8 !important; /* Azul para información */
+  }
+  
+  .toast-warning {
+    background-color: #ffc107 !important; /* Amarillo para advertencia */
+  }
+  
+html, body { height: 100%; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+::ng-deep .mat-calendar .mat-calendar-body-cell-selected {
+  background-color: yellow !important;
+  color: black !important; /* Asegúrate de que el texto sea legible */
+}

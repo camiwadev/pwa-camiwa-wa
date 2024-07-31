@@ -1,0 +1,305 @@
+
+<div  *ngIf="autRest.getType()=='admin'" [hidden]="!global.allLoaded" class="content-wrapper" style="padding-top: 10%;">
+        <div class="main-content">
+            <!-- Star navbar -->
+          
+            <!-- End /. navbar -->
+            <div class="body-content">
+                <div class="decoration blur-2"></div>
+                <div class="decoration blur-3"></div>
+                <div class="container-xxl">
+                    <!-- Start header banner -->
+                    <div class="header-banner align-items-center d-flex justify-content-between mb-3 p-4 rounded-4 w-100">
+                        <div class="header-banner-context">
+                            <h3 class="align-items-center d-flex fs-5 gap-2 text-white mb-3">
+                                <!-- <img src="assets/camiwa-dash/dist/img/photoshop.png" alt="" width="35"> -->
+                                Bienvenido al area de administración de Camiwa.com
+                            </h3>
+                            <div class="content-text fs-14 opacity-75 text-white">
+                                En Camiwa! conectamos a especialistas en bienestar con viajeros en busca de experiencias transformadoras. 
+                            </div>
+                            <button class="content-button btn btn-light mt-3"  (click)="global.setRoute('categories')">Ajustes </button>
+                        </div>
+                        <img class="content-wrapper-img" src="assets/camiwa-dash/dist/img/glass.png" alt="" width="180">
+                    </div>
+                    <!-- End /. header banner -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex " > 
+                            <div class="card flex-column flex-fill p-4 position-relative shadow w-100 widget-card">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="fs-14 text-muted">Viajeros</div>
+                                        <h3 class="fw-semi-bold mb-0">{{global.travelers.length}}</h3>
+                                    </div>
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/camiwa-dash/dist/img/graph-v1.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex">
+                            <div class="card flex-column flex-fill p-4 position-relative shadow w-100 widget-card" (click)="global.setRoute('categories')" style="    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important; /* Resplandor verde al pasar el mouse */
+                            ">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="fs-14 text-muted">Especialidades</div>
+                                        <h3 class="fw-semi-bold mb-0">{{global.specialties.length}}</h3>
+                                    </div>
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/camiwa-dash/dist/img/degrees.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex" (click)="global.setRoute('specialists')" >
+                            <div class="card flex-column flex-fill p-4 position-relative shadow w-100 widget-card">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="fs-14 text-muted">Especialistas </div>
+                                        <h3 class="fw-semi-bold mb-0">{{global.approvedSpecialistsCount}}</h3>
+                                    </div>
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/camiwa-dash/dist/img/members.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex">
+                            <div (click)="global.setRoute('requests')" class="card flex-column flex-fill p-4 position-relative shadow w-100 widget-card" style="    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important; /* Resplandor verde al pasar el mouse */
+                            ">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="fs-14 text-muted">Solicitudes </div>
+                                        <h3 class="fw-semi-bold mb-0 " [hidden]="global.totalRequests>0"> 0</h3>
+                                        <h3 class="fw-semi-bold mb-0 " [hidden]="global.totalRequests<1"> {{global.totalRequests}}</h3>   </div>
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/camiwa-dash/dist/img/new.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3 p-4 total-box">
+                        <div class="g-4 gx-xxl-5 row">
+                            <div class="col-sm-4 total-box-left">
+                                <div class="align-items-center d-flex justify-content-between mb-4">
+                                    <h6 class="mb-0">Total Income</h6>
+                                    <div class="align-items-center d-flex justify-content-center rounded arrow-btn percentage-increase">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <h1 class="price">$<span class="counter">58,99</span><span class="fs-13 ms-1 text-muted">(USD)</span></h1>
+                                <p class="mb-0 fw-semibold fs-14">
+                                    <span class="percentage-increase">20.9%</span>&nbsp;&nbsp; +18.4k this week
+                                </p>
+                            </div>
+                            <div class="col-sm-4 total-box-left">
+                                <div class="align-items-center d-flex justify-content-between mb-4">
+                                    <h6 class="mb-0">Visitas</h6>
+                                    <div class="align-items-center d-flex justify-content-center rounded arrow-btn percentage-increase">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <h1 class="price counter">780,192</h1>
+                                <p class="mb-0 fw-semibold fs-14">
+                                    <span class="percentage-increase">20%</span>&nbsp;&nbsp; +3.5k esta semana
+                                </p>
+                            </div>
+                            <div class="col-sm-4 total-box__right">
+                                <div class="align-items-center d-flex justify-content-between mb-4">
+                                    <h6 class="mb-0">Reservas activas</h6>
+                                    <div class="align-items-center d-flex justify-content-center rounded text-primary arrow-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-down-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M14 13.5a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1 0-1h4.793L2.146 2.854a.5.5 0 1 1 .708-.708L13 12.293V7.5a.5.5 0 0 1 1 0z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <h1 class="price counter">7,96,542</h1>
+                                <p class="mb-0 fw-semibold fs-14">
+                                    <span class="text-primary">9.01%</span>&nbsp;&nbsp; decrease compared to last week
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start statistics -->
+                    <div class="card mb-3">
+                        <div class="card-header position-relative">
+                            <h6 class="fs-17 fw-semi-bold my-1">Statistics</h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart"></div>
+                        </div>
+                    </div>
+                    <!-- End /. statistics -->
+                    <div class="card">
+                        <div class="card-header position-relative">
+                            <h6 class="fs-17 fw-semi-bold my-1">Reservas recientes</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-borderless text-nowrap category-list">
+                                    <thead>
+                                        <tr>
+                                            <th>SL</th>
+                                            <th>Logo</th>
+                                            <th>Name</th>
+                                            <th>Booking Date</th>
+                                            <th>Payment Type</th>
+                                            <th>Status</th>
+                                            <th class="text-end">View Booking</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>01</th>
+                                            <td>
+                                                <span class="avatar avatar-sm avatar-circle">
+                                                    <img class="avatar-img" src="assets/camiwa-dash/dist/img/avatar/01.jpg" alt="Image Description">
+                                                </span>
+                                            </td>
+                                            <td>Ethan Blackwood</td>
+                                            <td>18 Dec 2023</td>
+                                            <td>Paypal</td>
+                                            <td>
+                                                <div class="align-items-center d-flex fw-medium gap-1 text-success fs-14">
+                                                    <i class="fa-circle fa-solid fs-10"></i>
+                                                    <span>Approved</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="bookings.html" class="btn btn-primary fw-medium btn-sm d-inline-flex align-items-center justify-content-center gap-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                                    </svg>
+                                                    View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>02</th>
+                                            <td>
+                                                <span class="avatar avatar-sm avatar-circle">
+                                                    <img class="avatar-img" src="assets/camiwa-dash/dist/img/avatar/02.jpg" alt="Image Description">
+                                                </span>
+                                            </td>
+                                            <td>Alexander Kaminski</td>
+                                            <td>15 Dec 2023</td>
+                                            <td>Payoneer</td>
+                                            <td>
+                                                <div class="align-items-center d-flex fw-medium gap-1 text-primary fs-14">
+                                                    <i class="fa-circle fa-solid fs-10"></i>
+                                                    <span>Pending</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="bookings.html" class="btn btn-primary fw-medium btn-sm d-inline-flex align-items-center justify-content-center gap-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                                    </svg>
+                                                    View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>03</th>
+                                            <td>
+                                                <span class="avatar avatar-sm avatar-circle">
+                                                    <img class="avatar-img" src="assets/camiwa-dash/dist/img/avatar/03.jpg" alt="Image Description">
+                                                </span>
+                                            </td>
+                                            <td>Pranoti Deshpande</td>
+                                            <td>15 Nov 2023</td>
+                                            <td>Payoneer</td>
+                                            <td>
+                                                <div class="align-items-center d-flex fw-medium gap-1 text-success fs-14">
+                                                    <i class="fa-circle fa-solid fs-10"></i>
+                                                    <span>Approved</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="bookings.html" class="btn btn-primary fw-medium btn-sm d-inline-flex align-items-center justify-content-center gap-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                                    </svg>
+                                                    View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>04</th>
+                                            <td>
+                                                <span class="avatar avatar-sm avatar-circle">
+                                                    <img class="avatar-img" src="assets/camiwa-dash/dist/img/avatar/04.jpg" alt="Image Description">
+                                                </span>
+                                            </td>
+                                            <td>Gabriel Nort</td>
+                                            <td>10 Jul 2023</td>
+                                            <td>Swift</td>
+                                            <td>
+                                                <div class="align-items-center d-flex fw-medium gap-1 text-danger fs-14">
+                                                    <i class="fa-circle fa-solid fs-10"></i>
+                                                    <span>Canceled</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="bookings.html" class="btn btn-primary fw-medium btn-sm d-inline-flex align-items-center justify-content-center gap-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                                    </svg>
+                                                    View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>03</th>
+                                            <td>
+                                                <span class="avatar avatar-sm avatar-circle">
+                                                    <img class="avatar-img" src="assets/camiwa-dash/dist/img/avatar/03.jpg" alt="Image Description">
+                                                </span>
+                                            </td>
+                                            <td>Pranoti Deshpande</td>
+                                            <td>15 Nov 2023</td>
+                                            <td>Payoneer</td>
+                                            <td>
+                                                <div class="align-items-center d-flex fw-medium gap-1 text-success fs-14">
+                                                    <i class="fa-circle fa-solid fs-10"></i>
+                                                    <span>Approved</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="bookings.html" class="btn btn-primary fw-medium btn-sm d-inline-flex align-items-center justify-content-center gap-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                                    </svg>
+                                                    View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.body content-->
+        </div>
+        <!--/.main content-->
+        <footer class="footer-content">
+            <div class="align-items-center d-flex footer-text gap-3 justify-content-between">
+                <div class="copy">© 2024 Camiwa - All Rights Reserved</div>
+                <div class="credit">Developed by: <a href="https://www.buckapi.com">Buckapi</a> 🌺💚</div>
+            </div>
+        </footer>
+        <!--/.footer content-->
+        <div class="overlay"></div>
+    </div>

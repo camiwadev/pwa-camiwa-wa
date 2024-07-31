@@ -1,0 +1,14 @@
+.widget-card {
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    border: 2px solid transparent; /* Borde inicialmente transparente */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0); /* Resplandor inicialmente transparente */
+}
+.highlight {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important; /* Resplandor verde */
+  }
+.widget-card:hover {
+    transform: translateY(-5px);
+    border-color: #00ff00; /* Borde verde al pasar el mouse */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Resplandor verde al pasar el mouse */
+}

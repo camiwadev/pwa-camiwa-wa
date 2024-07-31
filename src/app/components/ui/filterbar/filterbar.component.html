@@ -1,0 +1,132 @@
+<div class="sidebar-filters js-sidebar-filters-mobile">
+    <!-- filter header -->
+    <div class="border-bottom d-flex justify-content-between align-items-center p-3 sidebar-filters-header d-xl-none">
+        <div class="align-items-center btn-icon d-flex filter-close justify-content-center rounded-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+            </svg>
+        </div>
+        <span class="fs-3 fw-semibold">Filtros</span>
+        <span class="text-primary fw-medium">Limpiar</span>
+    </div>
+    <!-- end /. filter header -->
+    <div class="sidebar-filters-body p-3 p-xl-4">
+        <div class="mb-4 border-bottom pb-4">
+            <div class="mb-3">
+                <h4 class="fs-5 fw-semibold mb-1">Distancia</h4>
+                <p class="mb-0 small">Seleccione el rango en Km </p>
+            </div>
+            <!-- Start Range Slider -->
+            <div class="js-range-slider"></div>
+            <!-- End Range Slider -->
+        </div>
+        <div class="mb-4 border-bottom pb-4">
+            <div class="mb-3">
+                <h4 class="fs-5 fw-semibold mb-2">Más consultadas</h4>
+                <p class="mb-0 small">Top 6 de especialidades.</p>
+            </div>
+            <div class="row g-3">
+                <!-- <div class="col-4 text-center body-types-tem" *ngFor="let specialty of global.specialties" (click)="setSpecialty(specialty.id)" style="cursor: pointer;">
+                    <img src="{{specialty.image}}" alt="Descripción opcional">
+                    
+                    <div class="fs-11 fw-semibold mt-1">{{specialty.name}}</div>
+                </div> -->
+                <!-- <div class="col-4 text-center">
+                    <img src="assets/camiwa/images/icon/pediatrics.svg" alt="Descripción opcional">
+                    <div class="fs-11 fw-semibold mt-1">Pediatría</div>
+                </div>
+                <div class="col-4 text-center">
+                    <img src="assets/camiwa/images/icon/fmy_obstetrics.svg" alt="Descripción opcional">
+                   
+                    <div class="fs-11 fw-semibold mt-1">Ginecología y Obstetricia </div>
+                </div>
+                <div class="col-4 text-center">
+                   
+                    <div class="fs-11 fw-semibold mt-1">Hatchback</div>
+                </div>
+                <div class="col-4 text-center">
+                   
+                    <div class="fs-11 fw-semibold mt-1">Convertible</div>
+                </div>
+                <div class="col-4 text-center">
+                    
+                    <div class="fs-11 fw-semibold mt-1">Wagon</div>
+                </div> -->
+            </div>
+        </div>
+        <!-- <div class="mb-4 border-bottom pb-4">
+            <div class="mb-3">
+                <h4 class="fs-5 fw-semibold mb-1">Body Colour</h4>
+                <p class="mb-0 small">Duis a leo sit amet odio volutpat auctor ut a lorem.</p>
+            </div>
+            <div class="radio-list change-bg-color">
+                <input type="radio" name="color" id="red">
+                <label for="red" data-color="red"><span class="red"></span></label>
+
+                <input type="radio" name="color" id="green" checked>
+                <label for="green" data-color="green"><span class="green"></span></label>
+
+                <input type="radio" name="color" id="yellow">
+                <label for="yellow" data-color="yellow"><span class="yellow"></span></label>
+
+                <input type="radio" name="color" id="olive">
+                <label for="olive" data-color="olive"><span class="olive"></span></label>
+
+                <input type="radio" name="color" id="orange">
+                <label for="orange" data-color="orange"><span class="orange"></span></label>
+
+                <input type="radio" name="color" id="teal">
+                <label for="teal" data-color="teal"><span class="teal"></span></label>
+
+                <input type="radio" name="color" id="blue">
+                <label for="blue" data-color="blue"><span class="blue"></span></label>
+
+                <input type="radio" name="color" id="violet">
+                <label for="violet" data-color="violet"><span class="violet"></span></label>
+
+                <input type="radio" name="color" id="purple">
+                <label for="purple" data-color="purple"><span class="purple"></span></label>
+
+                <input type="radio" name="color" id="pink">
+                <label for="pink" data-color="pink"><span class="pink"></span></label>
+            </div>
+        </div> -->
+        <div class="mb-4 border-bottom pb-4">
+            <div class="mb-3">
+                <h4 class="fs-5 fw-semibold mb-2">Oferta de especialistas</h4>
+                <p class="mb-0 small">Número de especialistas disponibles.</p>
+            </div>
+            <!-- Start Form Check -->
+            <div class="form-check mb-2" *ngFor="let specialty of global.specialties">
+                <input class="form-check-input" type="checkbox" value="" id="skillsOne">
+                <label class="form-check-label" for="skillsOne">{{specialty.name}}<span class="count fs-13 ms-1 text-muted">({{ generateRandomNumber() }})</span></label>
+            </div>
+            
+
+        </div>
+        <div class="mb-4 border-bottom pb-4">
+            <div class="mb-3">
+                <h4 class="fs-5 fw-semibold mb-1">Género</h4>
+                <p class="mb-0 small">Indique el genero de su preferencia.</p>
+            </div>
+            <!-- Start Select2 -->
+            <select class="form-select">
+                <option value="1">Mujer</option>
+                <option value="2">Hombre</option>
+            </select>
+            <!-- /.End Select2 -->
+        </div>
+        <!-- start apply button -->
+        <!-- <button type="button" class="btn btn-primary w-100">Aplicar filtros</button> -->
+        <!-- end /. apply button -->
+        <!-- start clear filters -->
+        <!-- <a href="#" class="align-items-center d-flex fw-medium gap-2 justify-content-center mt-2 small text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+            </svg>
+            limpiar filtros
+        </a> -->
+        <!-- end /. clear filters -->
+    </div>
+</div>

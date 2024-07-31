@@ -1,0 +1,186 @@
+<div class="border-0 card header rounded-0 sticky-top" style="background-color: white;">
+    <!-- start navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand m-0" (click)="global.setRoute('home')">
+                <img class="logo-white" src="assets/camiwa/images/logo-white.png" alt="">
+                <img class="logo-dark" src="assets/camiwa/images/logo.png" alt="">
+            </a>
+            <div class="d-flex order-lg-2">
+                <!-- start button -->
+              
+    
+    
+                <a (click)="global.setRoute('trav-login')" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5" style="margin-right: 10px;">
+                    <i class="fa fa-user-plus"></i>
+                    <div class="vr d-none d-sm-inline-block"></div>
+                    <span class="d-none d-sm-inline-block">Ingresar Viajero</span>
+                </a>
+                <a (click)="global.setRoute('specialist-register')" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5" style="background-color: #ffff; color: #00a890;">
+                    <i class="fa fa-user-plus"></i>
+                    <div class="vr d-none d-sm-inline-block"></div>
+                    <span class="d-none d-sm-inline-block">Ingresar Especialista</span>
+                </a>
+    
+    
+                <!-- end /. button -->
+                <!-- start navbar toggle button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span id="nav-icon" class="">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+                <!-- end /. navbar toggle button -->
+            </div>
+            <!-- <div class="d-flex order-lg-2">
+                <a href="https://theme.easital.com/html/liston/v2.3/signin.html" class="d-flex align-items-center justify-content-center p-0 btn-user position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Favourite">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="align-items-center bg-primary d-flex end-0 fs-11 justify-content-center nav-count position-absolute rounded-circle text-white">0</span>
+                </a>
+                <a  class="d-flex align-items-center justify-content-center p-0 btn-user" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Sign In">
+                    <i class="fa-solid fa-user-plus"></i>
+                </a>
+                <button type="button" id="themeToggleBtn" class="align-items-center bg-transparent border-0 btn-user d-flex justify-content-center p-0">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                    </svg>
+                    <div class="vr d-none d-sm-inline-block"></div>
+                    <span class="d-none d-sm-inline-block">Agregar doctor</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span id="nav-icon" class="">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+            </div> -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link "(click)="global.setRoute('home')" aria-current="page" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            Home
+                        </a>
+                      
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  material-ripple"  (click)="global.setRoute('about')" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="typcn typcn-weather-stormy top-menu-icon" ></i>Sobre Camiwa
+                        </a>
+                        
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  active" (click)="global.setRoute('mapwrapper')" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            Busqueda avanzada
+                        </a>
+                      
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"(click)="global.setRoute('contact')"  style="cursor: pointer;" >Contacto</a>
+                    </li>
+                    
+                </ul>
+                <div class="d-sm-none">
+                    <!-- start button -->
+                    <a href="" class="btn btn-primary d-flex gap-2 hstack justify-content-center rounded-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                        <div class="vr d-none d-sm-inline-block"></div>
+                        <span>Add Listing</span>
+                    </a>
+                    <!-- end /. button -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- end /. navbar -->
+    <!-- start header search bar  -->
+    <div class="border-bottom border-top p-3 p-xl-0 search-bar" >
+        <div class="row g-3 g-xl-0" [hidden]="global.virtuallRouter.routerActive=='specialistdetail'">
+            <!-- search bar title -->
+            <div class="col-12 d-xl-none">
+                <div class="collapse show" id="CollapseText">
+                    <h2 class="fw-semibold text-center search-bar-title mb-0">Consigue el especialista<br> que   <span class="font-caveat text-primary">deseas</span></h2>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-5 col-xl-6" [hidden]="" >
+                <div class="search-select-input has-icon has-icon-y position-relative">
+                    <!-- input -->
+                    <input class="form-control" type="text"  (input)="global.onSearchChange($event)"placeholder="Qué estás buscando?" style="margin-left: 20px !important; background-color: #07efd717; ">
+                    <!-- icon -->
+                    <svg class="form-icon-start position-absolute top-50 bi bi-pin-map-fill" style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z" />
+                        <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z" />
+                    </svg>
+                    <!-- icon -->
+                    <svg class="form-icon-end position-absolute top-50 bi bi-crosshair" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#9b9b9b" viewBox="0 0 16 16">
+                        <path d="M8.5.5a.5.5 0 0 0-1 0v.518A7.001 7.001 0 0 0 1.018 7.5H.5a.5.5 0 0 0 0 1h.518A7.001 7.001 0 0 0 7.5 14.982v.518a.5.5 0 0 0 1 0v-.518A7.001 7.001 0 0 0 14.982 8.5h.518a.5.5 0 0 0 0-1h-.518A7.001 7.001 0 0 0 8.5 1.018V.5Zm-6.48 7A6.001 6.001 0 0 1 7.5 2.02v.48a.5.5 0 0 0 1 0v-.48a6.001 6.001 0 0 1 5.48 5.48h-.48a.5.5 0 0 0 0 1h.48a6.002 6.002 0 0 1-5.48 5.48v-.48a.5.5 0 0 0-1 0v.48A6.001 6.001 0 0 1 2.02 8.5h.48a.5.5 0 0 0 0-1h-.48ZM8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+                    </svg>
+                    <!-- select -->
+                    <select class="input-select position-absolute top-50">
+                        <option selected>0.5 km</option>
+                        <option value="1">1 km</option>
+                        <option value="2">5 km</option>
+                        <option value="3">10 km</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2 col-xl-3 d-none d-lg-block" >
+                <!-- Start Search Select -->
+                <div class="search-select has-icon position-relative" style="background-color: white !important;">
+                    <select class="select2 form-select" aria-label="Default select example" style="background-color: white !important;">
+                        <option selected style="background-color: white !important;">Seleccione ubicación</option>
+                        <option value="1"> Bogotá</option>
+                        <option value="1"> Medellín</option>
+                        <!-- <option value="2">Web & Mobile Dev</option>
+                        <option value="3">Writing</option>
+                        <option value="4">Sales & Marketing</option>
+                        <option value="5">Music & Audio</option> -->
+                    </select>
+                    <svg class="form-icon-start position-absolute top-50 search-icon z-1 bi bi-geo-alt" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    </svg>
+                </div>
+                <!-- /.End Search Select -->
+            </div>
+            <div class="col-md-2 col-lg-2 col-xl-3 d-none d-lg-block">
+                <div class="search-select has-icon position-relative"  [hidden]="!global.categoryFilterSelected">
+                    <select class="select2 form-select" aria-label="Default select example" (change)="global.onSpecialtyChange($event)">
+                        <option value="" [hidden]="global.categoryFilterSelected">Todas las especialidades</option>
+                        <option *ngFor="let specialty of global.specialtiesFiltered" [value]="specialty.id" >
+                            
+                            <span (click)="global.selectSpecialty(specialty)">{{specialty.name}}</span>
+                            </option>
+                      </select>
+                    <svg class="form-icon-start position-absolute top-50 search-icon z-1 bi bi-app-indicator" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z" />
+                        <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    </svg>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-4 col-mg-3 d-xl-none gap-3 gap-md-2 hstack justify-content-center">
+                <a  class="sidebarCollapse align-items-center d-flex justify-content-center filters-text fw-semibold gap-2">
+                    <i class="fa-solid fa-arrow-up-short-wide fs-18"></i>
+                    <span>Filtros</span>
+                </a>
+                <div class="h-75 mt-auto vr d-md-none"></div>
+                <a  id="mapCollapse" class="align-items-center d-flex justify-content-center filters-text fw-semibold gap-2">
+                    <i class="fa-solid fa-map-location-dot fs-18"></i>
+                    <span>Map</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- end /. header search bar  -->
+</div>

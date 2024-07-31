@@ -1,0 +1,38 @@
+.active-view {
+    color: #00a08f !important;
+  }
+  
+.btn-perfil {
+    color: #00a08f;
+    background-color: transparent;
+    border-color: #00a08f; /* Color de fondo inicial */
+}
+
+.btn-perfil:hover {
+    color: white;
+    border-color: #00a08f;
+    background-color: #00a08f; /* Color de fondo al pasar el mouse */
+}
+.btn-agenda:hover  {
+    background-color: transparent;
+    color: #00a08f;
+    border-color: #00a08f; /* Color de fondo inicial */
+}
+
+.btn-agenda{
+    color: white;
+    background-color: #00a08f; /* Color de fondo al pasar el mouse */
+}
+.hover-effect:hover {
+    color: #00a08f;
+    border: 1px solid #00a08f;
+    border-radius: 24px; /* Borde redondeado */
+    cursor: pointer;
+    padding-left: 12px; /* Padding más fino */
+    transition: all 0.3s ease; /* Transición suave */
+}
+.selected-specialty {
+    box-shadow: rgb(84 197 181 / 31%) -7px 6px 20px 0px !important;
+    transform: scale(1.02) !important;
+  }
+  

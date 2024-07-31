@@ -1,0 +1,153 @@
+<div class="bg-light p-3 p-sm-5">
+    <div class="row g-4 g-xl-5 justify-content-between">
+        <div class="col-xl-5 d-flex justify-content-center">
+            <div class="authentication-wrap overflow-hidden position-relative text-center text-sm-start my-5">
+                <!-- Start Header Text -->
+                <div class="mb-5">
+                    <h2 class="display-6 fw-semibold mb-3">Bienvenidos a Camiwa <span class="font-caveat text-primary">Registrarme</span> para continuar.</h2>
+                    <p class="mb-0">¡Desbloquea un mundo de contenido exclusivo, disfruta de ofertas especiales y sé el primero en sumergirte en noticias y actualizaciones interesantes uniéndote a nuestra comunidad!</p>
+                </div>
+                <!-- /.End Header Text -->
+                <!-- Start Social Button Wrapper -->
+                <div class="d-grid gap-3 mb-3">
+                    <!-- Start Social login Button -->
+                    <a class="align-items-center btn btn-dark btn-lg d-flex linkedin-btn position-relative text-start" href="sign-up.html#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                            <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+                        </svg>
+                        <span class="ms-3">Registrate con Google</span> </a>
+                    <!-- /.End Social login Button -->
+                    <!-- Start Social login Button -->
+                    
+                    
+                    <!-- Start Social login Button -->
+                </div>
+                <!-- /.End Social Button Wrapper -->
+                <!-- Start Text -->
+                <p class="mb-0">No publicaremos nada sin su permiso y sus datos personales se mantienen privados</p>
+                <!-- /.End Text -->
+                <!-- Start Divider -->
+                <div class="align-items-center d-flex my-5">
+                    <hr class="flex-grow-1 m-0"> <span class="fs-16 fw-bold px-3 text-dark">O</span>
+                    <hr class="flex-grow-1 m-0">
+                </div>
+                <!-- /.End Divider -->
+                <form class="register-form" (submit)="onRegister()">
+                    <!-- Start Form Group -->
+                    <div class="form-group mb-4">
+                        <label class="required">Nombre </label>
+                        <input class="form-control" placeholder="nombre" [(ngModel)]="ngFormRegister.value.name" name="name" type="text" required>
+                    </div>
+                    <!-- /.End Form Group -->
+                    <!-- Start Form Group -->
+                    <div class="form-group mb-4">
+                        <label class="required">Correo electrónico</label>
+                        <input class="form-control" placeholder="tu email" [(ngModel)]="ngFormRegister.value.email" name="email" type="email" required>
+                    </div>
+                    <!-- /.End Form Group -->
+                    <!-- Start Form Group -->
+                    <div class="form-group mb-4">
+                        <label class="required">Contraseña</label>
+                        <div class="input-group password-check">
+                            <span class="input-affix-wrapper affix-wth-text">
+                                <input class="form-control" placeholder="6+ caracteres" [(ngModel)]="ngFormRegister.value.password" name="password" type="password" required>
+                                <a href="#" class="input-suffix text-primary text-uppercase fs-8 fw-medium">
+                                    <span>Mostrar</span>
+                                    <span class="d-none">Ocultar</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- /.End Form Group -->
+                    <!-- Start Form Group -->
+                    <div class="form-group mb-4">
+                        <label class="required">Confirmar contraseña</label>
+                        <input class="form-control" placeholder="confirmar contraseña" [(ngModel)]="ngFormRegister.value.passwordConfirm" name="passwordConfirm" type="password" required>
+                    </div>
+                    <!-- /.End Form Group -->
+                    <!-- Start Checkbox -->
+                    <div class="form-check mb-4 text-start">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault" checked>
+                        <label class="form-check-label" for="flexCheckDefault"> Al registrarse, usted acepta los <a href="#" class="text-decoration-underline">terminos y condiciones</a> </label>
+                    </div>
+                    <!-- /.End Checkbox -->
+                    <!-- Start Button -->
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Registrarme</button>
+                    <!-- End Button -->
+                    <p class="p-lg mt-2 text-center">Ya tienes cuenta ? <a (click)="global.setRoute('trav-login')" style="cursor: pointer;"><u>Inicia sesión</u></a></p>
+                </form>
+                
+                <!-- Start Bottom Text -->
+                <!-- /.End Bottom Text -->
+            </div>
+        </div>
+        <div class="col-xl-7 d-none d-xl-block">
+            <div class="background-image bg-light d-flex flex-column h-100 justify-content-center p-5 rounded-4" data-image-src="assets/camiwa/images/lines.svg">
+                <div class="py-5 text-center">
+                    <div class="mb-5">
+                        <h2 class="fw-semibold">Encuentra y concerta citas de bienestar y salud<br> donde quiera que viajes.</h2>
+                        <p>CAMIWA<br> la plataforma numero uno en directorio de especialidades en area de salud para viajeros. </p>
+                    </div>
+                    <img src="assets/camiwa/images/png-img/real-time-analytics.png" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="custom-navbar navbar navbar-expand-lg navbar-fixed navbar-transfarent">
+    <div class="container">
+        <a class="navbar-brand m-0" (click)="global.setRoute('home')">
+            <img class="logo-white" src="assets/camiwa/images/logo-white.png" alt="">
+            <img class="logo-dark" src="assets/camiwa/images/logo.png" alt="">
+        </a>
+        <div class="d-flex order-lg-2">
+            <!-- start button -->
+          
+
+
+            <!-- <a (click)="global.setRoute('trav-login')" class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5" style="margin-right: 10px;">
+                <i class="fa fa-user-plus"></i>
+                <div class="vr d-none d-sm-inline-block"></div>
+                <span class="d-none d-sm-inline-block">Ingresar Viajero</span>
+            </a>
+            <a (click)="global.setRoute('trav-login')"class="btn btn-primary d-none d-sm-flex fw-medium gap-2 hstack rounded-5" style="background-color: #ffff; color: #00a890;">
+                <i class="fa fa-user-plus"></i>
+                <div class="vr d-none d-sm-inline-block"></div>
+                <span class="d-none d-sm-inline-block">Ingresar Especialista</span>
+            </a> -->
+
+
+            <!-- end /. button -->
+            <!-- start navbar toggle button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span id="nav-icon" class="">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <!-- end /. navbar toggle button -->
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link active" aria-current="page" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        Home
+                    </a>
+                </li>                    
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" (click)="global.setRoute('about')">Sobre Camiwa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" (click)="global.setRoute('mapwrapper')">Busqueda avanzada</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" (click)="global.setRoute('contact')">Contacto</a>
+                </li>
+                
+            </ul>
+           
+        </div>
+    </div>
+</nav>
