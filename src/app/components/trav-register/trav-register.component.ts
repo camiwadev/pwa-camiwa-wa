@@ -90,6 +90,8 @@ export class TravRegisterComponent {
 
             this.virtualrouter.routerActive = 'dashboard';
             break;
+            
+            
           case 'visit':
             this.virtualrouter.routerActive = 'dashboard';
             break;

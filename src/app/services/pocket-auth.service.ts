@@ -62,6 +62,27 @@ this.global.getSpecialties();
       return this.pb.collection('camiwaTravelers').create(data);
     }));
   }
+  onlyRegisterUser(email: string, password: string, type: string, name: string): Observable<any> {
+    const userData = {
+      email: email,
+      password: password,
+      passwordConfirm: password,
+      type: type,
+      username: name,
+      name: name
+    };
+  
+    // Crear usuario y devolver el observable con el usuario creado
+    return from(
+      this.pb.collection('users').create(userData).then((user) => {
+        // No se necesita crear ningún registro adicional en camiwaTravelers aquí
+        return user; // Devolver los datos del usuario creado
+      })
+    );
+  }
+  
+
+  
 
   loginUser(email: string, password: string): Observable<any> {
     return from(this.pb.collection('users').authWithPassword(email, password));

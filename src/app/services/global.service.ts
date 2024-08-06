@@ -1,10 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { Butler } from "@services/butler.service";
-// import { Yeoman } from './yeoman.service';
-// import { DataApiService } from './data-api-service';
-// import { virtualRouter } from './virtualRouter.service';
-// import { AuthRESTService } from './auth-rest.service';
-// import { Catalogo } from './catalogo.service';
 import { tap, count, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -15,22 +9,12 @@ import { switchMap } from 'rxjs/operators';
 import { virtualRouter } from './virtualRouter.service';
 import { environment } from '../../environments/environment';
 import PocketBase from 'pocketbase';
-// import { Apollo, gql } from 'apollo-angular';
-// interface Specialist {
-//   id: string;
-//   full_name: string;
-//   specialties: { id: string; name: string }[];
-//   // otros campos que se encuentran en la data...
-// }
 class MyClass {
   specialtyFilteredSelected: Specialty | null = null;
   specialists: Specialist[] = [];
   filteredSpecialists: Specialist[] = [];
   specialtiesFilteredSelected = false;
-
-  // Tu constructor y otros métodos aquí...
 }
-
 interface Specialty {
   name: string;
   id: string;
@@ -39,10 +23,8 @@ interface Specialty {
 interface Category {
   id: string;
 }
-
 interface Specialist {
   id: string;
-
   collectionId: string;
   collectionName: string;
   created: string;
@@ -86,24 +68,13 @@ interface ApiResponse {
   perPage: number;
   totalItems: number;
   totalPages: number;
-  items: any[]; // Puedes ajustar el tipo de 'items' según su estructura real
+  items: any[]; 
 }
-// const GET_EXTERNAL_PRODUCTS_WITH_DISCOUNTS = gql`
-//   query GetExternalProducts($url: String!, $clcodigo: Int!, $page: Int!, $limit: Int!, $discountUrl: String!, $prolistaprecio: Int!) {
-//     getExternalProducts(url: $url, clcodigo: $clcodigo, page: $page, limit: $limit, discountUrl: $discountUrl, prolistaprecio: $prolistaprecio) {
-//       arcodigo
-//       arnombre
-//       descuentoPorcentaje
-//       descuentoPromocional
-//     }
-//   }
-// `;
 @Injectable({
   providedIn: 'root',
 })
 export class GlobalService {
   approvedSpecialistsCount = 0;
-  // pagesArray: number[] = [];
   public urlPrev = '';
   private categoriesUrl =
     'https://db.buckapi.com:8090/api/collections/camiwaCategories/records';
@@ -111,24 +82,22 @@ export class GlobalService {
     'https://db.buckapi.com:8090/api/collections/camiwaSpecialties/records';
   private travelersUrl =
     'https://db.buckapi.com:8090/api/collections/camiwaTravelers/records';
-
   private specialistsUrl =
     'https://db.buckapi.com:8090/api/collections/camiwaSpecialists/records';
   private productsUrl =
     'https://db.buckapi.com:8090/api/collections/frutmeProducts/records';
-  private doctorsUrl = environment.apiUrl + '/api/collections/doctors/records';
-
   private toursUrl = 'http://localhost8070/api/collections/tours/records';
-
   private infoUrl = 'http://localhost8095/api/collections/info/records';
-  private assetmentsUrl =
-    'http://localhost8095/api/collections/assetments/records';
+  private assetmentsUrl ='http://localhost8095/api/collections/assetments/records';
   aside = true;
   allLoaded = false;
   totalRequests = 0;
+  pin='';
   modalType: string = '';
   specialtyId: string = ';';
-  private pb = new PocketBase('https://db.buckapi.com:8090');
+  public pb = new PocketBase('https://db.buckapi.com:8090');
+  totalServices: number = 0;
+  services: any[] = [];
   uploaderImages: string[] = [];
   certificates: string[] = [];
   avatar: string[] = [];
@@ -158,25 +127,19 @@ export class GlobalService {
   newUploaderAvatar: boolean = false;
   specialistRegisterStep: number = 1;
   selectedTicketsCount = 0;
-  // idCategorySelected = '';
   products: any[] = [];
   workingDays: any[] = [];
   showCalendar = true;
   doctors: any[] = [];
   specialties: any[] = [];
   specialtiesFiltered: any[] = [];
-  // specialtyFilteredSelected: any[] = [];
   specialtyFilteredSelected: Specialty | null = null;
-
   specialistsToShow: Specialist[] = [];
-  totalFilteredSpecialists: number = 0; // Total de especialistas filtrados
-
+  totalFilteredSpecialists: number = 0; 
   specialtiesFilteredSelected = false;
   categorySelected: any = false;
   categoryFilterSelected: any = false;
-
   categoryFiltered: any[] = [];
-  // specialists: any[] = [];
   travelers: any[] = [];
   specialistsUnlimited: any[] = [];
   car: any[] = [];
@@ -193,6 +156,7 @@ export class GlobalService {
     description: [],
   };
   previewRequest: {
+    userId: string;
     id: string;
     monday: boolean;
     tuesday: boolean;
@@ -200,10 +164,11 @@ export class GlobalService {
     thursday: boolean;
     saturday: boolean;
     friday: boolean;
+    sunday: boolean;
     full_name: string;
     address: string;
     city: string;
-    days: string[];
+    days: boolean[];
     country: string;
     email: string;
     phone: string;
@@ -211,11 +176,31 @@ export class GlobalService {
     studyArea: string;
     university: string;
     graduationYear: string;
-    specialties: { name: string }[];
+    specialties: { id: string; name: string }[];
     certificates: string[];
     documents: string[];
     images: string[];
+    advertisePlatform: boolean;
+    advertiseProfile: boolean;
+    advertiseServices: string[];
+    availability: string;
+    collectionId: string;
+    collectionName: string;
+    consultationAddress: string;
+    created: string;
+    gender: string;
+    membership: string;
+    membershipPlan: string;
+    schedule: string;
+    services: string;
+    status: string;
+    updated: string;
+    avatar: string;
+    password: string;
+    type: string;
+    usertype: string;
   } = {
+    userId: '',
     id: '',
     monday: false,
     tuesday: false,
@@ -223,9 +208,11 @@ export class GlobalService {
     thursday: false,
     saturday: false,
     friday: false,
+    sunday: false,
     full_name: '',
     address: '',
     city: '',
+    days: [],
     country: '',
     email: '',
     phone: '',
@@ -236,9 +223,26 @@ export class GlobalService {
     specialties: [],
     certificates: [],
     documents: [],
-    days: [],
-
     images: [],
+    advertisePlatform: false,
+    advertiseProfile: false,
+    advertiseServices: [],
+    availability: '',
+    collectionId: '',
+    collectionName: '',
+    consultationAddress: '',
+    created: '',
+    gender: '',
+    membership: '',
+    membershipPlan: '',
+    schedule: '',
+    services: '',
+    status: '',
+    updated: '',
+    avatar: '',
+    password: '',
+    type: '',
+    usertype: '',
   };
   previewCard: {
     ticketNumber: string;
@@ -275,8 +279,8 @@ export class GlobalService {
   categories: any[] = [];
   tours: any[] = [];
   currentPage: number = 1;
-  totalProducts: number = 0; // Total de productos que tu API puede devolver
-  totalDoctors: number = 0; // Total de doctors que tu API puede devolver
+  totalProducts: number = 0; 
+  totalDoctors: number = 0; 
   limit: number = 5;
   profileOption = 'attempts';
   itemsPerPage = 20;
@@ -296,20 +300,15 @@ export class GlobalService {
   selectedView: any = 'grid';
   view: any = true;
   constructor(
-    //   private apollo: Apollo,
-    //   public catalogo: Catalogo,
-    //   public authRESTService: AuthRESTService,
-    //   public butler: Butler,
     public http: HttpClient,
-    public virtuallRouter: virtualRouter //   public yeoman: Yeoman,
-  ) //   public dataApiService: DataApiService
+    public virtuallRouter: virtualRouter 
+  ) 
   {
     this.specialistsToShow = this.specialists;
     this.initializeRealtime();
     this.getCategories().subscribe((response) => {
       this.categories = response.items;
       console.log('Categorías:', JSON.stringify(this.categories));
-      // Inicializar el contador para cada categoría
       this.categoryCounts = {};
       this.categories.forEach((category) => {
         this.categoryCounts[category.id] = 0;
@@ -317,20 +316,15 @@ export class GlobalService {
       this.getSpecialties().subscribe((response) => {
         this.specialties = response;
         console.log('Especialidades:', JSON.stringify(this.specialties));
-        // Contar las especialidades para cada categoría
         this.specialties.forEach((specialty) => {
           if (this.categoryCounts[specialty.fatherId] !== undefined) {
             this.categoryCounts[specialty.fatherId]++;
           }
         });
-
-        // Mostrar los contadores por consola
         console.log(
           'Contadores de especialidades por categoría:',
           JSON.stringify(this.categoryCounts)
         );
-
-        // Calcular el total de categoryCounts
         this.totalCategoryCounts = Object.values(this.categoryCounts).reduce(
           (sum, count) => sum + count,
           0
@@ -345,9 +339,7 @@ export class GlobalService {
       let size = this.specialists.length;
 
       for (let i = 0; i < size; i++) {
-        // Corrección aquí: 'i < size'
         console.log('membership ' + this.specialists[i].membership);
-
         if (this.specialists[i].membership === 'Unlimited Plan') {
           this.specialistsUnlimited.push(this.specialists[i]);
         }
@@ -359,45 +351,31 @@ export class GlobalService {
       let size = this.travelers.length;
 
       for (let i = 0; i < size; i++) {
-        // Corrección aquí: 'i < size'
         console.log('membership ' + this.travelers[i].membership);
       }
       console.log('travelers' + JSON.stringify(this.travelers));
     });
-
-    // this.getDoctors().subscribe(
-    //   response=>{
-    //     this.doctors=response;
-    //   }
-    // );
   }
   setCategory(category: { id: string }) {
-    // Si la categoría clickeada es la misma que la actualmente seleccionada, deselecciona
     if (this.idCategorySelected === category.id) {
       this.categoryFilterSelected = false;
       this.idCategorySelected = '';
     } else {
-      // Selecciona la nueva categoría
       this.categoryFilterSelected = true;
       this.idCategorySelected = category.id;
     }
-    // Filtra especialistas y especialidades basados en la categoría seleccionada
     this.filterSpecialistsByCategory();
     this.filterSpecialtiesByCategory();
   }
 
   filterSpecialistsByCategory() {
     if (this.idCategorySelected) {
-      // Crear un mapa de id de especialidad a fatherId para un acceso rápido
-      const specialtyToFatherIdMap = this.specialties.reduce(
-        (map, specialty) => {
-          map[specialty.id] = specialty.fatherId;
-          return map;
-        },
-        {}
-      );
-
+      const specialtyToFatherIdMap = this.specialties.reduce((map, specialty) => {
+        map[specialty.id] = specialty.fatherId;
+        return map;
+      }, {});
       this.specialistsToShow = this.specialists.filter((specialist) =>
+        specialist.status === 'approved' &&
         specialist.specialties.some(
           (specialty) =>
             specialtyToFatherIdMap[specialty.id] === this.idCategorySelected
@@ -406,18 +384,18 @@ export class GlobalService {
       this.specialtiesFilteredSelected = false;
     } else {
       this.specialtiesFilteredSelected = false;
-
-      this.specialistsToShow = this.specialists;
+      this.specialistsToShow = this.specialists.filter(
+        (specialist) => specialist.status === 'approved'
+      );
     }
   }
-
+  
   viewCalendar() {
     this,this.viewDetail(this.previewRequest);
     this.showCalendar = true;
   }
 
   viewDetail(specialist: any) {
-    // Mapeo de los índices a los nombres de los días de la semana
     const daysMap = [
       'sunday',
       'monday',
@@ -428,18 +406,13 @@ export class GlobalService {
       'saturday',
     ];
 
-    // Transforma el array de booleanos en un array de nombres de días
     const workingDays = specialist.days
       .map((isWorking: boolean, index: number) =>
         isWorking ? daysMap[index] : null
-      ) // Mapea a los días si es true
-      .filter((day: string | null): day is string => day !== null); // Filtra los nulls y asegura que day es string
-
-    // Asigna el resultado a this.global.workingDays
+      ) 
+      .filter((day: string | null): day is string => day !== null); 
     this.workingDays = workingDays;
     console.log(JSON.stringify(this.workingDays));
-
-    // Actualiza la vista de detalle y la ruta
     this.previewRequest = specialist;
     this.setRoute('specialistdetail');
   }
@@ -453,24 +426,19 @@ export class GlobalService {
       this.specialtiesFiltered = this.specialties;
     }
   }
-
-  // selectSpecialty(specialty:Specialty){
-  // this.specialtiesFilteredSelected=true;
-  // this.specialtyFilteredSelected=specialty;
-  // }
-
+  
   selectSpecialty(specialty: Specialty) {
     if (this.specialtyId === specialty.id) {
       this.specialtyId = '';
       this.specialtyFilteredSelected = null;
       this.specialtiesFilteredSelected = false;
-      this.filteredSpecialists = this.specialists; // Restablece la lista
-      this.totalFilteredSpecialists = this.filteredSpecialists.length; // Actualiza el total
+      this.filteredSpecialists = this.specialists; 
+      this.totalFilteredSpecialists = this.filteredSpecialists.length; 
     } else {
       this.specialtyId = specialty.id;
       this.specialtyFilteredSelected = specialty;
       this.specialtiesFilteredSelected = true;
-      this.filterSpecialistsBySpecialty(specialty.id); // Aplica el filtrado
+      this.filterSpecialistsBySpecialty(specialty.id);
     }
     this.updateSpecialistsToShow();
   }
@@ -479,14 +447,12 @@ export class GlobalService {
     const selectedId = target.value;
     console.log('Hola ' + selectedId);
     if (selectedId === '') {
-      // Si se selecciona "Todas las especialidades", restablece el filtro
       this.specialtyId = '';
       this.specialtyFilteredSelected = null;
       this.specialtiesFilteredSelected = false;
       this.filteredSpecialists = this.specialists;
       this.totalFilteredSpecialists = this.filteredSpecialists.length;
     } else {
-      // Encuentra la especialidad seleccionada
       const selectedSpecialty = this.specialtiesFiltered.find(
         (sp) => sp.id === selectedId
       );
@@ -515,33 +481,38 @@ export class GlobalService {
         specialty.name.toLowerCase().includes(searchTerm)
       );
       return (
-        matchesFullName ||
-        matchesServices ||
-        matchesProfession ||
-        matchesSpecialties
+        specialist.status === 'approved' &&
+        (matchesFullName ||
+          matchesServices ||
+          matchesProfession ||
+          matchesSpecialties)
       );
     });
     this.totalFilteredSpecialists = this.filteredSpecialists.length;
     this.specialistsToShow = this.filteredSpecialists;
   }
+  
   updateSpecialistsToShow() {
     if (this.specialtiesFilteredSelected) {
-      // Filtra especialistas por especialidad
-      this.specialistsToShow = this.filteredSpecialists;
+      this.specialistsToShow = this.filteredSpecialists.filter(
+        (specialist) => specialist.status === 'approved'
+      );
     } else {
-      // Muestra todos los especialistas
-      this.specialistsToShow = this.specialists;
+      this.specialistsToShow = this.specialists.filter(
+        (specialist) => specialist.status === 'approved'
+      );
     }
   }
 
   filterSpecialistsBySpecialty(specialtyId: string) {
-    this.filteredSpecialists = this.specialists.filter((specialist) =>
-      specialist.specialties.some((specialty) => specialty.id === specialtyId)
+    this.filteredSpecialists = this.specialists.filter(
+      (specialist) =>
+        specialist.status === 'approved' &&
+        specialist.specialties.some((specialty) => specialty.id === specialtyId)
     );
-
-    // Actualiza el total de especialistas encontrados
     this.totalFilteredSpecialists = this.filteredSpecialists.length;
   }
+  
 
   getFilteredSpecialists(): Specialist[] {
     return this.filteredSpecialists;
@@ -549,7 +520,6 @@ export class GlobalService {
 
   unapproveSpecialist(id: string): Observable<any> {
     const data = { status: 'pending' };
-
     return this.http.patch<any>(`${this.specialistsUrl}/${id}`, data);
   }
   approveSpecialist(id: string): Observable<any> {
@@ -557,13 +527,26 @@ export class GlobalService {
     return this.http.patch<any>(`${this.specialistsUrl}/${id}`, data);
   }
   private initializeRealtime() {
-    // Subscribe to real-time updates
     this.pb.collection('camiwaSpecialists').subscribe('*', (e) => {
       this.updateSpecialistsList();
     });
 
-    // Initial load of specialists
     this.updateSpecialistsList();
+    
+    this.pb.collection('camiwaServices').subscribe('*', (e) => {
+      this.updateServicesList();
+    });
+    this.updateServicesList();
+  }
+
+  public updateServicesList() {
+    this.getServices().subscribe((response) => {
+      this.services = response.items;
+      this.totalServices = this.services.length;
+    });
+  }
+  getServices(): Observable<any> {
+    return this.http.get<any>(`${this.pb.baseUrl}/api/collections/camiwaServices/records`);
   }
   public updateSpecialistsList() {
     this.getSpecialists().subscribe((response) => {
@@ -622,33 +605,14 @@ export class GlobalService {
     this.getSpecialties();
     this.categorySelected = this.categories[index];
   }
-  getDoctors(): Observable<any[]> {
-    this.urlPrev = this.doctorsUrl;
-    return this.getAllPages(this.urlPrev).pipe(
-      tap((doctors) => {
-        // Extraer todas las categorías encontradas
-        const categories: Set<string> = new Set(); // Aquí establecemos explícitamente que el conjunto contendrá cadenas de texto
 
-        doctors.forEach((product) => categories.add(product.cat)); // Asumiendo que 'cat' es la propiedad que contiene la categoría de cada producto
-
-        // Ordenar las categorías alfabéticamente
-        this.categories = Array.from(categories).sort((a, b) =>
-          a.localeCompare(b)
-        );
-      })
-    );
-  }
 
   getSpecialties(): Observable<any[]> {
     this.urlPrev = this.specialtiesUrl;
     return this.getAllPages(this.urlPrev).pipe(
       tap((specialties) => {
-        // Extraer todas las categorías encontradas
-        const categories: Set<string> = new Set(); // Aquí establecemos explícitamente que el conjunto contendrá cadenas de texto
-
-        specialties.forEach((product) => categories.add(product.cat)); // Asumiendo que 'cat' es la propiedad que contiene la categoría de cada producto
-
-        // Ordenar las categorías alfabéticamente
+        const categories: Set<string> = new Set(); 
+        specialties.forEach((product) => categories.add(product.cat)); 
         this.specialties = Array.from(categories).sort((a, b) =>
           a.localeCompare(b)
         );
@@ -663,16 +627,11 @@ export class GlobalService {
   private getAllPages(url: string, doctors: any[] = []): Observable<any[]> {
     return this.http.get<any>(url).pipe(
       switchMap((response: any) => {
-        // Procesa los elementos de la página actual y los agrega al array de productos
         doctors.push(...response.items);
-
-        // Verifica si hay más páginas
         if (response.page < response.totalPages) {
-          // Si hay más páginas, realiza la solicitud recursiva para la siguiente página
           const nextPageUrl = `${this.urlPrev}?page=${response.page + 1}`;
           return this.getAllPages(nextPageUrl, doctors);
         } else {
-          // Si no hay más páginas, organiza los productos por categoría y emite el array completo de productos
           const organizedDoctors = this.organizeDoctorsByCategory(doctors);
           return of(organizedDoctors);
         }
@@ -681,19 +640,14 @@ export class GlobalService {
   }
 
   private organizeDoctorsByCategory(doctors: any[]): any[] {
-    // Crear un objeto para almacenar productos organizados por categoría
     const organizedByCategory: { [key: string]: any[] } = {};
-
-    // Organizar productos por categoría
     doctors.forEach((doctor) => {
-      const category = doctor.cat; // Reemplaza 'category' con la propiedad real que almacena la categoría en tu objeto de producto
+      const category = doctor.cat; 
       if (!organizedByCategory[category]) {
         organizedByCategory[category] = [];
       }
       organizedByCategory[category].push(doctor);
     });
-
-    // Convertir el objeto organizado nuevamente en un array
     const organizedDoctors = Object.values(organizedByCategory).flat();
     this.totalDoctors = organizedDoctors.length;
     return organizedDoctors;
@@ -707,28 +661,19 @@ export class GlobalService {
   }
 
   select(i: any) {
-    // Verifica si el elemento ya está presente en global.mySelection
     const isSelected = this.mySelection[i];
-
-    // Si el elemento ya está seleccionado, lo elimina; de lo contrario, lo agrega
     if (isSelected) {
       this.selectedTicketsCount = this.selectedTicketsCount - 1;
-      delete this.mySelection[i]; // Elimina el elemento si ya está seleccionado
+      delete this.mySelection[i]; 
     } else {
       this.selectedTicketsCount = this.selectedTicketsCount + 1;
-      this.mySelection[i] = true; // Agrega el elemento si no está seleccionado
+      this.mySelection[i] = true; 
     }
   }
   objectKeys(obj: any) {
     return Object.keys(obj);
   }
 
-  // setView(view: any) {
-  //   this.selectedView = view;
-  // }
-  // get totalPages(): number {
-  //   return Math.ceil(this.totalProducts / 20);
-  // }
   getCategories(): Observable<any> {
     return this.http.get<any>(this.categoriesUrl);
   }
@@ -737,12 +682,6 @@ export class GlobalService {
   }
   getTravelers(): Observable<any> {
     return this.http.get<any>(this.travelersUrl);
-  }
-  // getDoctors(): Observable<any> {
-  //   return this.http.get<any>(this.productsUrl);
-  // }
-  getTours(): Observable<any> {
-    return this.http.get<any>(this.toursUrl);
   }
   getInffo(): Observable<any> {
     return this.http.get<any>(this.infoUrl);
@@ -754,16 +693,6 @@ export class GlobalService {
     const totalPages = Math.ceil(this.totalProducts / this.itemsPerPage);
     return new Array(totalPages).fill(0).map((_, index) => index + 1);
   }
-
-  //   getExternalProducts(url: string, clcodigo: number, page: number, limit: number, discountUrl: string, prolistaprecio: number): Observable<any[]> {
-  //     return this.apollo.watchQuery<any>({
-  //       query: GET_EXTERNAL_PRODUCTS_WITH_DISCOUNTS,
-  //       variables: { url, clcodigo, page, limit, discountUrl, prolistaprecio }
-  //     })
-  //     .valueChanges
-  //     .pipe(map(result => result.data.getExternalProducts));
-  //   }
-
   setPrev(item: any) {
     console.log(item);
     this.categoryPrev = item;
@@ -773,56 +702,30 @@ export class GlobalService {
     let clientString = localStorage.getItem('clientCard');
     if (clientString !== null) {
       let clientCard = JSON.parse(clientString);
-      //   this.dataApiService.getOrdersByClient(clientCard.idUser).subscribe(response => {
-      //     const tempOrders = response; this.yeoman.myOrders = tempOrders;
-      //     this.yeoman.myOrders = this.yeoman.myOrders.reverse();
-      //     this.classifyOrders();
-      //     this.ordersSize = this.yeoman.myOrders.length;
-      //   })
+
     }
   }
+
+
+
   setRoute(route: string) {
     this.virtuallRouter.routerActive = route;
   }
   classifyOrders() {
-    // this.yeoman.ordersNew = [];
-    // this.yeoman.ordersProcessing = [];
-    // this.yeoman.ordersFinished = [];
-    // for (const order of this.yeoman.myOrders) {
-    //   if (order.status === 'nueva') {
-    //     this.yeoman.ordersNew.push(order);
-    //   } else if (order.status === 'procesando') {
-    //     this.yeoman.ordersProcessing.push(order);
-    //   } else if (order.status === 'terminada') {
-    //     this.yeoman.ordersFinished.push(order);
-    //   }
-    // }
-    // this.cdr.detectChanges();
   }
-  //   findClient() {
-  //     const idFind = this.authRESTService.getCurrentUser().id;
-  //     if (idFind !== undefined) {
-  //       this.dataApiService.getClientBy(idFind).subscribe((res: any) => {
-  //         localStorage.setItem('clientCard', JSON.stringify(res[0]));
-  //         let clientString = localStorage.getItem('clientCard');
-  //         if (clientString !== null) {
-  //           let clientCard = JSON.parse(clientString);
-  //           if (clientCard.status == "active") {
-  //             const idClient = clientCard.idUser;
-  //             const idDist = clientCard.ref;
-  //             this.yeoman.idClient = idClient;
-  //             this.yeoman.client = clientCard;
-  //             this.yeoman.clientEmail = clientCard.email;
-  //             this.yeoman.idDist = idDist;
-  //             this.getOrdersByClient();
-  //             this.findDist2(clientCard.ref);
-  //           } else {
-  //             // this.router.navigate(['/unavailable']);
-  //           }
-  //         }
-  //       });
-  //     }
-  //   }
+  
+
+  generateRandomPassword(length: number = 8): string {
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let password = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    this.pin=password;
+    return password;
+  }
+
   ClientFicha(): any {
     let client_string = localStorage.getItem('clientFicha');
     if (client_string) {

@@ -12,7 +12,7 @@ import { GlobalService } from '@app/services/global.service';
 })
 export class AdminDashboardComponent {
 constructor(
-  public autRest:AuthRESTService,
+  public authRest:AuthRESTService,
   public global:GlobalService
 ){
 

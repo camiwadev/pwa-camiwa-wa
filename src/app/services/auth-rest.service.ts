@@ -57,6 +57,10 @@ export class AuthRESTService {
 		return localStorage.getItem("isLoggedin");
 
 	}
+	getUserId(): string | null {
+	    const user = this.getCurrentUser();
+    return user ? user.userId ?? null : null;
+	  }
 	getCurrentUser(): UserInterface {
     let user_string = localStorage.getItem("currentUser");
 	    if (user_string ) {

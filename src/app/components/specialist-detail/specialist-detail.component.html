@@ -4,16 +4,24 @@
             <div class="col-lg col-xxl-8">
                 <div class="d-flex flex-wrap align-items-center mb-3 gap-2"
                     style="position: absolute; z-index: 999999;">
-                    <div class="border-0 card d-inline-flex flex-row flex-wrap gap-1 p-1 rounded-3 shadow-sm"
-                        style="z-index: 99999; ">
-                        <button class="btn-perfil btn-xs" (click)="global.setRoute('mapwrapper')">
+
+
+                    <div *ngIf="authService.getType() !== 'specialist'">
+                        <div class="border-0 card d-inline-flex flex-row flex-wrap gap-1 p-1 rounded-3 shadow-sm"
+                             style="z-index: 99999;">
+                          <button class="btn-perfil btn-xs" (click)="global.setRoute('mapwrapper')">
                             <i class="fa-solid fa-arrow-left"></i>
-                        </button>
-                        <div class="col fs-18 text-nowrap" [hidden]="global.categoryFilterSelected"
-                            style="margin-right: 5px;">
+                          </button>
+                          <div class="col fs-18 text-nowrap" [hidden]="global.categoryFilterSelected"
+                               style="margin-right: 5px;">
                             Volver atrás
+                          </div>
                         </div>
-                    </div>
+                      </div>
+                      
+
+
+                    
                 </div>
             </div>
         </div>
@@ -182,7 +190,7 @@
                     </div>
                 </div>
                 <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm">
-                    <h4 class="fw-semibold fs-2 mb-4">SERVICIOS</h4>
+                    <h4 class="fw-semibold fs-2 mb-4"><span *ngIf="authService.getType()=='specialist' && authService.getUserId()==global.previewRequest.userId">MIS</span> SERVICIOS</h4>
                     <div class="row">
                         <div class="col-lg-4 col-md-4 bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width"
                             style="padding: 10px;">

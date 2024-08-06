@@ -1,7 +1,7 @@
-<div class="map-wrapper" [hidden]="authRest.getType()=='admin'"  style="padding-top: 100px;">
-    <!-- start sidebar filters -->
+<div class="map-wrapper" [hidden]="authRest.getType()=='admin' && authRest.getType()!='specialist'"  style="padding-top: 100px;"  *ngIf="authRest.getType()!='specialist'">
+
     <div class="sidebar-filters js-sidebar-filters-mobile"  style="background-color: white; z-index: 9999999999999;">
-        <!-- filter header -->
+ 
         <div
             class="border-bottom d-flex justify-content-between align-items-center p-3 sidebar-filters-header d-xl-none">
             <div class="align-items-center btn-icon d-flex filter-close justify-content-center rounded-circle">
@@ -14,8 +14,8 @@
             <span class="fs-3 fw-semibold">Filtros</span>
             <span class="text-primary fw-medium">Limpiar</span>
         </div>
-        <!-- end /. filter header -->
-        <div class="sidebar-filters-body p-4 p-xl-4">
+  
+        <div class="sidebar-filters-body p-4 p-xl-4" >
             <p><strong> Filtros de búsqueda avanzada</strong></p>
             <div class="mb-4 border-bottom pb-4">
                 <div class="mb-3">
@@ -58,17 +58,9 @@
    
         </div>
     </div>
-    <!-- end /. sidebar filters -->
-    <!-- start items content -->
+
     <div class="items-content bg-light d-flex flex-column py-3 p-xl-4" style="width: 100% !important;">
-        <!-- <div class="d-flex flex-wrap align-items-center mb-3 gap-2">
-            <div class="col fs-18 text-nowrap"> <span class="fw-bold text-dark">{{global.specialties.length}}</span> Todas la   s especialidads</div>
-      
-            <div class="border-0 card d-inline-flex flex-row flex-wrap gap-1 p-1 rounded-3 shadow-sm">
-                <a (click)="global.setView('grid')" class="btn btn-light btn-sm px-2 py-1"><i class="fa-solid fa-border-all"></i></a>
-                <a (click)="global.setView('list')" class="btn btn-light btn-sm px-2 py-1"><i class="fa-solid fa-list"></i></a>
-            </div>
-        </div> -->
+    
         <div class="d-flex flex-wrap align-items-center mb-3 gap-2" style="position: absolute; z-index: 999999;">
 
             
@@ -283,6 +275,7 @@
         </nav>
         <!-- end /. pagination -->
     </div>
-    <!-- end /. items content -->
+ 
     
 </div>
+<app-specialist-detail></app-specialist-detail>

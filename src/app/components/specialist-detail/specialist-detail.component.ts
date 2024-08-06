@@ -4,6 +4,7 @@ import { es } from 'date-fns/locale';
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
+
 import { MatInputModule } from '@angular/material/input';
 import {
   Component,
@@ -64,7 +65,7 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
     private toastr: ToastrService,
     public global: GlobalService,
     private cdr: ChangeDetectorRef,
-    private authService: AuthRESTService,
+    public authService: AuthRESTService,
     rendererFactory: RendererFactory2,
     public pocketbase:PocketAuthService,
     private fb: FormBuilder

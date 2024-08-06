@@ -22,15 +22,37 @@ export class HomeComponent implements AfterViewInit {
 constructor(
   public global:GlobalService,
   public virtualRouter:virtualRouter,
-  public authRest:AuthRESTService
+  public authRest:AuthRESTService,
 ){
   if(this.authRest.isLogin()){
     // this.virtualRouter.routerActive="dashboard";
     this.global.setRoute("dashboard")
+    
   }
 }
 viewDetail(specialist:any){
-  this.global.previewRequest=specialist;
+  const daysMap = [
+    'sunday',
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+  ];
+  const workingDays = specialist.days
+  .map((isWorking: boolean, index: number) =>
+    isWorking ? daysMap[index] : null
+  ) // Mapea a los días si es true
+  .filter((day: string | null): day is string => day !== null); // Filtra los nulls y asegura que day es string
+
+// Asigna el resultado a this.global.workingDays
+this.global.workingDays = workingDays;
+console.log(JSON.stringify(this.global.workingDays));
+
+// Actualiza la vista de detalle y la ruta
+this.global.previewRequest = specialist;
+  
   this.global.setRoute('specialistdetail')
 }
 ngAfterViewInit() {
