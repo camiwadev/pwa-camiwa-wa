@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { GlobalService } from './services/global.service';
 import { CommonModule } from '@angular/common';
 import { ScriptService } from './services/script.service';
@@ -65,7 +66,8 @@ export class AppComponent {
     public global: GlobalService,
     public script: ScriptService,
     public virtualRouter: virtualRouter ,
-    public autRest:AuthRESTService
+    public autRest:AuthRESTService,
+    public http: HttpClient
  ) {
   this.script.load(
     'jquery',
@@ -100,6 +102,88 @@ export class AppComponent {
     .catch(error => console.log(error));
     // this.epicFunction();
     this.global.allLoaded=true;
+    this.trackVisitor();
+  }
+
+
+trackVisitor(): void {
+  const visitData: {
+    country: string;
+    device: string;
+    browser: string;
+    os: string;
+    datetime: string;
+    location: {
+      lat: number | null;
+      lng: number | null;
+    };
+  } = {
+    country: '', // Lo obtendremos en un paso posterior
+    device: this.getDeviceType(),
+    browser: this.getBrowserInfo(),
+    os: this.getOSInfo(),
+    datetime: new Date().toISOString(),
+    location: { lat: null, lng: null }
+  };
+
+  // Obtener la ubicación si es un dispositivo móvil
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      visitData.location.lat = position.coords.latitude;
+      visitData.location.lng = position.coords.longitude;
+      this.sendVisitData(visitData);
+    }, (error) => {
+      console.error('Error obteniendo la ubicación', error);
+      this.sendVisitData(visitData);
+    });
+  } else {
+    this.sendVisitData(visitData);
   }
 }
+getDeviceType(): string {
+  const ua = navigator.userAgent;
+  if (/mobile/i.test(ua)) return 'Mobile';
+  return 'Web';
+}
+getBrowserInfo(): string {
+  const ua = navigator.userAgent;
+  let browserName = 'Unknown';
+  if (ua.indexOf('Chrome') > -1) {
+    browserName = 'Chrome';
+  } else if (ua.indexOf('Firefox') > -1) {
+    browserName = 'Firefox';
+  } else if (ua.indexOf('Safari') > -1) {
+    browserName = 'Safari';
+  } else if (ua.indexOf('MSIE') > -1 || ua.indexOf('Trident/') > -1) {
+    browserName = 'Internet Explorer';
+  }
+  return browserName;
+}
 
+getOSInfo(): string {
+  const ua = navigator.userAgent;
+  let osName = 'Unknown';
+  if (ua.indexOf('Win') > -1) {
+    osName = 'Windows';
+  } else if (ua.indexOf('Mac') > -1) {
+    osName = 'MacOS';
+  } else if (ua.indexOf('X11') > -1) {
+    osName = 'UNIX';
+  } else if (ua.indexOf('Linux') > -1) {
+    osName = 'Linux';
+  }
+  return osName;
+}
+sendVisitData(visitData: any): void {
+  // Obtener país desde una API de geolocalización por IP
+  this.http.get('https://ipapi.co/json/').subscribe((response: any) => {
+    visitData.country = response.country_name;
+    this.http.post('https://db.buckapi.com:8090/api/collections/visits/records', visitData)
+      .subscribe(response => {
+        console.log('Datos de la visita enviados correctamente', response);
+      }, error => {
+        console.error('Error al enviar los datos de la visita', error);
+      });
+  });
+}
+}

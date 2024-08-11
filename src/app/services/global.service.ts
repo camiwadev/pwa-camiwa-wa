@@ -59,7 +59,7 @@ interface Specialist {
   university: string;
   wednesday: boolean;
   documents: string[];
-  status: 'pending' | 'active' | 'approved';
+  status: 'pending' | 'active' | 'approved'| 'new';
   images: string[];
   specialties: Specialty[];
 }
@@ -344,7 +344,7 @@ export class GlobalService {
           this.specialistsUnlimited.push(this.specialists[i]);
         }
       }
-      console.log('specialists' + JSON.stringify(this.specialists));
+      // console.log('specialists' + JSON.stringify(this.specialists));
     });
     this.getTravelers().subscribe((response) => {
       this.travelers = response.items;
@@ -519,7 +519,7 @@ export class GlobalService {
   }
 
   unapproveSpecialist(id: string): Observable<any> {
-    const data = { status: 'pending' };
+    const data = { status: 'new' };
     return this.http.patch<any>(`${this.specialistsUrl}/${id}`, data);
   }
   approveSpecialist(id: string): Observable<any> {
@@ -562,7 +562,7 @@ export class GlobalService {
           this.specialistsUnlimited.push(this.specialists[i]);
         }
 
-        if (this.specialists[i].status === 'pending') {
+        if (this.specialists[i].status === 'new') {
           this.totalRequests++;
         }
       }
@@ -713,6 +713,7 @@ export class GlobalService {
   }
   classifyOrders() {
   }
+  
   
 
   generateRandomPassword(length: number = 8): string {

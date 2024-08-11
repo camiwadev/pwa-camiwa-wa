@@ -105,9 +105,9 @@ export class TravLoginComponent {
                 'class',
                 'fixed sidebar-mini sidebar-collapse'
               );
-              this.virtualRouter.routerActive = 'dashboard';
-
               this.fetchSpecialistData(id); // Pasar el ID del cliente al método
+           
+
               break;
             default:
               this.virtualRouter.routerActive = 'mapwrapper';
@@ -122,6 +122,7 @@ export class TravLoginComponent {
       );
   }
   fetchSpecialistData(userId: string): void {
+    alert("fet")
     const pb = new PocketBase('https://db.buckapi.com:8090');
     pb.collection('camiwaSpecialists')
       .getList(1, 1, {
@@ -158,8 +159,9 @@ export class TravLoginComponent {
       
           // Actualiza la vista de detalle y la ruta
           this.global.previewRequest = record;
+          this.global.previewCard=record;
   		localStorage.setItem("currentUser",user_string);
-
+      this.virtualRouter.routerActive = 'dashboard';
 
         } else {
           console.error('No se encontraron registros para el usuario:', userId);
@@ -187,6 +189,8 @@ export class TravLoginComponent {
           const record = resultList.items[0]; // Tomar el primer registro
           console.log('Datos del cliente:', JSON.stringify(record));
           localStorage.setItem('status', record.status);
+          this.global.previewRequest = record;
+          this.global.previewCard=record;
           // Redirigir al usuario al home del clienteuser
           this.virtualRouter.routerActive = 'dashboard';
         } else {

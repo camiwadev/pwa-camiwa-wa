@@ -4,8 +4,6 @@
             <div class="col-lg col-xxl-8">
                 <div class="d-flex flex-wrap align-items-center mb-3 gap-2"
                     style="position: absolute; z-index: 999999;">
-
-
                     <div *ngIf="authService.getType() !== 'specialist'">
                         <div class="border-0 card d-inline-flex flex-row flex-wrap gap-1 p-1 rounded-3 shadow-sm"
                              style="z-index: 99999;">
@@ -17,24 +15,20 @@
                             Volver atrás
                           </div>
                         </div>
-                      </div>
-                      
-
-
-                    
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="py-5 bg-light m-3 rounded-4">
+<div class="py-5 bg-light m-3 rounded-4" *ngIf="global.previewRequest != undefined">
     <div class="container py-4">
         <div class="row">
             <div class="col-lg-4 ">
                 <div class="card border-0 p-4 p-xl-5 position-relative profile-card rounded-4 shadow-sm text-center">
                     <div class="bg-cover bg-dark bg-no-repeat js-bg-image overflow-hidden position-absolute profile-card_bg--img start-0 top-0 w-100"
                         data-image-src="assets/camiwa/images/profile-cover.png"></div>
-                    <div
+                    <div *ngIf="global.previewRequest.images!==undefined"
                         class="border border-3 border-white d-block position-relative profile-image-wrap rounded-circle">
                         <img src="{{global.previewRequest.images[0]}}"
                             class="h-100 img-fluid object-fit-cover profile-image rounded-circle w-100" alt="">
@@ -51,7 +45,6 @@
                             </a>
                             <i class="fa-solid fa-arrow-up-right-from-square fs-14 ms-2"></i>
                         </li>
-
                         <li class="list-inline-item">
                             <div class="d-flex align-items-center gap-2 ms-auto">
                                 <div class="d-flex align-items-center text-primary rating-stars">
@@ -65,7 +58,6 @@
                                         class="fs-6 fw-semibold me-1">(4.5)</span><small>2,391 reviews</small></span>
                             </div>
                         </li>
-
                     </ul>
                     <div class="col-lg-auto">
                         <div class="form-check form-check-bookmark mb-2 mb-sm-0">
@@ -185,10 +177,20 @@
             <div class="col-lg-8 ps-xxl-5 content">
                 <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm">
                     <div class="align-items-sm-center bg-light mb-4 p-4 rounded-3">
-                        <h4 class="fw-semibold fs-2">Biografia</h4>
-                        <p class="mb-0 fs-15">Breve descripción</p>
+                      <h4 class="fw-semibold fs-2">Biografia</h4>
+                      <p class="mb-0 fs-15">{{ biografia }}</p>
                     </div>
-                </div>
+                    <div *ngIf="!isEditing && authService.getType()=='specialist' && authService.getUserId()==global.previewRequest.userId" >
+                      <button class="btn btn-primary" (click)="toggleEdit()">Editar</button>
+                    </div>
+                    
+                    <div *ngIf="isEditing">
+                      <textarea [(ngModel)]="biografia" rows="4" class="form-control mb-2" (blur)="saveBiografia()"></textarea>
+                      <button class="btn btn-secondary" (click)="toggleEdit()">Cancelar</button>
+                    </div>
+                  </div>
+                  
+                  
                 <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm">
                     <h4 class="fw-semibold fs-2 mb-4"><span *ngIf="authService.getType()=='specialist' && authService.getUserId()==global.previewRequest.userId">MIS</span> SERVICIOS</h4>
                     <div class="row">

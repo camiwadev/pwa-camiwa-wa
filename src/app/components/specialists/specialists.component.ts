@@ -47,8 +47,8 @@ export class SpecialistsComponent {
     this.global.approveSpecialist(id).subscribe({
       next: (response) => {
         Swal.fire(
-          'Aprobado',
-          'El especialista ha sido aprobado exitosamente.',
+          'El especialista ha sido aprobado exitosamente',
+          '',
           'success'
         );
         console.log('Specialist approved:', response);

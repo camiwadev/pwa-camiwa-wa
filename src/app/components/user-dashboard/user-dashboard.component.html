@@ -1,4 +1,4 @@
-<div class="map-wrapper" [hidden]="authRest.getType()=='admin' && authRest.getType()!='specialist'"  style="padding-top: 100px;"  *ngIf="authRest.getType()!='specialist'">
+<div class="map-wrapper"  style="padding-top: 100px;" [hidden]="authRest.getType()=='admin' "   *ngIf="authRest.getType()=='admin'">
 
     <div class="sidebar-filters js-sidebar-filters-mobile"  style="background-color: white; z-index: 9999999999999;">
  
@@ -13,8 +13,7 @@
             </div>
             <span class="fs-3 fw-semibold">Filtros</span>
             <span class="text-primary fw-medium">Limpiar</span>
-        </div>
-  
+        </div>  
         <div class="sidebar-filters-body p-4 p-xl-4" >
             <p><strong> Filtros de búsqueda avanzada</strong></p>
             <div class="mb-4 border-bottom pb-4">
@@ -278,4 +277,4 @@
  
     
 </div>
-<app-specialist-detail></app-specialist-detail>
+<app-specialist-detail *ngIf="  authRest.getType()==='specialist' "></app-specialist-detail>

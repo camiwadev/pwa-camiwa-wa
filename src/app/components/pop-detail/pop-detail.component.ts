@@ -25,9 +25,9 @@ unapproveSpecialist(id: string) {
   this.global.unapproveSpecialist(id).subscribe({
     next: (response) => {
       Swal.fire(
-        'Inhabilitado',
-        'El especialista ha sido inhabilitado exitosamente.',
-        'success'
+        ' Desactivada.',
+        'La cuenta del Especialista ha sido desactivada provisionalmente.',
+        'info'
       );
       console.log('Specialist unapproved:', response);
       this.global.modalType='request';
@@ -49,8 +49,8 @@ approveSpecialist(id: string) {
   this.global.approveSpecialist(id).subscribe({
     next: (response) => {
       Swal.fire(
-        'Aprobado',
-        'El especialista ha sido aprobado exitosamente.',
+        'Cuenta activada exitosamente',
+        '',
         'success'
       );
       this.global.modalType='view';

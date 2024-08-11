@@ -12,16 +12,15 @@
     <app-trav-login [hidden]="virtualRouter.routerActive!=='trav-login'"></app-trav-login>
     <app-specialist-register [hidden]="virtualRouter.routerActive!=='specialist-register'"></app-specialist-register>
     <app-sidebar-dashboard [hidden]="virtualRouter.routerActive!=='dashboard' && virtualRouter.routerActive!=='categories'  && virtualRouter.routerActive!=='requests' && virtualRouter.routerActive!=='specialists' && virtualRouter.routerActive!=='specialistdetail'"  *ngIf=" virtualRouter.routerActive!='specialistdetail'" class="sidebar"></app-sidebar-dashboard>
-    <app-specialist-detail [hidden]="virtualRouter.routerActive!=='specialistdetail'"></app-specialist-detail>
     <app-admin-dashboard [hidden]="virtualRouter.routerActive!=='dashboard' " ></app-admin-dashboard>
+    <app-user-dashboard [hidden]="virtualRouter.routerActive!=='dashboard'" ></app-user-dashboard>
+    <app-specialist-detail [hidden]="virtualRouter.routerActive!=='specialistdetail' || autRest.getType()==='admin'"></app-specialist-detail>
     
-    <app-user-dashboard [hidden]="virtualRouter.routerActive!=='dashboard' " ></app-user-dashboard>
     <app-categories [hidden]="virtualRouter.routerActive!=='categories'" ></app-categories>
     <app-requests [hidden]="virtualRouter.routerActive!=='requests'" ></app-requests>
     <app-specialists [hidden]="virtualRouter.routerActive!=='specialists'" ></app-specialists>
     <app-about [hidden]="virtualRouter.routerActive!=='about'" ></app-about>
     <app-contact [hidden]="virtualRouter.routerActive!=='contact'" ></app-contact>
-    <app-specialist-detail [hidden]="virtualRouter.routerActive!=='specialist-detail'" ></app-specialist-detail>
 </div>
 
 <!-- <app-footer></app-footer> -->

@@ -51,7 +51,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex" (click)="global.setRoute('specialists')" >
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex" (click)="global.setRoute('specialists')" style="    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important; /* Resplandor verde al pasar el mouse */
+                            ">
                             <div class="card flex-column flex-fill p-4 position-relative shadow w-100 widget-card">
                                 <div class="d-flex">
                                     <div class="flex-grow-1 ms-3">
@@ -64,7 +65,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex">
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 d-flex" *ngIf="global.totalRequests>0">
                             <div (click)="global.setRoute('requests')" class="card flex-column flex-fill p-4 position-relative shadow w-100 widget-card" style="    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important; /* Resplandor verde al pasar el mouse */
                             ">
                                 <div class="d-flex">

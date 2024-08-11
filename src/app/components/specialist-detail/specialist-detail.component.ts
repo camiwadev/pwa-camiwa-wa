@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 
@@ -32,6 +32,7 @@ import { em } from '@fullcalendar/core/internal-common';
   selector: 'app-specialist-detail',
   standalone: true,
   imports: [
+    FormsModule,
     MatInputModule,
     MatFormFieldModule,
     CommonModule,
@@ -54,6 +55,8 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
   @ViewChild('calendar') calendar!: MatCalendar<Date>;
   @ViewChild('header') customCalendarHeader!: CustomCalendarHeaderComponent<Date>;
   // selectedDate: Date | null = null;
+  isEditing: boolean = false;
+  biografia: string = '';
   selectedDate: Date = new Date()
   workingDays = ['tuesday', 'wednesday', 'thursday', 'friday'];
   private mutationObserver: MutationObserver;
@@ -68,7 +71,8 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
     public authService: AuthRESTService,
     rendererFactory: RendererFactory2,
     public pocketbase:PocketAuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    
   ) {
     this.renderer = rendererFactory.createRenderer(null, null);
     this.scrollToTop();
@@ -84,7 +88,11 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
       // Añade más campos si es necesario
     });
   }
-
+  saveBiografia() {
+    // Aquí puedes agregar lógica para guardar la biografía
+    this.isEditing = false;
+    console.log('Biografía guardada:', this.biografia); // Esto es solo para verificar que la biografía se guarda correctamente
+  }
   private createReservation(email: string) {
     const date = format(this.selectedDate, "yyyy-MM-dd HH:mm:ss.SSSX", { locale: es });
     const bookingData = {
@@ -121,7 +129,9 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
   
 
 
-
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
+  }
 
   createBooking() {
     if (this.form.invalid) {
