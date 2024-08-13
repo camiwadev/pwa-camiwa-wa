@@ -28,16 +28,20 @@ export const MY_DATE_FORMATS = {
   
    
   >
-    <button mat-icon-button class="mat-calendar-previous-button btn-perfil"  (click)="previousClicked()">
+    <button mat-icon-button class="mat-calendar-previous-button btn-perfil"  (click)="previousClicked()" [hidden]="!global.showCalendarFlag">
       <mat-icon>chevron_left</mat-icon>
     </button>
     <div class="mat-calendar-period-button"  (mouseenter)="previousClicked()"
     (mouseleave)="nextClicked()">
-      <button mat-button disabled class="otra">
+    <button mat-button disabled class="otra" [hidden]="global.showCalendarFlag" (click)="reservar()">
+        Reservar
+      </button>
+ 
+      <button mat-button disabled class="otra" [hidden]="!global.showCalendarFlag" >
         {{ activeDateAsDate | date: 'MMMM y' }}
       </button>
     </div>
-    <button mat-icon-button class="mat-calendar-next-button btn-perfil" (click)="nextClicked()">
+    <button mat-icon-button class="mat-calendar-next-button btn-perfil" (click)="nextClicked()" [hidden]="!global.showCalendarFlag">
       <mat-icon>chevron_right</mat-icon>
     </button>
   </div>
@@ -70,6 +74,10 @@ export class CustomCalendarHeaderComponent<D> extends MatCalendarHeader<D> {
     this.nextClicked();
     // alert('El método show() se está ejecutando.');
   
+  }
+  reservar(){
+   this.global.showCalendarFlag=false;
+    this.previousClicked();
   }
   
   override previousClicked(): void {

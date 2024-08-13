@@ -130,6 +130,7 @@ export class GlobalService {
   products: any[] = [];
   workingDays: any[] = [];
   showCalendar = true;
+  showCalendarFlag = false;
   doctors: any[] = [];
   specialties: any[] = [];
   specialtiesFiltered: any[] = [];

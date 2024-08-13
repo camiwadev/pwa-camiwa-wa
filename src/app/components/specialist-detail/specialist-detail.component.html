@@ -139,11 +139,12 @@
                     </div>
                 </div>
                 <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm" style="margin-top: 20px;" id="booking">
-                    <h4 class="fw-semibold mb-4">Reservar <span class="font-caveat text-primary">consulta</span></h4>
-                    <form [formGroup]="form" (ngSubmit)="createBooking()" class="row g-4">
+                    <h4 class="fw-semibold mb-4">Agendar <span class="font-caveat text-primary">consulta</span></h4>
+                    <form [formGroup]="form" (ngSubmit)="createBooking()" class="row g-4"> 
                       <div class="col-sm-12">
-                        <mat-calendar
+                        <mat-calendar 
                           #calendar
+                          
                           [hidden]="!global.showCalendar"
                           (selectedChange)="onSelectedChange($event)"
                           [headerComponent]="headerComponent"

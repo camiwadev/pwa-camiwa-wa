@@ -181,6 +181,9 @@ sendVisitData(visitData: any): void {
     this.http.post('https://db.buckapi.com:8090/api/collections/visits/records', visitData)
       .subscribe(response => {
         console.log('Datos de la visita enviados correctamente', response);
+        if (visitData.device === 'Mobile') {
+          window.location.href = 'https://m.camiwa.com';
+        }
       }, error => {
         console.error('Error al enviar los datos de la visita', error);
       });
