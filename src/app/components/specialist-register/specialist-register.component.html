@@ -110,13 +110,13 @@
                           <input type="text" name="graduation_year" class="form-control" minlength="3" placeholder="Año de egreso *" [(ngModel)]="formData.graduationYear">
                         </div>
                         <div class="language-select">
-                          <p>Seleccione la categoría de especialidad a la que pertenece: </p>
+                          <p>Seleccione la profesión a la que pertenece: </p>
                           <ng-multiselect-dropdown
                           name="category"
                           [(ngModel)]="formData.category"
                           [data]="global.categories"
                           [settings]="dropdownSettings"
-                          [placeholder]="'Seleccione Categoría'"
+                          [placeholder]="'Seleccione Profesión'"
                           [disabled]="false"
                           [ngClass]="{'border-class': true, 'background-class': true}"
                            (ngModelChange)="onCategoryChange($event)">

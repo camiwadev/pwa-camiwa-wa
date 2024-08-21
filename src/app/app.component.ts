@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,AfterViewInit,OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { GlobalService } from './services/global.service';
@@ -28,6 +28,7 @@ import { AboutHeaderComponent } from './components/ui/about-header/about-header.
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactHeaderComponent } from './components/ui/contact-header/contact-header.component';
 import { SpecialistsComponent } from './components/specialists/specialists.component';
+import mapboxgl from 'mapbox-gl'; 
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -60,7 +61,12 @@ import { SpecialistsComponent } from './components/specialists/specialists.compo
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements  AfterViewInit{
+  map!: mapboxgl.Map;
+  style = 'mapbox://styles/mapbox/streets-v11'; // Estilo del mapa
+  lat: number = 0; // Coordenada por defecto
+  lng: number = 0; // Coordenada por defecto
+  zoom = 12; // Nivel de zoom inicial
   title = 'camiwa';
   constructor(
     public global: GlobalService,
@@ -69,6 +75,7 @@ export class AppComponent {
     public autRest:AuthRESTService,
     public http: HttpClient
  ) {
+
   this.script.load(
     'jquery',
     'bootstrap',
@@ -104,11 +111,10 @@ export class AppComponent {
     this.global.allLoaded=true;
     this.trackVisitor();
   }
-
-
 trackVisitor(): void {
   const visitData: {
     country: string;
+    ip: string;
     device: string;
     browser: string;
     os: string;
@@ -119,6 +125,7 @@ trackVisitor(): void {
     };
   } = {
     country: '', // Lo obtendremos en un paso posterior
+    ip: '',      // Lo obtendremos en un paso posterior
     device: this.getDeviceType(),
     browser: this.getBrowserInfo(),
     os: this.getOSInfo(),
@@ -140,6 +147,7 @@ trackVisitor(): void {
     this.sendVisitData(visitData);
   }
 }
+
 getDeviceType(): string {
   const ua = navigator.userAgent;
   if (/mobile/i.test(ua)) return 'Mobile';
@@ -178,6 +186,7 @@ sendVisitData(visitData: any): void {
   // Obtener país desde una API de geolocalización por IP
   this.http.get('https://ipapi.co/json/').subscribe((response: any) => {
     visitData.country = response.country_name;
+    visitData.ip = response.ip;
     this.http.post('https://db.buckapi.com:8090/api/collections/visits/records', visitData)
       .subscribe(response => {
         console.log('Datos de la visita enviados correctamente', response);
@@ -189,4 +198,43 @@ sendVisitData(visitData: any): void {
       });
   });
 }
+
+ngAfterViewInit(): void {
+  (mapboxgl as any).accessToken = 'pk.eyJ1IjoiY2FtaXdhbWFpbDEyMyIsImEiOiJjbHljemVlMTIwMG9rMnBwcjA0dmp5OGdjIn0.WOOfx3moNvHLA5s9Xa9heA';
+
+  // Obtener las ubicaciones desde tu API
+  this.http.get('https://db.buckapi.com:8090/api/collections/visits/records').subscribe((data: any) => {
+    const locations = data.items;
+
+    if (locations.length > 0 && locations[0].location.lat !== null && locations[0].location.lng !== null) {
+      const lat = locations[0].location.lat;
+      const lng = locations[0].location.lng;
+
+      if (lat !== undefined && lng !== undefined) {
+        // Inicializar el mapa usando la primera ubicación válida
+        this.map = new mapboxgl.Map({
+          container: 'map',
+          style: this.style,
+          zoom: this.zoom,
+          center: [lng, lat]
+        });
+
+        // Agregar los marcadores al mapa
+        this.addMarkers(locations);
+      } else {
+        console.error('Las coordenadas de la primera ubicación no son válidas.');
+      }
+    } else {
+      console.error('No hay ubicaciones disponibles para mostrar en el mapa o las coordenadas son nulas.');
+    }
+  });
+}
+addMarkers(locations: any[]): void {
+  locations.forEach(location => {
+    new mapboxgl.Marker()
+      .setLngLat([location.location.lng, location.location.lat])
+      .addTo(this.map);
+  });
+}
+
 }

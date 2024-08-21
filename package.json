@@ -29,6 +29,7 @@
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@sweetalert2/ngx-sweetalert2": "^12.3.0",
     "date-fns": "^3.6.0",
+    "mapbox-gl": "^3.6.0",
     "ng-multiselect-dropdown": "^1.0.0",
     "ngx-awesome-uploader": "^17.1.0",
     "ngx-owl-carousel-o": "^17.0.0",
