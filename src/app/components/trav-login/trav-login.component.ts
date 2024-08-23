@@ -122,7 +122,7 @@ export class TravLoginComponent {
       );
   }
   fetchSpecialistData(userId: string): void {
-    alert("fet")
+    // alert("fet")
     const pb = new PocketBase('https://db.buckapi.com:8090');
     pb.collection('camiwaSpecialists')
       .getList(1, 1, {
@@ -192,11 +192,11 @@ export class TravLoginComponent {
           this.global.previewRequest = record;
           this.global.previewCard=record;
           // Redirigir al usuario al home del clienteuser
-          this.virtualRouter.routerActive = 'dashboard';
+          this.virtualRouter.routerActive = 'mapwrapper';
         } else {
           console.error('No se encontraron registros para el usuario:', userId);
           // Redirigir al usuario al home
-          this.virtualRouter.routerActive = 'bashboard';
+          this.virtualRouter.routerActive = 'user-home';
         }
       })
       .catch((error) => {
