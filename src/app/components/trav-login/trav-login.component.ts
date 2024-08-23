@@ -88,6 +88,7 @@ export class TravLoginComponent {
           switch (type) {
             case 'admin':
               this.virtualRouter.routerActive = 'dashboard';
+              window.location.href = 'https://camiwa.com';
               break;
             case 'traveler':
               // Si el tipo de usuario es 'cliente', hacer la solicitud al API
@@ -193,6 +194,7 @@ export class TravLoginComponent {
           this.global.previewCard=record;
           // Redirigir al usuario al home del clienteuser
           this.virtualRouter.routerActive = 'mapwrapper';
+          window.location.href = 'https://camiwa.com';
         } else {
           console.error('No se encontraron registros para el usuario:', userId);
           // Redirigir al usuario al home
