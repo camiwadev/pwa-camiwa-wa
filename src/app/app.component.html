@@ -1,9 +1,11 @@
-<div  [class.wrapper]="autRest.isLogin() "  *ngIf=" global.allLoaded">
-    <app-header [hidden]="virtualRouter.routerActive!=='mapwrapper'  && virtualRouter.routerActive!='specialistdetail'"></app-header>
+<div  [class.wrapper]="autRest.isLogin() && virtualRouter.routerActive!=='mapwrapper'  && virtualRouter.routerActive!=='contact'  && virtualRouter.routerActive!=='about'  && virtualRouter.routerActive!=='home'  && virtualRouter.routerActive!=='specialistdetail' "  *ngIf=" global.allLoaded">
+    <app-header [hidden]="virtualRouter.routerActive!=='mapwrapper'  && virtualRouter.routerActive!=='specialistdetail'"></app-header>
     <app-about-header [hidden]="virtualRouter.routerActive!=='about' "></app-about-header>
     <app-contact-header [hidden]="virtualRouter.routerActive!=='contact' "></app-contact-header>
     <app-header-home [hidden]="virtualRouter.routerActive!=='home' "></app-header-home>
-    <app-header-dashboard [hidden]="virtualRouter.routerActive!=='dashboard' && virtualRouter.routerActive!=='categories'  && virtualRouter.routerActive!=='requests' && virtualRouter.routerActive!=='specialists' && virtualRouter.routerActive=='specialistdetail'"></app-header-dashboard>
+    <app-header-dashboard 
+    [hidden]="!isDashboardVisible()">
+  </app-header-dashboard>
     <app-mapwrapper [hidden]="virtualRouter.routerActive!=='mapwrapper'"></app-mapwrapper>
     <app-home [hidden]="virtualRouter.routerActive!=='home'"></app-home>
     

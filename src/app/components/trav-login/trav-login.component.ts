@@ -6,14 +6,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-// import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spi|nner';
 import { PocketAuthService } from '@app/services/pocket-auth.service';
 import { GlobalService } from '@app/services/global.service';
 import { virtualRouter } from '@app/services/virtualRouter.service';
 import PocketBase from 'pocketbase';
 import { CommonModule } from '@angular/common';
-// import { AuthRESTService } from '@app/services/auth-rest.service';
-// import { Butler } from '@app/services/butler.service';
 import { ScriptService } from '@app/services/script.service';
 import { AuthRESTService } from '@app/services/auth-rest.service';
 
@@ -37,7 +34,6 @@ export class TravLoginComponent {
     public AuthRESTService: AuthRESTService,
     public pocketAuthService: PocketAuthService,
     public global: GlobalService,
-    // public _butler:Butler,
     public script: ScriptService,
     public virtualRouter: virtualRouter,
     private formBuilder: FormBuilder
@@ -88,7 +84,7 @@ export class TravLoginComponent {
           switch (type) {
             case 'admin':
               this.virtualRouter.routerActive = 'dashboard';
-              window.location.href = 'https://camiwa.com';
+              // window.location.href = 'https://camiwa.com';
               break;
             case 'traveler':
               // Si el tipo de usuario es 'cliente', hacer la solicitud al API
@@ -99,7 +95,7 @@ export class TravLoginComponent {
               );
               this.fetchClientData(id); // Pasar el ID del cliente al método
               break;
-               case 'specialist':
+            case 'specialist':
               // Si el tipo de usuario es 'cliente', hacer la solicitud al API
               this.renderer.setAttribute(
                 document.body,
@@ -107,7 +103,6 @@ export class TravLoginComponent {
                 'fixed sidebar-mini sidebar-collapse'
               );
               this.fetchSpecialistData(id); // Pasar el ID del cliente al método
-           
 
               break;
             default:
@@ -136,7 +131,7 @@ export class TravLoginComponent {
           localStorage.setItem('status', record.status);
           this.virtualRouter.routerActive = 'dashboard';
           let user_string = JSON.stringify(record);
-          this.global.previewRequest=record;
+          this.global.previewRequest = record;
           const daysMap = [
             'sunday',
             'monday',
@@ -146,24 +141,23 @@ export class TravLoginComponent {
             'friday',
             'saturday',
           ];
-      
+
           // Transforma el array de booleanos en un array de nombres de días
           const workingDays = record.days
             .map((isWorking: boolean, index: number) =>
               isWorking ? daysMap[index] : null
             ) // Mapea a los días si es true
             .filter((day: string | null): day is string => day !== null); // Filtra los nulls y asegura que day es string
-      
+
           // Asigna el resultado a this.global.workingDays
           this.global.workingDays = workingDays;
           console.log(JSON.stringify(this.global.workingDays));
-      
+
           // Actualiza la vista de detalle y la ruta
           this.global.previewRequest = record;
-          this.global.previewCard=record;
-  		localStorage.setItem("currentUser",user_string);
-      this.virtualRouter.routerActive = 'dashboard';
-
+          this.global.previewCard = record;
+          localStorage.setItem('currentUser', user_string);
+          this.virtualRouter.routerActive = 'dashboard';
         } else {
           console.error('No se encontraron registros para el usuario:', userId);
           this.virtualRouter.routerActive = 'dashboard';
@@ -191,10 +185,10 @@ export class TravLoginComponent {
           console.log('Datos del cliente:', JSON.stringify(record));
           localStorage.setItem('status', record.status);
           this.global.previewRequest = record;
-          this.global.previewCard=record;
+          this.global.previewCard = record;
           // Redirigir al usuario al home del clienteuser
+          alert('pal map wrapper')
           this.virtualRouter.routerActive = 'mapwrapper';
-          window.location.href = 'https://camiwa.com';
         } else {
           console.error('No se encontraron registros para el usuario:', userId);
           // Redirigir al usuario al home

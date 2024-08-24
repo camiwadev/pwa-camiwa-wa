@@ -269,7 +269,6 @@ export class GlobalService {
   };
   filteredSpecialists: Specialist[] = [];
   filteredSpecialties: Specialty[] = [];
-
   specialtySelected: string = '';
   specialists: Specialist[] = [];
   idCategorySelected: string | null = null;

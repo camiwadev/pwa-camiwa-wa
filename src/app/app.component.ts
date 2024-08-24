@@ -13,7 +13,6 @@ import { virtualRouter } from './services/virtualRouter.service';
 import { TestComponent } from './components/test/test.component';
 import { HeaderDashboardComponent } from './components/ui/header-dashboard/header-dashboard.component';
 import { TravRegisterComponent } from './components/trav-register/trav-register.component';
-import { TravHomeComponent } from './components/trav-home/trav-home.component';
 import { TravLoginComponent } from './components/trav-login/trav-login.component';
 import { SidebarDashboardComponent } from './components/ui/sidebar-dashboard/sidebar-dashboard.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
@@ -43,7 +42,6 @@ import mapboxgl from 'mapbox-gl';
     TestComponent,
     HeaderDashboardComponent,
     TravRegisterComponent,
-    TravHomeComponent,
     TravLoginComponent,
     SidebarDashboardComponent,
     AdminDashboardComponent,
@@ -147,7 +145,16 @@ trackVisitor(): void {
     this.sendVisitData(visitData);
   }
 }
-
+isDashboardVisible(): boolean {
+  const activeRoute = this.virtualRouter.routerActive;
+  return activeRoute === 'dashboard' ||
+         activeRoute === 'categories' ||
+         activeRoute === 'requests' ||
+         activeRoute === 'specialists' ||
+         activeRoute !== 'mapwrapper' &&
+         activeRoute !== 'home' &&
+         activeRoute !== 'specialistdetail';
+}
 getDeviceType(): string {
   const ua = navigator.userAgent;
   if (/mobile/i.test(ua)) return 'Mobile';

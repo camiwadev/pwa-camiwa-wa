@@ -39,34 +39,34 @@ export class HomeComponent implements AfterViewInit {
         case 'admin':
           this.virtualRouter.routerActive = 'dashboard';
           break;
-          case 'traveler':
-            // Si el tipo de usuario es 'cliente', hacer la solicitud al API
-            let id = this.authRest.getCurrentUser().id;
-            this.renderer.setAttribute(
-              document.body,
-              'class',
-              'fixed sidebar-mini sidebar-collapse'
-            );
-            this.virtualRouter.routerActive = 'mapwrapper';
-            
-            this.fetchClientData(id);
-            // Pasar el ID del cliente al método
-            break;
-            case 'specialist':
-              // Si el tipo de usuario es 'cliente', hacer la solicitud al API
-              this.renderer.setAttribute(
-                document.body,
-                'class',
-                'fixed sidebar-mini sidebar-collapse'
-              );
-              this.virtualRouter.routerActive = 'mapwrapper';
-              let id2 = this.authRest.getCurrentUser().id;
-              this.fetchSpecialistData(id2); // Pasar el ID del cliente al método
-              break;
-              default:
-                this.virtualRouter.routerActive = 'mapwrapper';
-                break;
-              }
+        case 'traveler':
+          // Si el tipo de usuario es 'cliente', hacer la solicitud al API
+          let id = this.authRest.getCurrentUser().id;
+          this.renderer.setAttribute(
+            document.body,
+            'class',
+            'fixed sidebar-mini sidebar-collapse'
+          );
+          alert('entra')
+          this.virtualRouter.routerActive = 'mapwrapper';
+          this.fetchClientData(id);
+          // Pasar el ID del cliente al método
+          break;
+        case 'specialist':
+          // Si el tipo de usuario es 'cliente', hacer la solicitud al API
+          this.renderer.setAttribute(
+            document.body,
+            'class',
+            'fixed sidebar-mini sidebar-collapse'
+          );
+          this.virtualRouter.routerActive = 'mapwrapper';
+          let id2 = this.authRest.getCurrentUser().id;
+          this.fetchSpecialistData(id2); // Pasar el ID del cliente al método
+          break;
+        default:
+          this.virtualRouter.routerActive = 'mapwrapper';
+          break;
+      }
     }
   }
   fetchSpecialistData(userId: string): void {
@@ -134,7 +134,7 @@ export class HomeComponent implements AfterViewInit {
           console.log('Datos del cliente:', JSON.stringify(record));
           localStorage.setItem('status', record.status);
           // Redirigir al usuario al home del clienteuser
-          this.virtualRouter.routerActive = 'dashboard';
+          this.virtualRouter.routerActive = 'mapwrapper';
         } else {
           console.error('No se encontraron registros para el usuario:', userId);
           // Redirigir al usuario al home
