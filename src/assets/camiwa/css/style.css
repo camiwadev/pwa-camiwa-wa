@@ -2008,7 +2008,8 @@ hr {
     bottom: 0;
     left: 0;
     content: "";
-    background: rgba(25, 30, 37, 0.25);
+    /* background: rgba(25, 30, 37, 0.25); */
+    /* fondo inicial */
 }
 
 .bg-gradient-vertical {
