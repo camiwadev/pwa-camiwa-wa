@@ -3,6 +3,7 @@ import { GlobalService } from '../../../services/global.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { CommonModule } from '@angular/common';
+import { AuthRESTService } from '@app/services/auth-rest.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -32,6 +33,10 @@ dropdownSettings: IDropdownSettings = {
   allowSearchFilter: true
 };
   constructor(
-    public global:GlobalService
+    public global:GlobalService,
+    public authRest: AuthRESTService
   ){}
+  isLogin(): boolean {
+    return localStorage.getItem("isLoggedin") === 'true';
+  }
 }

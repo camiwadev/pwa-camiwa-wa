@@ -187,7 +187,7 @@ export class TravLoginComponent {
           this.global.previewRequest = record;
           this.global.previewCard = record;
           // Redirigir al usuario al home del clienteuser
-          alert('pal map wrapper')
+          // alert('pal map wrapper')
           this.virtualRouter.routerActive = 'mapwrapper';
         } else {
           console.error('No se encontraron registros para el usuario:', userId);

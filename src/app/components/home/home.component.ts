@@ -47,7 +47,7 @@ export class HomeComponent implements AfterViewInit {
             'class',
             'fixed sidebar-mini sidebar-collapse'
           );
-          alert('entra')
+          // alert('entra')
           this.virtualRouter.routerActive = 'mapwrapper';
           this.fetchClientData(id);
           // Pasar el ID del cliente al método

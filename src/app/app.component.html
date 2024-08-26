@@ -1,28 +1,36 @@
-<div  [class.wrapper]="autRest.isLogin() && virtualRouter.routerActive!=='mapwrapper'  && virtualRouter.routerActive!=='contact'  && virtualRouter.routerActive!=='about'  && virtualRouter.routerActive!=='home'  && virtualRouter.routerActive!=='specialistdetail' "  *ngIf=" global.allLoaded">
-    <app-header [hidden]="virtualRouter.routerActive!=='mapwrapper'  && virtualRouter.routerActive!=='specialistdetail'"></app-header>
-    <app-about-header [hidden]="virtualRouter.routerActive!=='about' "></app-about-header>
-    <app-contact-header [hidden]="virtualRouter.routerActive!=='contact' "></app-contact-header>
-    <app-header-home [hidden]="virtualRouter.routerActive!=='home' "></app-header-home>
-    <app-header-dashboard 
-    [hidden]="!isDashboardVisible()">
+<div [class.wrapper]="autRest.isLogin() 
+&& virtualRouter.routerActive!=='mapwrapper'  
+&& virtualRouter.routerActive!=='contact'  
+&& virtualRouter.routerActive!=='about'  
+&& virtualRouter.routerActive!=='home'  
+&& virtualRouter.routerActive!=='specialistdetail' " *ngIf=" global.allLoaded">
+  <app-header
+    [hidden]="virtualRouter.routerActive!=='mapwrapper'  && virtualRouter.routerActive!=='specialistdetail'"></app-header>
+  <app-about-header [hidden]="virtualRouter.routerActive!=='about' "></app-about-header>
+  <app-contact-header [hidden]="virtualRouter.routerActive!=='contact' "></app-contact-header>
+  <app-header-home [hidden]="virtualRouter.routerActive!=='home' "></app-header-home>
+  <app-header-dashboard [hidden]="!isDashboardVisible()">
   </app-header-dashboard>
-    <app-mapwrapper [hidden]="virtualRouter.routerActive!=='mapwrapper'"></app-mapwrapper>
-    <app-home [hidden]="virtualRouter.routerActive!=='home'"></app-home>
-    
-    <app-test [hidden]="virtualRouter.routerActive!=='test'"></app-test>
-    <app-trav-register [hidden]="virtualRouter.routerActive!=='trav-register'"></app-trav-register>
-    <app-trav-login [hidden]="virtualRouter.routerActive!=='trav-login'"></app-trav-login>
-    <app-specialist-register [hidden]="virtualRouter.routerActive!=='specialist-register'"></app-specialist-register>
-    <app-sidebar-dashboard [hidden]="virtualRouter.routerActive!=='dashboard' && virtualRouter.routerActive!=='categories'  && virtualRouter.routerActive!=='requests' && virtualRouter.routerActive!=='specialists' && virtualRouter.routerActive!=='specialistdetail'"  *ngIf=" virtualRouter.routerActive!='specialistdetail'" class="sidebar"></app-sidebar-dashboard>
-    <app-admin-dashboard [hidden]="virtualRouter.routerActive!=='dashboard' " ></app-admin-dashboard>
-    <app-user-dashboard [hidden]="virtualRouter.routerActive!=='dashboard'" ></app-user-dashboard>
-    <app-specialist-detail [hidden]="virtualRouter.routerActive!=='specialistdetail' || autRest.getType()==='admin'"></app-specialist-detail>
-    
-    <app-categories [hidden]="virtualRouter.routerActive!=='categories'" ></app-categories>
-    <app-requests [hidden]="virtualRouter.routerActive!=='requests'" ></app-requests>
-    <app-specialists [hidden]="virtualRouter.routerActive!=='specialists'" ></app-specialists>
-    <app-about [hidden]="virtualRouter.routerActive!=='about'" ></app-about>
-    <app-contact [hidden]="virtualRouter.routerActive!=='contact'" ></app-contact>
+  <app-mapwrapper [hidden]="virtualRouter.routerActive!=='mapwrapper'"></app-mapwrapper>
+  <app-home [hidden]="virtualRouter.routerActive!=='home'"></app-home>
+
+  <app-test [hidden]="virtualRouter.routerActive!=='test'"></app-test>
+  <app-trav-register [hidden]="virtualRouter.routerActive!=='trav-register'"></app-trav-register>
+  <app-trav-login [hidden]="virtualRouter.routerActive!=='trav-login'"></app-trav-login>
+  <app-specialist-register [hidden]="virtualRouter.routerActive!=='specialist-register'"></app-specialist-register>
+  <app-sidebar-dashboard
+    [hidden]="virtualRouter.routerActive!=='dashboard' && virtualRouter.routerActive!=='categories'  && virtualRouter.routerActive!=='requests' && virtualRouter.routerActive!=='specialists' && virtualRouter.routerActive!=='specialistdetail'"
+    *ngIf=" virtualRouter.routerActive!='specialistdetail'" class="sidebar"></app-sidebar-dashboard>
+  <app-admin-dashboard [hidden]="virtualRouter.routerActive!=='dashboard' "></app-admin-dashboard>
+  <app-user-dashboard [hidden]="virtualRouter.routerActive!=='dashboard'"></app-user-dashboard>
+  <app-specialist-detail
+    [hidden]="virtualRouter.routerActive!=='specialistdetail' || autRest.getType()==='admin'"></app-specialist-detail>
+
+  <app-categories [hidden]="virtualRouter.routerActive!=='categories'"></app-categories>
+  <app-requests [hidden]="virtualRouter.routerActive!=='requests'"></app-requests>
+  <app-specialists [hidden]="virtualRouter.routerActive!=='specialists'"></app-specialists>
+  <app-about [hidden]="virtualRouter.routerActive!=='about'"></app-about>
+  <app-contact [hidden]="virtualRouter.routerActive!=='contact'"></app-contact>
 </div>
 <!-- <div id="map" style="width: 100%; height: 500px;"></div> -->
 
