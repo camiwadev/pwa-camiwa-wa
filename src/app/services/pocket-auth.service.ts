@@ -38,7 +38,19 @@ this.global.getSpecialties();
       throw error; // Puedes lanzar el error para manejarlo en otro lugar
     }
   }
-
+  private async createRecord(collectionName: string, data: any): Promise<any> {
+    try {
+       const record = await this.pb.collection(collectionName).create(data);
+       console.log(`${collectionName} guardado exitosamente:`, record);
+       return record;
+    } catch (error) {
+       console.error(`Error al guardar en ${collectionName}:`, error);
+       throw error;
+    }
+ }
+  async saveService(serviceData: any): Promise<any> {
+    return this.createRecord('camiwaServices', serviceData);
+ }
   registerUser(email: string, password: string, type: string, name: string): Observable<any> {
     const userData = {
       "email": email,

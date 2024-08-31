@@ -77,3 +77,9 @@
 .mat-calendar-body-selected.mat-calendar-body-today {
   background-color: yellow !important;
 }
+.text-hover-green {
+  color: #46667f !important;
+}
+.fw-link{
+  color: #0090ff;
+}

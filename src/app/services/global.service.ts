@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { tap, count, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { tap,catchError, count, map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 import { of } from 'rxjs';
 import { merge } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +8,9 @@ import { switchMap } from 'rxjs/operators';
 import { virtualRouter } from './virtualRouter.service';
 import { environment } from '../../environments/environment';
 import PocketBase from 'pocketbase';
+import { Subscription } from 'rxjs';
+
+
 class MyClass {
   specialtyFilteredSelected: Specialty | null = null;
   specialists: Specialist[] = [];
@@ -74,6 +76,13 @@ interface ApiResponse {
   providedIn: 'root',
 })
 export class GlobalService {
+
+  public subscriptions: Subscription = new Subscription();
+
+  public subscription: Subscription = new Subscription();
+  public camiwaServices: any[] = []; // Esto debería ser un array u otra colección iterable
+
+
   approvedSpecialistsCount = 0;
   public urlPrev = '';
   private categoriesUrl =
@@ -366,6 +375,20 @@ export class GlobalService {
     }
     this.filterSpecialistsByCategory();
     this.filterSpecialtiesByCategory();
+  }
+
+  updateSpecialistDetails(data: { city: string; country: string }): Observable<any> {
+    const specialistId = this.previewRequest.id;
+    const url = `${this.specialistsUrl}/${specialistId}`;
+    return this.http.patch(url, data).pipe(
+      tap((response) => {
+        console.log('Detalles actualizados:', response);
+      }),
+      catchError((error) => {
+        console.error('Error al actualizar detalles del especialista:', error);
+        return throwError(error);
+      })
+    );
   }
 
   filterSpecialistsByCategory() {

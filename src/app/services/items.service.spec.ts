@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PocketbaseService } from './pocketbase.service';
+import { ItemsService } from './items.service';
 
-describe('PocketbaseService', () => {
-  let service: PocketbaseService;
+describe('ItemsService', () => {
+  let service: ItemsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PocketbaseService);
+    service = TestBed.inject(ItemsService);
   });
 
   it('should be created', () => {

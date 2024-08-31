@@ -15,6 +15,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { FaqsComponent } from '../faqs/faqs.component';
 import PocketBase from 'pocketbase';
+import { ItemsService } from '@app/services/items.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -25,11 +27,14 @@ import PocketBase from 'pocketbase';
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class HomeComponent implements AfterViewInit {
+  private subscriptions: Subscription = new Subscription();
+
   constructor(
     public global: GlobalService,
     public virtualRouter: virtualRouter,
     public authRest: AuthRESTService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public itemsService:ItemsService
   ) {
     if (this.authRest.isLogin()) {
       // this.virtualRouter.routerActive="dashboard";
@@ -61,13 +66,27 @@ export class HomeComponent implements AfterViewInit {
           );
           this.virtualRouter.routerActive = 'mapwrapper';
           let id2 = this.authRest.getCurrentUser().id;
-          this.fetchSpecialistData(id2); // Pasar el ID del cliente al método
+          this.fetchSpecialistData(id2); 
+          
+    this.itemsService.subscribeToCamiwaServices(id2);
+
+    this.global.subscription.add(
+      this.itemsService.camiwaServiceEvents$.subscribe((event) => {
+        if (event) {
+          this.global.camiwaServices.push(event.record); // Asegúrate de actualizar una colección iterable
+        }
+      })
+    );// Pasar el ID del cliente al método
           break;
         default:
           this.virtualRouter.routerActive = 'mapwrapper';
           break;
       }
     }
+  }
+  truncateText(text: string, limit: number): string {
+    if (!text) return '';
+    return text.length > limit ? text.substring(0, limit) + '...' : text;
   }
   fetchSpecialistData(userId: string): void {
     const pb = new PocketBase('https://db.buckapi.com:8090');
@@ -106,6 +125,7 @@ export class HomeComponent implements AfterViewInit {
 
           // Actualiza la vista de detalle y la ruta
           this.global.previewRequest = record;
+
           localStorage.setItem('currentUser', user_string);
         } else {
           console.error('No se encontraron registros para el usuario:', userId);
@@ -117,7 +137,15 @@ export class HomeComponent implements AfterViewInit {
         this.virtualRouter.routerActive = 'user-home';
       });
   }
+  private handleCamiwaServiceEvent(event: any) {
+    console.log('Evento de camiwaServices:', event);
+    // Aquí manejas los eventos según sea necesario
+  }
 
+  private getUserIdFromGlobal(): string {
+    // Devuelve el userId de this.global.previewRequest
+    return this.global.previewRequest.userId;
+  }
   fetchClientData(userId: string): void {
     // Crear una instancia de PocketBase
     const pb = new PocketBase('https://db.buckapi.com:8090');

@@ -26,9 +26,9 @@
                     [hidden]="category.status !== 'active'">
                     <!-- <input class="form-check-input" type="checkbox" [value]="category.id" id="category-{{ i }}"> -->
                     <label class="form-check-label" for="category-{{ i }}" (click)="global.setCategory(category)"
-                        [ngStyle]="{'color': (category.id === global.idCategorySelected && global.categoryFilterSelected) ? '#00a08f' : ''}"
-                        class="hover-effect">
-                        {{ category.name }}
+                        [ngStyle]="{'color': (category.id === global.idCategorySelected && global.categoryFilterSelected) ? '#00a08f' : '' } "
+                        class="hover-effect" [attr.title]="category.name">
+                        {{ truncateText(category.name, 15) }}
                         <span class="count fs-13 ms-1 text-muted">
                             <ng-container *ngIf="global.categoryCounts[category.id] !== 0; else showGif">
                                 ( {{ global.categoryCounts[category.id] }} )
@@ -77,14 +77,14 @@
 
         <div class="position-absolute z-1 header-categories mb-5 " style="padding-bottom: 25px;"
             [hidden]="!global.categoryFilterSelected">
-            <div class="container position-relative " style="padding-top: 55px;">
+            <div class="container position-relative " style="padding-top: 50px;">
                 <div class="row justify-content-center ">
                     <div class="col-md-12">
 
                         <div class="swiper-container row g-2 g-sm-4">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide col-4 col-md-4 col-sm-4 col-xl-2 "
-                                    (click)="global.selectSpecialty(especialty)" style="cursor: pointer; width: 250px;"
+                                    (click)="global.selectSpecialty(especialty)" style="cursor: pointer; width: 230px;"
                                     *ngFor="let especialty of global.specialtiesFiltered;let i = index">
 
                                     <div class="">
@@ -95,17 +95,19 @@
                                             'box-shadow': (especialty.id === global.specialtyId) ? 'rgb(180 180 180 / 57%) -7px 6px 20px 0px !important' : '',
                                             'transform': (especialty.id === global.specialtyId) ? 'scale(1.02)' : 'scale(1)',
                                         }"
-                                        [ngClass]="{'selected-specialty': especialty.id === global.specialtyId}">
+                                        [ngClass]="{'selected-specialty': especialty.id === global.specialtyId}" [attr.title]="especialty.name">
                                         <img src="assets/camiwa/images/icon/specialist.png" alt="" height="70">
                                         <div class="align-items-center badge bg-light font-caveat fs-6 fw-semibold justify-content-center mt-2 py-1 rounded-4 text-primary">
                                         </div>
-                                        <div class="fw-semibold mt-4">{{especialty.name}}</div>
+                                        <div class="fw-semibold mt-4">{{truncateText(especialty.name, 25)}}</div>
                                      </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <app-placeholder *ngFor="let placeholder of placeholders" style="margin-right: 25px;"
+          
+
+                        <app-placeholder *ngFor="let placeholder of placeholders" style="margin-right: 15px;"
                             [hidden]="global.specialties.length>1"></app-placeholder>
 
                         <div class="swiper-container row g-2 g-sm-4" [hidden]="global.categoryFilterSelected">
@@ -133,51 +135,6 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-wrap align-items-center mb-3 gap-2" style="position: absolute; z-index: 999999;">
-
-
-            <div class="col fs-18 text-nowrap" [hidden]="global.categoryFilterSelected">
-                <!-- <span class="fw-bold text-dark">{{global.totalCategoryCounts}}</span> -->
-                Selecciona una Categoría
-            </div>
-            <div class="col fs-18 text-nowrap" [hidden]="!global.categoryFilterSelected ||global.specialtyFilteredSelected">
-                <span [hidden]="!global.specialtiesFilteredSelected">
-
-                    viendo
-                </span>
-
-                <span class="fw-bold text-dark">{{global.specialtiesFiltered.length}}</span>
-                especialidades
-            </div>
-            <div class="col fs-18 text-nowrap" [hidden]=" !global.specialtyFilteredSelected || !global.categoryFilterSelected">
-                <span [hidden]="!global.specialtiesFilteredSelected">
-
-                    mostrando 
-                </span>
-
-                <span class="fw-bold text-dark">{{global.totalFilteredSpecialists}}</span>
-                especialistas encontrados
-            </div>
-            <!-- <span *ngIf="global.specialtyFilteredSelected && global.specialtiesFilteredSelected">
-                        especialidad seleccionada: {{global.specialtyFilteredSelected.name}}
-                    </span> -->
-
-            <!-- end /. button group -->
-            <div class="border-0 card d-inline-flex flex-row flex-wrap gap-1 p-1 rounded-3 shadow-sm"
-                style="z-index: 99999; ">
-                <a (click)="global.setView('grid')" class="btn btn-light btn-sm px-2 py-1"
-                    [ngClass]="{'active-view': global.viewSelected === 'grid'}">
-                    <i class="fa-solid fa-border-all"></i>
-                </a>
-                <a (click)="global.setView('list')" class="btn btn-light btn-sm px-2 py-1"
-                    [ngClass]="{'active-view': global.viewSelected === 'list'}">
-                    <i class="fa-solid fa-list"></i>
-                </a>
-
-
-            </div>
-        </div>
-        <!-- <div [hidden]="global.viewSelected=='list'" class="row g-4 mb-5" style="padding-top: 250px;" > -->
 
         <div [hidden]="global.viewSelected == 'list'" class="row g-4 mb-5"
             [ngStyle]="{'padding-top': global.categoryFilterSelected ? '250px' : '50px'}">
@@ -283,6 +240,54 @@
                 <!-- end /. listing card -->
             </div>
         </div>
+        <div class="d-flex flex-wrap align-items-center mb-3 gap-2" style="position: absolute; z-index: 999999; padding: 5px;
+        background: white;
+        border-radius: 10px;">
+
+
+            <div class="col fs-18 text-nowrap" [hidden]="global.categoryFilterSelected">
+                <!-- <span class="fw-bold text-dark">{{global.totalCategoryCounts}}</span> -->
+                Selecciona una Categoría
+            </div>
+            <div class="col fs-18 text-nowrap" [hidden]="!global.categoryFilterSelected ||global.specialtyFilteredSelected">
+                <span [hidden]="!global.specialtiesFilteredSelected">
+
+                    viendo
+                </span>
+
+                <span class="fw-bold text-dark">{{global.specialtiesFiltered.length}}</span>
+                especialidades
+            </div>
+            <div class="col fs-18 text-nowrap" [hidden]=" !global.specialtyFilteredSelected || !global.categoryFilterSelected">
+                <span [hidden]="!global.specialtiesFilteredSelected">
+
+                    mostrando 
+                </span>
+
+                <span class="fw-bold text-dark">{{global.totalFilteredSpecialists}}</span>
+                especialistas encontrados
+            </div>
+            <!-- <span *ngIf="global.specialtyFilteredSelected && global.specialtiesFilteredSelected">
+                        especialidad seleccionada: {{global.specialtyFilteredSelected.name}}
+                    </span> -->
+
+            <!-- end /. button group -->
+            <div class="border-0 card d-inline-flex flex-row flex-wrap gap-1 p-1 rounded-3 shadow-sm"
+                style="z-index: 99999; ">
+                <a (click)="global.setView('grid')" class="btn btn-light btn-sm px-2 py-1"
+                    [ngClass]="{'active-view': global.viewSelected === 'grid'}">
+                    <i class="fa-solid fa-border-all"></i>
+                </a>
+                <a (click)="global.setView('list')" class="btn btn-light btn-sm px-2 py-1"
+                    [ngClass]="{'active-view': global.viewSelected === 'list'}">
+                    <i class="fa-solid fa-list"></i>
+                </a>
+
+
+            </div>
+        </div>
+        <!-- <div [hidden]="global.viewSelected=='list'" class="row g-4 mb-5" style="padding-top: 250px;" > -->
+
         <div class="container-xxl" [hidden]="global.viewSelected=='grid'" class="row g-1 mb-5"
             [ngStyle]="{'padding-top': global.categoryFilterSelected ? '250px' : '50px'}">
 

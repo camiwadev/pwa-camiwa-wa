@@ -21,7 +21,11 @@ export class MapwrapperComponent {
   setHoverState(index: number, isHovering: boolean) {
     this.hoverStates[index] = isHovering;
   }
-
+  truncateText(text: string, limit: number): string {
+    if (!text) return '';
+    return text.length > limit ? text.substring(0, limit) + '...' : text;
+  }
+  
   viewDetail(specialist: any) {
     // Mapeo de los índices a los nombres de los días de la semana
     const daysMap = [

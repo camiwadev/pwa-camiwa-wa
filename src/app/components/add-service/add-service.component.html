@@ -1,0 +1,29 @@
+<div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+        <div class="form">
+            <div class="modal-body">
+                <h2>Agregar servicio o tratamiento</h2>
+                
+                <!-- Campo para el título -->
+                <div class="form-group">
+                    <label for="tittle">Título:</label>
+                    <input type="text" id="tittle" class="form-control" [(ngModel)]="tittle" >
+                </div>
+                
+                <!-- Campo para la descripción -->
+                <div class="form-group">
+                    <label for="description">Descripción:</label>
+                    <textarea id="description" class="form-control" [(ngModel)]="description" ></textarea>
+                </div>
+                
+                <!-- Campo oculto para el userId -->
+           
+
+                <!-- Botón para guardar -->
+                <div style="display: flex; align-items: center;">
+                    <button class="btn btn-default" style="margin-top: 10px;" (click)="saveService()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -28,6 +28,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ContactHeaderComponent } from './components/ui/contact-header/contact-header.component';
 import { SpecialistsComponent } from './components/specialists/specialists.component';
 import mapboxgl from 'mapbox-gl'; 
+import { MessagesComponent } from './components/messages/messages.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -55,6 +56,7 @@ import mapboxgl from 'mapbox-gl';
     AboutHeaderComponent,
     ContactComponent,
     SpecialistDetailComponent,
+    MessagesComponent,
   ContactHeaderComponent  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
