@@ -2,26 +2,22 @@
     <div class="modal-content">
         <div class="form">
             <div class="modal-body">
-                <h2>Agregar servicio o tratamiento</h2>
-                
-                <!-- Campo para el título -->
-                <div class="form-group">
+                <h2 style="margin-bottom: 40px;">+ Servicio o tratamiento</h2>
+                <div class="form-group" style="margin-bottom: 15px;">
                     <label for="tittle">Título:</label>
-                    <input type="text" id="tittle" class="form-control" [(ngModel)]="tittle" >
+                    <input type="text" id="tittle" class="form-control" [(ngModel)]="tittle">
                 </div>
-                
-                <!-- Campo para la descripción -->
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 15px;">
                     <label for="description">Descripción:</label>
-                    <textarea id="description" class="form-control" [(ngModel)]="description" ></textarea>
+                    <textarea id="description" class="form-control" [(ngModel)]="description"></textarea>
                 </div>
-                
-                <!-- Campo oculto para el userId -->
-           
-
-                <!-- Botón para guardar -->
+                <div class="upload-documents" style="margin-bottom: 15px;">
+                    <ngx-awesome-uploader [adapter]="adapterServices" [captions]="captionsServices"
+                        [showPreviewContainer]="false">
+                    </ngx-awesome-uploader>
+                </div>
                 <div style="display: flex; align-items: center;">
-                    <button class="btn btn-default" style="margin-top: 10px;" (click)="saveService()">Guardar</button>
+                    <button class="btn btn-default w-100" style="margin-top: 10px;" (click)="saveService()">Guardar</button>
                 </div>
             </div>
         </div>

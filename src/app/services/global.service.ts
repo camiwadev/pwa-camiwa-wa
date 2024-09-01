@@ -107,6 +107,7 @@ export class GlobalService {
   public pb = new PocketBase('https://db.buckapi.com:8090');
   totalServices: number = 0;
   services: any[] = [];
+  servicesImages: any[] = [];
   uploaderImages: string[] = [];
   certificates: string[] = [];
   avatar: string[] = [];

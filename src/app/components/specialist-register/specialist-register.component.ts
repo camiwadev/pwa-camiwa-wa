@@ -150,6 +150,7 @@ export class SpecialistRegisterComponent {
       uploadError: 'error',
     },
   };
+
   public captionsAvatar: UploaderCaptions = {
     dropzone: {
       title: 'Foto de perfil.',

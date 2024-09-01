@@ -319,7 +319,7 @@
                             style="padding: 10px;">
                             <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
                                 <a  class="stretched-link"></a>
-                                <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
+                                <img  src="{{item.images[0]}}" *ngIf="item.images!=undefined"  alt="" class="img-fluid w-100">
                             </div>
                             <div class="row g-1 pt-2" style="padding-left: 5%;">
                                 <div class="col-sm order-sm-first">
@@ -460,6 +460,72 @@
                         </div>
                     </div> -->
                 </div>
+                <div class="py-5 bg-light rounded-4 mx-3 mt-3 bg-size-contain js-bg-image js-bg-image-lines "
+                data-image-src="assets/camiwa/images/lines.svg">
+                <div class="container">
+                    <div class="align-items-end row g-4 mb-5" data-aos="fade-down">
+                        <div class="col">
+                            <!-- start section header -->
+                            <div class="section-header">
+                                <!-- start subtitle -->
+                                <div
+                                    class="font-caveat fs-1 fw-medium section-header__subtitle text-capitalize text-center text-primary text-xl-start">
+                                    Promociones</div>
+                                <!-- end /. subtitle -->
+
+                                <!-- start description -->
+                                <div class="sub-title fs-16 text-center text-xl-start">Descuentos y promociones.
+                                </div>
+                                <!-- end /. description -->
+                            </div>
+                            <!-- end /. section header -->
+                        </div>
+                    </div>
+                    <div class="items-carousel owl-carousel owl-theme owl-nav-center">
+
+                        <!-- BLOQUE REPETIBLE -->
+
+                        <!-- <div
+                            class="bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width">
+                            <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
+                                <a href="#" class="stretched-link"></a>
+                                <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
+                                <div
+                                    class="align-items-center bg-blur border-0 card-badge d-flex d-inline-block fw-semibold gap-1 position-absolute start-0 text-uppercase text-green z-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15">
+                                        </path>
+                                    </svg>
+                                    10% OFF
+                                </div>
+
+                            </div>
+                            <div class="row g-1 pt-2" style="padding-left: 5%;">
+                    
+                                <div class="col-sm order-sm-first">
+                                    <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
+                                        <span>Titulos</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            fill="currentColor" class="bi bi-patch-check-fill text-success"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
+                                            </path>
+                                        </svg>
+                                    </h4>
+                                    <p class="mb-0 fs-13">Detalles</p>
+                                </div>
+                            </div>
+                            <div class="fs-6 fw-bold text-primary text-uppercase mt-3" style="padding-left: 5%;">
+                                Solo por $120</div>
+                        </div>
+                    -->
+                    </div>
+               
+                </div>
+            </div>
                 <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm" style="    margin-top: 10px;">
                     <div class="align-items-center d-flex justify-content-between mb-4">
                         <h4 class="w-semibold mb-0">Días de <span class="font-caveat text-primary">atención</span>
@@ -486,247 +552,7 @@
                     </div>
 
                 </div>
-                <div class="py-5 bg-light rounded-4 mx-3 mt-3 bg-size-contain js-bg-image js-bg-image-lines "
-                    data-image-src="assets/camiwa/images/lines.svg">
-                    <div class="container">
-                        <div class="align-items-end row g-4 mb-5" data-aos="fade-down">
-                            <div class="col">
-                                <!-- start section header -->
-                                <div class="section-header">
-                                    <!-- start subtitle -->
-                                    <div
-                                        class="font-caveat fs-1 fw-medium section-header__subtitle text-capitalize text-center text-primary text-xl-start">
-                                        Promociones</div>
-                                    <!-- end /. subtitle -->
-
-                                    <!-- start description -->
-                                    <div class="sub-title fs-16 text-center text-xl-start">Descuentos y promociones.
-                                    </div>
-                                    <!-- end /. description -->
-                                </div>
-                                <!-- end /. section header -->
-                            </div>
-                        </div>
-                        <div class="items-carousel owl-carousel owl-theme owl-nav-center">
-                            <!-- start listing card -->
-                            <div
-                                class="bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width">
-                                <!-- start card image wrap -->
-                                <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
-                                    <!-- start card link -->
-                                    <a href="#" class="stretched-link"></a>
-                                    <!-- end /. card link -->
-                                    <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
-                                    <div
-                                        class="align-items-center bg-blur border-0 card-badge d-flex d-inline-block fw-semibold gap-1 position-absolute start-0 text-uppercase text-green z-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
-                                            <path
-                                                d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15">
-                                            </path>
-                                        </svg>
-                                        10% OFF
-                                    </div>
-
-                                </div>
-                                <!-- end /. card image wrap -->
-                                <div class="row g-1 pt-2" style="padding-left: 5%;">
-                                    <!-- <div class="col-sm-auto">
-                                            <div class="badge border border-danger fw-semibold text-danger text-uppercase">Closed</div>
-                                        </div> -->
-                                    <div class="col-sm order-sm-first">
-                                        <!-- start card title -->
-                                        <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
-                                            <span>Titulos</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                                fill="currentColor" class="bi bi-patch-check-fill text-success"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
-                                                </path>
-                                            </svg>
-                                        </h4>
-                                        <!-- end /. card title -->
-                                        <!-- start card description -->
-                                        <p class="mb-0 fs-13">Detalles</p>
-                                        <!-- end /. card description -->
-                                    </div>
-                                </div>
-                                <!-- start price -->
-                                <div class="fs-6 fw-bold text-primary text-uppercase mt-3" style="padding-left: 5%;">
-                                    Solo por $120</div>
-                                <!-- end /. price -->
-                            </div>
-                            <!-- end /. listing card -->
-                            <!-- start listing card -->
-                            <div
-                                class="bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width">
-                                <!-- start card image wrap -->
-                                <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
-                                    <!-- start card link -->
-                                    <a href="#" class="stretched-link"></a>
-                                    <!-- end /. card link -->
-                                    <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
-                                    <div
-                                        class="align-items-center bg-blur border-0 card-badge d-flex d-inline-block fw-semibold gap-1 position-absolute start-0 text-uppercase text-green z-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
-                                            <path
-                                                d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15">
-                                            </path>
-                                        </svg>
-                                        10% OFF
-                                    </div>
-
-                                </div>
-                                <!-- end /. card image wrap -->
-                                <div class="row g-1 pt-2" style="padding-left: 5%;">
-                                    <!-- <div class="col-sm-auto">
-                                            <div class="badge border border-danger fw-semibold text-danger text-uppercase">Closed</div>
-                                        </div> -->
-                                    <div class="col-sm order-sm-first">
-                                        <!-- start card title -->
-                                        <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
-                                            <span>Titulos</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                                fill="currentColor" class="bi bi-patch-check-fill text-success"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
-                                                </path>
-                                            </svg>
-                                        </h4>
-                                        <!-- end /. card title -->
-                                        <!-- start card description -->
-                                        <p class="mb-0 fs-13">Detalles</p>
-                                        <!-- end /. card description -->
-                                    </div>
-                                </div>
-                                <!-- start price -->
-                                <div class="fs-6 fw-bold text-primary text-uppercase mt-3" style="padding-left: 5%;">
-                                    Solo por $120</div>
-                                <!-- end /. price -->
-                            </div>
-                            <!-- end /. listing card -->
-                            <!-- start listing card -->
-                            <div
-                                class="bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width">
-                                <!-- start card image wrap -->
-                                <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
-                                    <!-- start card link -->
-                                    <a href="#" class="stretched-link"></a>
-                                    <!-- end /. card link -->
-                                    <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
-                                    <div
-                                        class="align-items-center bg-blur border-0 card-badge d-flex d-inline-block fw-semibold gap-1 position-absolute start-0 text-uppercase text-green z-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
-                                            <path
-                                                d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15">
-                                            </path>
-                                        </svg>
-                                        10% OFF
-                                    </div>
-
-                                </div>
-                                <!-- end /. card image wrap -->
-                                <div class="row g-1 pt-2" style="padding-left: 5%;">
-                                    <!-- <div class="col-sm-auto">
-                                            <div class="badge border border-danger fw-semibold text-danger text-uppercase">Closed</div>
-                                        </div> -->
-                                    <div class="col-sm order-sm-first">
-                                        <!-- start card title -->
-                                        <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
-                                            <span>Titulos</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                                fill="currentColor" class="bi bi-patch-check-fill text-success"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
-                                                </path>
-                                            </svg>
-                                        </h4>
-                                        <!-- end /. card title -->
-                                        <!-- start card description -->
-                                        <p class="mb-0 fs-13">Detalles</p>
-                                        <!-- end /. card description -->
-                                    </div>
-                                </div>
-                                <!-- start price -->
-                                <div class="fs-6 fw-bold text-primary text-uppercase mt-3" style="padding-left: 5%;">
-                                    Solo por $120</div>
-                                <!-- end /. price -->
-                            </div>
-                            <!-- end /. listing card -->
-                            <!-- start listing card -->
-                            <div
-                                class="bg-transparent border-0 card card-hover-bg flex-fill overflow-hidden rounded-4 card-width">
-                                <!-- start card image wrap -->
-                                <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
-                                    <!-- start card link -->
-                                    <a href="#" class="stretched-link"></a>
-                                    <!-- end /. card link -->
-                                    <img src="assets/camiwa/images/place/17.jpg" alt="" class="img-fluid w-100">
-                                    <div
-                                        class="align-items-center bg-blur border-0 card-badge d-flex d-inline-block fw-semibold gap-1 position-absolute start-0 text-uppercase text-green z-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
-                                            <path
-                                                d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15">
-                                            </path>
-                                        </svg>
-                                        10% OFF
-                                    </div>
-
-                                </div>
-                                <!-- end /. card image wrap -->
-                                <div class="row g-1 pt-2" style="padding-left: 5%;">
-                                    <!-- <div class="col-sm-auto">
-                                            <div class="badge border border-danger fw-semibold text-danger text-uppercase">Closed</div>
-                                        </div> -->
-                                    <div class="col-sm order-sm-first">
-                                        <!-- start card title -->
-                                        <h4 class="fs-5 fw-semibold restaurant-text-truncate overflow-hidden mb-0">
-                                            <span class="tituloPromo">Titulos</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                                fill="currentColor" class="bi bi-patch-check-fill text-success"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z">
-                                                </path>
-                                            </svg>
-                                        </h4>
-                                        <!-- end /. card title -->
-                                        <!-- start card description -->
-                                        <p class="mb-0 fs-13 tituloPromo">Detalles</p>
-                                        <!-- end /. card description -->
-                                    </div>
-                                </div>
-                                <!-- start price -->
-                                <div class="fs-6 fw-bold text-primary text-uppercase mt-3" style="padding-left: 5%;">
-                                    Solo por $120</div>
-                                <!-- end /. price -->
-                            </div>
-                            <!-- end /. listing card -->
-                        </div>
-                        <!-- start banner -->
-                        <!-- <div
-                            class="banner banne-restaurant dark-overlay mt-5 overflow-hidden position-relative rounded-4">
-                            <img src="assets/camiwa/images/banner-bg-02.jpg" class="bg-image js-image-parallax" alt="">
-                            <div
-                                class="align-items-center g-4 h-100 justify-content-between p-3 p-sm-5 position-relative row text-white wrapper z-1">
-                                <div class="col-md-7 col-lg-6 text-center text-md-start">
-                                    <div class="fs-14 l-spacing-1">Oferta especial</div>
-                                    <h2 class="display-5 fw-semibold lh-1">Banner publicitario</h2>
-                                    <p>Detalles</p>
-                                </div>
-                                <div class="col-md-5 col-lg-4">
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- end /. banner -->
-                    </div>
-                </div>
+             
                 <!-- <div class="py-5 dark-overlay  position-relative overflow-hidden m-3 rounded-4 text-blak">
                     <div class="container py-4 overlay-content">
                         <div class="row justify-content-center">
@@ -800,11 +626,11 @@
                                             </polygon>
                                         </svg>
                                         <!-- /.End Svg Icon  -->
-                                        <h3 class="position-absolute mb-0 fs-18 text-primary">4.3</h3>
+                                        <h3 class="position-absolute mb-0 fs-18 text-primary">5</h3>
                                     </div>
                                     <!-- End Rating Point -->
-                                    <span class="fs-13">2,525 Calificaciones y</span><br>
-                                    <span class="fs-13">293 Reseñas</span>
+                                    <span class="fs-13">0 Calificaciones y</span><br>
+                                    <span class="fs-13">0 Reseñas</span>
                                 </div>
                             </div>
                             <div class="col">
@@ -954,38 +780,7 @@
                         </div>
                     </div>
 
-                    <div class="d-flex mb-4 border-bottom pb-4">
-                        <div class="flex-shrink-0">
-                            <img src="assets/camiwa/images/avatar/04.jpg" alt="..." height="70" width="70"
-                                class="object-fit-cover rounded-circle">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <div class="comment-header d-flex flex-wrap gap-2 mb-3">
-                                <div>
-                                    <h4 class="fs-18 mb-0">- Pranoti Deshpande</h4>
-                                    <div class="comment-datetime fs-12 text-muted">25 Marzo 2024, 12.27 pm</div>
-                                </div>
-                                <!-- start rating -->
-                                <div class="d-flex align-items-center gap-2 ms-auto">
-                                    <div class="d-flex align-items-center text-primary rating-stars">
-                                        <i class="fa-star-icon"></i>
-                                        <i class="fa-star-icon"></i>
-                                        <i class="fa-star-icon"></i>
-                                        <i class="fa-star-icon half"></i>
-                                        <i class="fa-star-icon none"></i>
-                                    </div>
-                                    <span class="fs-14 fw-semibold rating-points">3.5/5</span>
-                                </div>
-                                <!-- end /. rating -->
-                            </div>
-                            <div class="fs-15">There are many variations of passages of Lorem Ipsum available, but the
-                                majority have suffered alteration in some form, by injected humour, or randomised words
-                                which don't look even slightly believable. </div>
-                            <!-- start review -->
-
-                            <!-- end /. review -->
-                        </div>
-                    </div>
+                  -->
                     <div class="d-flex mb-4">
                         <div class="flex-shrink-0">
                             <img src="assets/camiwa/images/avatar/05.jpg" alt="..." height="70" width="70"

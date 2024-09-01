@@ -15,15 +15,36 @@ import { SelectComponent } from '../select/select.component';
 import { PocketbaseService } from '@app/services/pocketbase.service';
 import { AuthRESTService } from '@app/services/auth-rest.service';
 import { ToastrService } from 'ngx-toastr';
+import { FilePickerModule } from 'ngx-awesome-uploader';
+import { UploaderCaptions } from 'ngx-awesome-uploader';
 const pb = new PocketBase('https://db.buckapi.com:8090');
+import { ServicesAdapter } from '@app/services.adapter';
+
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgMultiSelectDropDownModule,SelectComponent],
+  imports: [CommonModule, FormsModule, NgMultiSelectDropDownModule,SelectComponent,FilePickerModule],
   templateUrl: './add-service.component.html',
   styleUrl: './add-service.component.css'
 })
 export class AddServiceComponent {
+  public captionsServices: UploaderCaptions = {
+    dropzone: {
+      title: '10 MB máx.',
+      or: '.',
+      browse: 'Subir imagenes del servicio',
+    },
+    cropper: {
+      crop: 'Cortar',
+      cancel: 'Cancelar',
+    },
+    previewCard: {
+      remove: 'Borrar',
+      uploadError: 'error',
+    },
+  };
+  adapterServices = new ServicesAdapter(this.http, this.global);
+
   tittle: string = '';
   description: string = '';
   data = {
@@ -43,6 +64,7 @@ export class AddServiceComponent {
     public pocketAuthService: PocketAuthService,
     public pocketRest: AuthRESTService,
     public modalService: NgbModal,
+    public http: HttpClient,
     private toastr: ToastrService  // Inyecta ToastrService
   ) {
     this.getCategories();
@@ -61,6 +83,7 @@ export class AddServiceComponent {
   async saveService() {
     try {
       const serviceData = {
+        images: this.global.servicesImages,
         userId: this.pocketRest.getUserId(),  // Obtiene el ID del usuario autenticado
         tittle: this.tittle,
         description: this.description
@@ -72,6 +95,7 @@ export class AddServiceComponent {
       console.error('Error al guardar el servicio:', error);
     }
   }
+  
   getCategories() {
     this.global.getCategories().subscribe((response) => {
       this.global.categories = response.items;
