@@ -39,6 +39,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PocketAuthService } from '@app/services/pocket-auth.service';
 import { em } from '@fullcalendar/core/internal-common';
 import { AddServiceComponent } from '../add-service/add-service.component';
+import { ItemsService } from '@app/services/items.service';
 @Component({
   selector: 'app-specialist-detail',
   standalone: true,
@@ -67,6 +68,7 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
   @ViewChild('calendar') calendar!: MatCalendar<Date>;
   @ViewChild('header')
   customCalendarHeader!: CustomCalendarHeaderComponent<Date>;
+  editingItem: any = null; 
   // selectedDate: Date | null = null;
   isEditing: boolean = false;
   biografia: string = '';
@@ -89,7 +91,7 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
   tempEmail: string = '';
 
   isHovered: { [key: string]: boolean } = {};
-
+  // editingItem: any = null; 
   workingDays = ['tuesday', 'wednesday', 'thursday', 'friday'];
   private mutationObserver: MutationObserver;
   form: FormGroup;
@@ -105,8 +107,12 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
     public authService: AuthRESTService,
     rendererFactory: RendererFactory2,
     public pocketbase: PocketAuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private itemsService: ItemsService
   ) {
+    this.itemsService.camiwaServiceEvents$.subscribe(event => {
+      this.handleServiceEvent(event);
+    });
     this.renderer = rendererFactory.createRenderer(null, null);
     this.scrollToTop();
 
@@ -121,14 +127,7 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
       // Añade más campos si es necesario
     });
   }
-  // toggleEditConsultationFee() {
-  //   this.isEditingConsultationFee = !this.isEditingConsultationFee;
-  //   if (!this.isEditingConsultationFee) {
-  //     this.tempConsultationFee = null;  // Restablecer el valor temporal si se cancela
-  //   } else {
-  //     this.tempConsultationFee = this.global.previewRequest.consultationFee;  // Rellenar con el valor actual si se inicia la edición
-  //   }
-  // }
+
   openModal() {
     const modalRef = this.modalService.open(AddServiceComponent);
     // Puedes pasar datos al modal utilizando el método 'componentInstance' del modalRef.
@@ -316,7 +315,41 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
     );
     
   }
+  handleServiceEvent(event: any) {
+    // Manejo de los eventos para actualizar la lista de items en el componente
+  }
 
+  // Método para iniciar la edición de un item
+  startEditItem(item: any) {
+    this.editingItem = { ...item }; // Clonar el item para la edición
+  }
+
+  // Método para guardar los cambios del item editado
+  saveEditItem() {
+    this.itemsService.editItem(this.editingItem.id, this.editingItem)
+      .then(updatedItem => {
+        this.editingItem = null; // Salir del modo de edición
+      })
+      .catch(error => {
+        console.error('Error al actualizar el item:', error);
+      });
+  }
+
+  // Método para cancelar la edición
+  cancelEditItem() {
+    this.editingItem = null; // Salir del modo de edición sin guardar
+  }
+
+  // Método para eliminar un item
+  deleteItem(item: any) {
+    this.itemsService.deleteItem(item.id)
+      .then(() => {
+        // Eliminar el item de la lista o manejar la respuesta según sea necesario
+      })
+      .catch(error => {
+        console.error('Error al eliminar el item:', error);
+      });
+  }
   createBooking() {
     if (this.form.invalid) {
       this.toastr.error(

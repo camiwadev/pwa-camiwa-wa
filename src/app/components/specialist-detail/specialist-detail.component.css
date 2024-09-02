@@ -82,4 +82,50 @@
 }
 .fw-link{
   color: #0090ff;
+}.item-container {
+  position: relative;
+  overflow: hidden; /* Asegura que el contenido no se salga del contenedor */
+}
+
+.card-img-wrap {
+  position: relative; /* Necesario para posicionar los botones en relación con la imagen */
+}
+
+.buttons-container {
+  display: none; /* Ocultar los botones por defecto */
+  position: absolute;
+  z-index: 9000;
+  top: 30px; /* Ajusta la posición desde la parte superior */
+  right: 10px; /* Ajusta la posición desde el lado derecho */
+  gap: 10px; /* Espacio entre los botones */
+}
+
+.item-container:hover .buttons-container {
+  display: flex; /* Mostrar los botones al pasar el mouse */
+  flex-direction: row; /* Alinear los botones horizontalmente */
+  align-items: center; /* Centrar los botones verticalmente */
+}
+
+.buttons-container button {
+  width: 40px; /* Ancho del botón */
+  height: 40px; /* Alto del botón */
+  border-radius: 50%; /* Hace el botón circular */
+  display: flex; /* Centra el icono dentro del botón */
+  justify-content: center; /* Centra el icono horizontalmente */
+  align-items: center; /* Centra el icono verticalmente */
+  background-color: rgba(255, 255, 255, 0.7); /* Fondo semi-transparente para los botones */
+  border: none; /* Eliminar bordes */
+  padding: 0; /* Eliminar padding */
+}
+
+.buttons-container button i {
+  font-size: 18px; /* Ajustar el tamaño del icono si es necesario */
+}
+
+.buttons-container button.btn-warning {
+  color: #ffc107; /* Color del icono para el botón de advertencia */
+}
+
+.buttons-container button.btn-danger {
+  color: #dc3545; /* Color del icono para el botón de eliminación */
 }

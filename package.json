@@ -28,6 +28,7 @@
     "@fullcalendar/interaction": "^6.1.14",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@sweetalert2/ngx-sweetalert2": "^12.3.0",
+    "bootstrap-icons": "^1.11.3",
     "date-fns": "^3.6.0",
     "mapbox-gl": "^3.6.0",
     "ng-multiselect-dropdown": "^1.0.0",

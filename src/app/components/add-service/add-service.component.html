@@ -16,6 +16,34 @@
                         [showPreviewContainer]="false">
                     </ngx-awesome-uploader>
                 </div>
+                <div class="preview-images" *ngIf="global.servicesImages.length > 0" style="margin-bottom: 15px;">
+                    <div class="image-container" style="display: flex; gap: 10px;">
+                        <div *ngFor="let image of global.servicesImages; let i = index" class="image-preview" style="position: relative;">
+                            <!-- Imagen -->
+                            <img [src]="image" alt="Vista previa" style="max-width: 100px; max-height: 100px; object-fit: cover;">
+
+                            <!-- Botón circular de eliminar -->
+                            <button (click)="removeImage(i)" class="remove-button" style="
+                                position: absolute;
+                                top: 5px;
+                                right: 5px;
+                                background-color: rgba(255, 0, 0, 0.7);
+                                border: none;
+                                border-radius: 50%;
+                                color: white;
+                                width: 24px;
+                                height: 24px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                cursor: pointer;
+                            ">
+                                &times;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div style="display: flex; align-items: center;">
                     <button class="btn btn-default w-100" style="margin-top: 10px;" (click)="saveService()">Guardar</button>
                 </div>

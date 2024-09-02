@@ -17,12 +17,8 @@ export class ItemsService {
 
   async subscribeToCamiwaServices(userId: string) {
     try {
-      // (Opcional) Autenticación
       await this.pb.collection('users').authWithPassword('admin@email.com', 'admin1234');
-
-      // Suscribirse a todos los cambios en la colección 'camiwaServices'
       this.pb.collection('camiwaServices').subscribe('*', (e) => {
-        // Filtrar eventos por userId usando notación de índice
         if (e.record['userId'] === userId) {
           this.handleCamiwaServiceEvent(e);
         }
@@ -39,5 +35,28 @@ export class ItemsService {
 
   unsubscribeFromCamiwaServices() {
     this.pb.collection('camiwaServices').unsubscribe('*');
+  }
+
+  // Método para editar un item
+  async editItem(itemId: string, updatedData: any) {
+    try {
+      const updatedItem = await this.pb.collection('camiwaServices').update(itemId, updatedData);
+      console.log('Item actualizado:', updatedItem);
+      return updatedItem;
+    } catch (error) {
+      console.error('Error al actualizar el item:', error);
+      throw error;
+    }
+  }
+
+  // Método para eliminar un item
+  async deleteItem(itemId: string) {
+    try {
+      await this.pb.collection('camiwaServices').delete(itemId);
+      console.log('Item eliminado:', itemId);
+    } catch (error) {
+      console.error('Error al eliminar el item:', error);
+      throw error;
+    }
   }
 }

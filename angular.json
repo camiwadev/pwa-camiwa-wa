@@ -29,6 +29,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/custom-theme.scss",
               "./node_modules/swiper/swiper-bundle.css",
               "src/styles.css",
@@ -97,6 +98,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.css",
               "src/styles.scss",
               "src/assets/camiwa/plugins/aos/aos.min.css",

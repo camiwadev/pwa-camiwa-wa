@@ -30,7 +30,8 @@
   }
   
 html, body { height: 100%; }
-/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+body { font-family: 'Nunito', sans-serif;}
 ::ng-deep .mat-calendar .mat-calendar-body-cell-selected {
   background-color: yellow !important;
   color: black !important; /* Asegúrate de que el texto sea legible */
