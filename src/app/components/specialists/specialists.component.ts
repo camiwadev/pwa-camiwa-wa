@@ -67,7 +67,7 @@ export class SpecialistsComponent {
     });
   }
   deleteRecord(recordId: string) {
-    const url = `https://db.buckapi.com:8090/api/collections/camiwaSpecialists/records/${recordId}`;
+    const url = `https://db.buckapi.lat:4545/api/collections/camiwaSpecialists/records/${recordId}`;
     this.http.delete(url).subscribe({
       next: (response) => {
         Swal.fire(

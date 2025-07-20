@@ -10,7 +10,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { GlobalService } from '@app/services/global.service';
 import { SelectComponent } from '../select/select.component';
-const pb = new PocketBase('https://db.buckapi.com:8090');
+const pb = new PocketBase('https://db.buckapi.lat:4545');
 @Component({
   selector: 'app-modal',
   standalone: true,

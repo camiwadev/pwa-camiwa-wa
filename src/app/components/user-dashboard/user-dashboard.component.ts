@@ -45,7 +45,7 @@ export class UserDashboardComponent {
     }
 
     fetchSpecialistData(userId: string): void {
-      const pb = new PocketBase('https://db.buckapi.com:8090');
+      const pb = new PocketBase('https://db.buckapi.lat:4545');
       pb.collection('camiwaSpecialists')
         .getList(1, 1, {
           filter: `userId="${userId}"`,

@@ -86,15 +86,15 @@ export class GlobalService {
   approvedSpecialistsCount = 0;
   public urlPrev = '';
   private categoriesUrl =
-    'https://db.buckapi.com:8090/api/collections/camiwaCategories/records';
+    'https://db.buckapi.lat:4545/api/collections/camiwaCategories/records';
   private specialtiesUrl =
-    'https://db.buckapi.com:8090/api/collections/camiwaSpecialties/records';
+    'https://db.buckapi.lat:4545/api/collections/camiwaSpecialties/records';
   private travelersUrl =
-    'https://db.buckapi.com:8090/api/collections/camiwaTravelers/records';
+    'https://db.buckapi.lat:4545/api/collections/camiwaTravelers/records';
   private specialistsUrl =
-    'https://db.buckapi.com:8090/api/collections/camiwaSpecialists/records';
+    'https://db.buckapi.lat:4545/api/collections/camiwaSpecialists/records';
   private productsUrl =
-    'https://db.buckapi.com:8090/api/collections/frutmeProducts/records';
+    'https://db.buckapi.lat:4545/api/collections/frutmeProducts/records';
   private toursUrl = 'http://localhost8070/api/collections/tours/records';
   private infoUrl = 'http://localhost8095/api/collections/info/records';
   private assetmentsUrl ='http://localhost8095/api/collections/assetments/records';
@@ -104,7 +104,7 @@ export class GlobalService {
   pin='';
   modalType: string = '';
   specialtyId: string = ';';
-  public pb = new PocketBase('https://db.buckapi.com:8090');
+  public pb = new PocketBase('https://db.buckapi.lat:4545');
   totalServices: number = 0;
   services: any[] = [];
   servicesImages: string[] = [];

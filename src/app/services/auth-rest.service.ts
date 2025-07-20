@@ -78,7 +78,7 @@ export class AuthRESTService {
   }
   createBooking(bookingData: any): Observable<any> {
     const url =
-      'https://db.buckapi.com:8090/api/collections/camiwaBookings/records';
+      'https://db.buckapi.lat:4545/api/collections/camiwaBookings/records';
     return this.http
       .post<any>(url, bookingData, { headers: this.headers })
       .pipe(map((response) => response));

@@ -14,7 +14,7 @@ import { AuthRESTService } from '@app/services/auth-rest.service';
 import { ToastrService } from 'ngx-toastr';
 import { FilePickerModule } from 'ngx-awesome-uploader';
 import { UploaderCaptions } from 'ngx-awesome-uploader';
-const pb = new PocketBase('https://db.buckapi.com:8090');
+const pb = new PocketBase('https://db.buckapi.lat:4545');
 import { ServicesAdapter } from '@app/services.adapter';
 @Component({
   selector: 'app-modal',

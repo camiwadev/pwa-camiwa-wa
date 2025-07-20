@@ -1,7 +1,7 @@
 import requests
 
 # URL de la API
-url = 'https://db.buckapi.com:8090/api/collections/camiwaSpecialties/records'
+url = 'https://db.buckapi.lat:4545/api/collections/camiwaSpecialties/records'
 
 # Lee la información del archivo de texto
 with open('info.txt', 'r') as file:

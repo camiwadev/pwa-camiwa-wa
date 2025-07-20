@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TypingService {
-  private pb = new PocketBase("https://db.buckapi.com:8090");
+  private pb = new PocketBase("https://db.buckapi.lat:4545");
   private typingCollection = 'camiwaTypingStatus';
 
   constructor() {}

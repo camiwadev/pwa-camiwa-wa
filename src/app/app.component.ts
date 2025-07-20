@@ -29,6 +29,7 @@ import { ContactHeaderComponent } from './components/ui/contact-header/contact-h
 import { SpecialistsComponent } from './components/specialists/specialists.component';
 import mapboxgl from 'mapbox-gl'; 
 import { MessagesComponent } from './components/messages/messages.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -57,7 +58,9 @@ import { MessagesComponent } from './components/messages/messages.component';
     ContactComponent,
     SpecialistDetailComponent,
     MessagesComponent,
-  ContactHeaderComponent  ],
+  ContactHeaderComponent,
+  ChatbotComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -196,7 +199,7 @@ sendVisitData(visitData: any): void {
   this.http.get('https://ipapi.co/json/').subscribe((response: any) => {
     visitData.country = response.country_name;
     visitData.ip = response.ip;
-    this.http.post('https://db.buckapi.com:8090/api/collections/visits/records', visitData)
+    this.http.post('https://db.buckapi.lat:4545/api/collections/visits/records', visitData)
       .subscribe(response => {
         console.log('Datos de la visita enviados correctamente', response);
         if (visitData.device === 'Mobile') {
@@ -212,7 +215,7 @@ ngAfterViewInit(): void {
   (mapboxgl as any).accessToken = 'pk.eyJ1IjoiY2FtaXdhbWFpbDEyMyIsImEiOiJjbHljemVlMTIwMG9rMnBwcjA0dmp5OGdjIn0.WOOfx3moNvHLA5s9Xa9heA';
 
   // Obtener las ubicaciones desde tu API
-  this.http.get('https://db.buckapi.com:8090/api/collections/visits/records').subscribe((data: any) => {
+  this.http.get('https://db.buckapi.lat:4545/api/collections/visits/records').subscribe((data: any) => {
     const locations = data.items;
 
     if (locations.length > 0 && locations[0].location.lat !== null && locations[0].location.lng !== null) {
@@ -245,5 +248,7 @@ addMarkers(locations: any[]): void {
       .addTo(this.map);
   });
 }
+
+mostrarChatbot = false;
 
 }

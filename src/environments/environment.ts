@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://db.buckapi.com:8990'
+    apiUrl: 'https://db.buckapi.lat:4545'
 };
 

@@ -12,7 +12,7 @@ export class ItemsService {
   camiwaServiceEvents$ = this.camiwaServiceEvents.asObservable();
 
   constructor() {
-    this.pb = new PocketBase('https://db.buckapi.com:8090');
+    this.pb = new PocketBase('https://db.buckapi.lat:4545');
   }
 
   async subscribeToCamiwaServices(userId: string) {

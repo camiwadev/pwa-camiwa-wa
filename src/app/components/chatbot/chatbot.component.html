@@ -1,0 +1,42 @@
+<div class="chatbot-window">
+  <div class="chat-header">Asistente Virtual</div>
+
+  <div class="chat-body">
+    <div *ngFor="let msg of mensajes" [class]="msg.sender === 'user' ? 'user-msg' : 'bot-msg'">
+      {{ msg.message }}
+    </div>
+
+    <!-- Indicador de "escribiendo..." dentro del chat -->
+    <div *ngIf="botEscribiendo" class="bot-typing">
+      <i>El asistente está escribiendo...</i>
+    </div>
+  </div>
+
+  <div class="chat-footer">
+    <input
+      [(ngModel)]="nuevoMensaje"
+      (keyup.enter)="enviar()"
+      placeholder="Escribe un mensaje..."
+    />
+    <button (click)="enviar()">Enviar</button>
+  </div>
+
+  <!-- Alerta de login -->
+  <div class="auth-warning" *ngIf="!isAuthenticated">
+    ⚠️ Algunas funciones requieren iniciar sesión para continuar.
+  </div>
+</div>
+
+<div *ngIf="mostrarSugerencias" class="quick-replies">
+  <button (click)="enviarSugerencia('qué categorías hay disponibles')">Ver categorías</button>
+  <button (click)="enviarSugerencia('quiero agendar una cita')">Agendar cita</button>
+  <button (click)="enviarSugerencia('contactar profesional')">Contactar profesional</button>
+</div>
+
+<div *ngIf="botonesSugeridos.length > 0" class="sugerencias">
+  <button *ngFor="let btn of botonesSugeridos" (click)="usarBotonSugerido(btn)">
+    {{ btn }}
+  </button>
+</div>
+
+

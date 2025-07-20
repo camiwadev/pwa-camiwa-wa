@@ -89,7 +89,7 @@ export class HomeComponent implements AfterViewInit {
     return text.length > limit ? text.substring(0, limit) + '...' : text;
   }
   fetchSpecialistData(userId: string): void {
-    const pb = new PocketBase('https://db.buckapi.com:8090');
+    const pb = new PocketBase('https://db.buckapi.lat:4545');
     pb.collection('camiwaSpecialists')
       .getList(1, 1, {
         filter: `userId="${userId}"`,
@@ -148,7 +148,7 @@ export class HomeComponent implements AfterViewInit {
   }
   fetchClientData(userId: string): void {
     // Crear una instancia de PocketBase
-    const pb = new PocketBase('https://db.buckapi.com:8090');
+    const pb = new PocketBase('https://db.buckapi.lat:4545');
 
     // Hacer la solicitud para obtener los datos del cliente
     pb.collection('camiwaTravelers')
