@@ -72,4 +72,48 @@
     cursor: pointer;
     font-size: 0.85em;
   }
+  .sugerencias {
+    margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-start;
+  }
+  
+  .sugerencias button {
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sugerencias button:hover {
+    background-color: #dcdcdc;
+  }
+  .bot-buttons {
+    margin: 0.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: start;
+  }
+  
+  .bot-buttons button {
+    background-color: #e7f6f2;
+    color: #004d40;
+    border: 1px solid #b2dfdb;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .bot-buttons button:hover {
+    background-color: #b2dfdb;
+    color: #00251a;
+  }
   
