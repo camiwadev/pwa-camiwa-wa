@@ -1,9 +1,9 @@
 import { FilePreviewModel } from 'ngx-awesome-uploader';
-import { HttpRequest, HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, from, map } from 'rxjs';
 import { FilePickerAdapter } from 'ngx-awesome-uploader';
 import { GlobalService } from './services/global.service';
+import PocketBase from 'pocketbase';
+import { HttpClient } from '@angular/common/http';
 export class AvatarAdapter extends FilePickerAdapter {
   image:any="";
   constructor(
@@ -13,30 +13,30 @@ export class AvatarAdapter extends FilePickerAdapter {
     super();
   }
   public uploadFile(fileItem: FilePreviewModel) {
-    console.log("holaaa");
-    const form = new FormData();
-    form.append('file', fileItem.file);
-    const api = 'https://db.buckapi.com:3333/api/containers/tixsImages/upload';
-    const req = new HttpRequest('POST', api, form, {reportProgress: false});
-    return this.http.request(req)
-    .pipe(
-      map( (res: HttpEvent<any>) => {
-          if (res.type === HttpEventType.Response) {
-            this.global.newImage=true;
-          this.global.avatar.push('https://www.buckapi.com/api/server/local-storage/tixsImages/'+res.body.result.files.file[0].name);
-          this.global.newUploaderAvatar=true;
-          return res.body.id.toString();
-        } else if (res.type ===  HttpEventType.UploadProgress && res.total  !== undefined) {
-            const UploadProgress = +Math.round((100 * res.loaded) / res.total);
-            return UploadProgress;
-        }
+    // Instancia de PocketBase
+    const pb = new PocketBase('https://db.buckapi.lat:4545');
+    const formData = new FormData();
+    formData.append('image', fileItem.file);
+    formData.append('type', 'avatar'); // Cambia esto según el tipo de imagen
+    // Si tienes el userId disponible, agrégalo aquí
+    if (this.global?.userId) {
+      formData.append('userId', this.global.userId);
+    }
+    return from(
+      pb.collection('images').create(formData)
+    ).pipe(
+      map((res: any) => {
+        this.global.newImage = true;
+        const imageUrl = `https://db.buckapi.lat:4545/api/files/${res.collectionId}/${res.id}/${res.image}`;
+        this.global.avatar.push(imageUrl);
+        this.global.newUploaderAvatar = true;
+        return res.id;
       })
     );
-   
   }
   public removeFile(fileItem: any): Observable<any> {
     console.log(fileItem);
-    const removeApi = 'https://db.buckapi.com/api/containers/tixsImages/' + fileItem.id;
+    const removeApi = 'https://db.buckapi.lat:4545/api/containers/tixsImages/' + fileItem.id;
     return this.http.delete(removeApi);
   }
 }

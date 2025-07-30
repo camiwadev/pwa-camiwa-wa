@@ -34,7 +34,7 @@ export class UserDashboardComponent {
       'fixed sidebar-mini sidebar-collapse'
     );
 
-      this.global.previewRequest=this.authRest.getCurrentUser();
+      this.global.previewRequest=this.authRest.getCurrentUser()!;
   }
   viewDetail(specialist:any){
     this.global.previewRequest=specialist;

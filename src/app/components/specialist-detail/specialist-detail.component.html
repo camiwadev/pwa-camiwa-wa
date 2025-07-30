@@ -249,8 +249,9 @@
                 </div>
                 <div class="border-0 card listing-form mb-4 p-4 rounded-4 shadow-sm" style="margin-top: 20px;" id="booking">
                     <h4 class="fw-semibold mb-4">Agendar <span class="font-caveat text-primary">consulta</span></h4>
-                    <form [formGroup]="form" (ngSubmit)="createBooking()" class="row g-4"> 
-                      <div class="col-sm-12">
+                    <!-- <form [formGroup]="form" (ngSubmit)="createBooking()" class="row g-4">  -->
+                        <form [formGroup]="form"  class="row g-4">
+                        <div class="col-sm-12">
                         <mat-calendar 
                           #calendar
                           
@@ -267,7 +268,7 @@
                       </div>
                       <div class="col-sm-12">
                         <div>
-                          <label class="required fw-medium mb-2">Nombre</label>
+                          <label class="required fw-medium mb-2">Nombre del paciente</label>
                           <input type="text" class="form-control" placeholder="Ingrese su nombre" formControlName="name" required>
                         </div>
                       </div>
@@ -277,8 +278,18 @@
                           <input type="email" class="form-control" placeholder="Ingrese su correo" formControlName="email" required>
                         </div>
                       </div>
-                      <div class="col-sm-12">
+                      <!-- <div class="col-sm-12">
                         <button type="submit" class="btn btn-primary w-100">Reservar</button>
+                      </div> -->
+                      <div class="col-sm-6">
+                        <button type="button" class="btn btn-secondary w-100" (click)="onSubmit(false)">
+                          Crear solo reserva
+                        </button>
+                      </div>
+                      <div class="col-sm-6">
+                        <button type="button" class="btn btn-primary w-100" (click)="onSubmit(true)">
+                          Reservar y pagar
+                        </button>
                       </div>
                     </form>
                   </div>
@@ -343,8 +354,7 @@
                                     </h4>
                                     <div class="card-img-wrap card-image-hover overflow-hidden dark-overlay rounded-4">
                                         <a class="stretched-link"></a>
-                                        <img src="{{item.images[0]}}" *ngIf="item.images != undefined" alt="" class="img-fluid w-100">
-                                      </div>
+                                        <img src="{{item.images[0]}}" *ngIf="item.images != undefined" alt="" class="img-fluid w-100">                                      </div>
                                     <div class="buttons-container">
                                       <button class="btn btn-warning btn-sm" (click)="startEditItem(item)">
                                         <i class="bi bi-pencil-square"></i>

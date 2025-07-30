@@ -247,8 +247,18 @@ export class SpecialistRegisterComponent {
         this.formData.certificates = this.global.certificates;
         this.formData.images = this.global.avatar;
         this.formData.status = 'new';
-        this.http.post(url, this.formData, { headers }).subscribe(
-          (data) => {
+        // Definir la interfaz para la respuesta del servidor
+        interface ServerResponse {
+          id: string;
+          collectionId?: string;
+          collectionName?: string;
+          created?: string;
+          updated?: string;
+          [key: string]: any; // Para propiedades adicionales
+        }
+
+        this.http.post<ServerResponse>(url, this.formData, { headers }).subscribe(
+          (response: ServerResponse) => {
             Swal.close(); // Cierra el mensaje de carga
             setTimeout(() => {
               Swal.fire({
@@ -258,29 +268,53 @@ export class SpecialistRegisterComponent {
                 confirmButtonText: 'Aceptar'
               });
             }, 500);
-            let type = 'specialist';
-            // this.pocketAuthService.setUser(data);
+            
+            const type = 'specialist';
             localStorage.setItem('isLoggedin', 'true');
+            localStorage.setItem('currentUser', user);
+            localStorage.setItem('userId', user.id);
             localStorage.setItem('type', type);
             this.global.setStep(2);
-            switch (type) {
-              case 'admin':
-                this.virtualRouter.routerActive = 'admin-home';
-                break;
-              case 'specialist':
-                this.renderer.setAttribute(
-                  document.body,
-                  'class',
-                  'fixed sidebar-mini sidebar-collapse'
-                );
-                this.virtualRouter.routerActive = 'new';
-                break;
-              case 'visit':
-                this.virtualRouter.routerActive = 'dashboard';
-                break;
-              default:
-                console.error('Tipo de usuario no reconocido');
-            }
+            
+            // Crear objeto con los datos del especialista
+            const specialistData: any = {
+              ...this.formData,
+              id: response.id,
+              days: [
+                this.formData.sunday,
+                this.formData.monday,
+                this.formData.tuesday,
+                this.formData.wednesday,
+                this.formData.thursday,
+                this.formData.friday,
+                this.formData.saturday
+              ],
+              // Inicializar arrays
+              specialties: this.formData.specialties || [],
+              certificates: this.formData.certificates || [],
+              documents: this.formData.documents || [],
+              images: this.formData.images || [],
+              advertiseServices: this.formData.advertiseServices || [],
+              // Campos requeridos
+              collectionId: response.collectionId || '',
+              collectionName: response.collectionName || 'camiwaSpecialists',
+              created: response.created || new Date().toISOString(),
+              updated: response.updated || new Date().toISOString(),
+              password: password,
+              type: 'specialist',
+              usertype: 'specialist'
+            };
+            
+            // Asignar datos al previewRequest global
+            this.global.previewRequest = specialistData;
+            
+            // Configurar la navegación
+            this.renderer.setAttribute(
+              document.body,
+              'class',
+              'fixed sidebar-mini sidebar-collapse'
+            );
+            this.virtualRouter.routerActive = 'dashboard';
             this.global.setRoute('dashboard');
           },
           (error) => {

@@ -1,0 +1,13 @@
+{
+  "/book": {
+      "target": "http://localhost:4242",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },  
+  "/webhook": {
+    "target": "http://localhost:4242",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

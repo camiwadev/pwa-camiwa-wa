@@ -63,8 +63,8 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="profile-element d-flex align-items-center flex-shrink-0 p-0 text-start">
                         <div class="avatar online">
-                            <img *ngIf="authRest.getCurrentUser().avatar" src="https://db.buckapi.lat:4545/api/files/_pb_users_auth_/4c7omwdk8k3vkea/{{authRest.getCurrentUser().avatar}}" class="img-fluid rounded-circle" alt="">
-                           <svg *ngIf="!authRest.getCurrentUser().avatar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                            <img *ngIf="authRest.getCurrentUser()?.avatar" src="https://db.buckapi.lat:4545/api/files/_pb_users_auth_/4c7omwdk8k3vkea/{{authRest.getCurrentUser()?.avatar}}" class="img-fluid rounded-circle" alt="">
+                           <svg *ngIf="!authRest.getCurrentUser()?.avatar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
 
 <defs>
 </defs>
@@ -77,8 +77,8 @@
                       
                         </div>
                         <div class="profile-text">
-                            <h6 class="m-0 fw-medium fs-14">{{authRest.getCurrentUser().full_name}}</h6>
-                            <span><span class="__cf_email__" data-cfemail="0d68756c607d61684d6a606c6461236e6260">[{{authRest.getCurrentUser().email}}]</span></span>
+                            <h6 class="m-0 fw-medium fs-14">{{authRest.getCurrentUser()?.full_name}}</h6>
+                            <span><span class="__cf_email__" data-cfemail="0d68756c607d61684d6a606c6461236e6260">[{{authRest.getCurrentUser()?.email}}]</span></span>
                         </div>
                     </div>
                 </a>
@@ -88,8 +88,8 @@
                     </div>
                     <div class="user-header">
                         <div class="img-user">
-                            <img *ngIf="authRest.getCurrentUser().avatar" src="https://db.buckapi.lat:4545/api/files/_pb_users_auth_/4c7omwdk8k3vkea/{{authRest.getCurrentUser().avatar}}" alt="">
-                           <svg *ngIf="!authRest.getCurrentUser().avatar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  viewBox="0 0 256 256" xml:space="preserve">
+                            <img *ngIf="authRest.getCurrentUser()?.avatar" src="https://db.buckapi.lat:4545/api/files/_pb_users_auth_/4c7omwdk8k3vkea/{{authRest.getCurrentUser()?.avatar}}" alt="">
+                           <svg *ngIf="!authRest.getCurrentUser()?.avatar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  viewBox="0 0 256 256" xml:space="preserve">
 
 <defs>
 </defs>
@@ -101,8 +101,8 @@
 </svg>
                         
                         </div><!-- img-user -->
-                        <h6>{{authRest.getCurrentUser().full_name}}</h6>
-                        <span><a href="../../../../cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f7928f969a879b92b7909a969e9bd994989a">[{{authRest.getCurrentUser().email}}]</a></span>
+                        <h6>{{authRest.getCurrentUser()?.full_name}}</h6>
+                        <span><a href="../../../../cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f7928f969a879b92b7909a969e9bd994989a">[{{authRest.getCurrentUser()?.email}}]</a></span>
                     </div><!-- user-header -->
                     <a class="dropdown-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">

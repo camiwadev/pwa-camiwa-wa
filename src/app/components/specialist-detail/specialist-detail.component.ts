@@ -40,6 +40,10 @@ import { PocketAuthService } from '@app/services/pocket-auth.service';
 import { em } from '@fullcalendar/core/internal-common';
 import { AddServiceComponent } from '../add-service/add-service.component';
 import { ItemsService } from '@app/services/items.service';
+import { HttpClient } from '@angular/common/http';
+import { PaymentService } from '@app/services/payment.service';
+import type { BookResponse } from '../../models/book-response';
+
 @Component({
   selector: 'app-specialist-detail',
   standalone: true,
@@ -99,7 +103,6 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     public modalService: NgbModal,
-
     private renderer: Renderer2,
     private toastr: ToastrService,
     public global: GlobalService,
@@ -108,7 +111,10 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
     rendererFactory: RendererFactory2,
     public pocketbase: PocketAuthService,
     private fb: FormBuilder,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private http: HttpClient, 
+    private payment: PaymentService,
+    
   ) {
     this.itemsService.camiwaServiceEvents$.subscribe(event => {
       this.handleServiceEvent(event);
@@ -350,7 +356,7 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
         console.error('Error al eliminar el item:', error);
       });
   }
-  createBooking() {
+  /* createBooking() {
     if (this.form.invalid) {
       this.toastr.error(
         'Por favor, completa todos los campos obligatorios.',
@@ -386,9 +392,100 @@ export class SpecialistDetailComponent implements AfterViewInit, OnDestroy {
           this.toastr.error('Error al registrar el usuario', 'Error');
         }
       );
-  }
-
-  
+  }  */ 
+  /* createBooking() {
+        if (this.form.invalid) {
+          this.toastr.error(
+            'Por favor, completa todos los campos obligatorios.',
+            'Error'
+          );
+          return;
+        }
+      
+        const email = this.form.get('email')?.value;
+        const name = this.form.get('name')?.value;
+      
+        Swal.fire({
+          title: `${name}, estamos procesando la información para su reserva`,
+          text: `Por favor, espere...`,
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+      
+        try {
+          this.createReservation(email);
+          Swal.close();
+        } catch (error) {
+          Swal.close();
+          this.toastr.error('Error al crear la reserva', 'Error');
+        }
+      }
+      
+      createCheckout() {
+        this.http.post<{ id: string }>('http://localhost:4242/create-checkout-session', {})
+          .subscribe({
+            next: async (res) => {
+              await this.payment.redirectToCheckout(res.id);
+            },
+            error: () => {
+              alert('Error al crear la sesión de pago');
+            }
+          });
+      }  */
+    onSubmit(createAndPay: boolean) {
+      const payload = { name: this.form.get('name')?.value, email: this.form.get('email')?.value, date: this.selectedDate, amount: 200 };
+      console.log('📤 Payload enviado:', payload);
+      console.log('📤 createAndPay:', createAndPay);
+      this.http.post<BookResponse>('/book', { payload, createAndPay })
+            .subscribe(async res => {
+        if (createAndPay && res.sessionId) {
+          console.log('📤 Redirigiendo al checkout...');
+          await this.payment.redirectToCheckout(res.sessionId);
+        } else {
+          this.toastr.success('Reserva creada correctamente');
+        }
+      });
+      }   
+   /* createBooking() {
+            if (this.form.invalid) {
+              this.toastr.error(
+                'Por favor, completa todos los campos obligatorios.',
+                'Error'
+              );
+              return;
+            }
+          
+            const email = this.form.get('email')?.value;
+            const name = this.form.get('name')?.value;
+          
+            Swal.fire({
+              title: `${name}, estamos redirigiéndote a la pasarela de pago`,
+              text: `Por favor, espera...`,
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+              },
+            });
+          
+            this.http.post<{ id: string }>('http://localhost:4242/create-checkout-session', {
+              name,
+              email,
+              // puedes pasar más datos si quieres
+            })
+            .subscribe({
+              next: async (res) => {
+                Swal.close();
+                await this.payment.redirectToCheckout(res.id);
+              },
+              error: () => {
+                Swal.close();
+                this.toastr.error('Error al crear la sesión de pago', 'Error');
+              }
+            });
+          } */ 
+          
   generateRandomPassword(length: number = 12): string {
     const charset =
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

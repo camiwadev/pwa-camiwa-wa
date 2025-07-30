@@ -46,7 +46,7 @@ export class HomeComponent implements AfterViewInit {
           break;
         case 'traveler':
           // Si el tipo de usuario es 'cliente', hacer la solicitud al API
-          let id = this.authRest.getCurrentUser().id;
+          let id = this.authRest.getCurrentUser()!.id;
           this.renderer.setAttribute(
             document.body,
             'class',
@@ -54,7 +54,7 @@ export class HomeComponent implements AfterViewInit {
           );
           // alert('entra')
           this.virtualRouter.routerActive = 'mapwrapper';
-          this.fetchClientData(id);
+          this.fetchClientData(id!);
           // Pasar el ID del cliente al método
           break;
         case 'specialist':
@@ -65,10 +65,10 @@ export class HomeComponent implements AfterViewInit {
             'fixed sidebar-mini sidebar-collapse'
           );
           this.virtualRouter.routerActive = 'mapwrapper';
-          let id2 = this.authRest.getCurrentUser().id;
-          this.fetchSpecialistData(id2); 
+          let id2 = this.authRest.getCurrentUser()?.id;
+          this.fetchSpecialistData(id2!); 
           
-    this.itemsService.subscribeToCamiwaServices(id2);
+    this.itemsService.subscribeToCamiwaServices(id2!);
 
     this.global.subscription.add(
       this.itemsService.camiwaServiceEvents$.subscribe((event) => {

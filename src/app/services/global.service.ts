@@ -64,6 +64,8 @@ interface Specialist {
   status: 'pending' | 'active' | 'approved'| 'new';
   images: string[];
   specialties: Specialty[];
+  avatar: string[];
+  userId: string;
 }
 interface ApiResponse {
   page: number;
@@ -76,6 +78,7 @@ interface ApiResponse {
   providedIn: 'root',
 })
 export class GlobalService {
+  public userId: string = '';
 
   public subscriptions: Subscription = new Subscription();
 

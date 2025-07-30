@@ -67,7 +67,7 @@ export class AuthRESTService {
     const user = this.getCurrentUser();
     return user ? user.userId ?? null : null;
   }
-  getCurrentUser(): UserInterface {
+  /* getCurrentUser(): UserInterface {
     let user_string = localStorage.getItem('currentUser');
     if (user_string) {
       let user: UserInterface = JSON.parse(user_string!);
@@ -75,7 +75,20 @@ export class AuthRESTService {
     } else {
       return null!;
     }
-  }
+  } */
+    getCurrentUser(): UserInterface | null {
+      const user_string = localStorage.getItem('currentUser');
+      if (user_string) {
+        try {
+          return JSON.parse(user_string);
+        } catch (e) {
+          console.error('Error parsing currentUser from localStorage:', e);
+          return null;
+        }
+      }
+      return null;
+    }
+    
   createBooking(bookingData: any): Observable<any> {
     const url =
       'https://db.buckapi.lat:4545/api/collections/camiwaBookings/records';
